@@ -236,7 +236,4 @@ speed = 200
 gravity = 1500
 
 [node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 167, 315 )
-
-[node name="Node2D2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 216, 322 )
+position = Vector2( 213, 359 )
