@@ -14,8 +14,11 @@ var isDead : bool = false
 var isInWater = false
 var canSwim = false
 var velocity = Vector2()
-var canDoubleJump : bool = false
+var snapVector = Vector2.DOWN * 4
+var canDoubleJump : bool = true
 var isOnWall : bool = false
+var isGliding : bool = false
+var whereWall: = "right"
 
 
 
@@ -23,6 +26,11 @@ var isOnWall : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("Melee").disabled = true
+	
+func jump():
+	snapVector = Vector2(0, 0)
+	isJumping = true
+	velocity.y = jumpSpeed
 	
 func get_input():
 	if Input.is_action_just_pressed("attack"):
@@ -61,14 +69,22 @@ func get_input():
 			
 		if Input.is_action_just_pressed("jump"):
 			if canDoubleJump == false and isJumping == false:
+				snapVector = Vector2(0, 0)
 				isJumping = true
-				if is_on_wall():
-					print ('23')
-					velocity.x += jumpSpeed
 				velocity.y += jumpSpeed
 			elif canDoubleJump and jumpsRemaining > 0:
-				velocity.y += jumpSpeed
+				jump()
 				jumpsRemaining -= 1
+			if is_on_wall() and is_on_floor() == false:
+				if whereWall == "right":
+					velocity.x = jumpSpeed
+					print ('test')
+				elif whereWall == "left":
+					velocity.x = -jumpSpeed
+					print ('nwm')
+				velocity.y = jumpSpeed
+				isJumping = true
+				jumpsRemaining = 2
 			
 func _process(delta):
 	if health <= 0:
@@ -76,21 +92,28 @@ func _process(delta):
 		
 func _physics_process(delta):
 	#print (velocity.y)
-	if is_on_floor() == false and is_on_wall() == false:
-		velocity.y += gravity * delta
-	else:
+	if is_on_floor() == false and is_on_wall():
+			
 		velocity.y = 0
+		velocity.x = 0
+	else:
+		if isGliding:
+			velocity.y = 75
+		else:
+			velocity.y += gravity * delta
 	get_input()
 	if isSliding:
 		if velocity.x > 0 and is_on_floor():
 			velocity.x -= 400 * delta
 		elif velocity.x < 0 and is_on_floor():
 			velocity.x += 400 * delta
-	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN * 4, Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
+	snapVector = Vector2.DOWN * 4
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
 	elif is_on_wall():
 		isOnWall = true
 		isJumping = false
-	
+	print (whereWall)
+		
