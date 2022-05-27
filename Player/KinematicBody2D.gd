@@ -4,6 +4,7 @@ extends KinematicBody2D
 export var speed : int = 150
 export var jumpSpeed : int = -300
 export var gravity : int = 400
+export var slideSpeed : int = 300
 var isSliding : bool = false
 var isJumping : bool = false
 var velocity = Vector2()
@@ -26,10 +27,10 @@ func get_input():
 		print ('debug')
 		if velocity.x == speed:
 			isSliding = true
-			velocity.x = 450
+			velocity.x = slideSpeed
 		if velocity.x == -speed:
 			isSliding = true
-			velocity.x = - 450
+			velocity.x = - slideSpeed
 	if Input.is_action_just_released("Slide"):
 		print ('debug')
 		isSliding = false
