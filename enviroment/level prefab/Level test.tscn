@@ -232,3 +232,4 @@ tile_data = PoolIntArray( 851986, 9, 0, 851987, 9, 0, 851988, 9, 0, 851989, 9, 0
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 429, 303 )
 speed = 200
+gravity = 1500
