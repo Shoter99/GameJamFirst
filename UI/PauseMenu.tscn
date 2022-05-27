@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/static/WorkSans-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/static/WorkSans-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.345098, 0.345098, 0.345098, 0.501961 )
+
+[node name="Button" type="Button" parent="."]
+margin_top = 133.0
+margin_right = 193.0
+margin_bottom = 194.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 0.427451, 0.427451, 0.427451, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/focus = SubResource( 5 )
+text = "Resume"
+flat = true
+align = 0
+
+[node name="Button2" type="Button" parent="."]
+margin_top = 193.0
+margin_right = 150.0
+margin_bottom = 231.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 0.427451, 0.427451, 0.427451, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/focus = SubResource( 5 )
+text = "Main Menu"
+flat = true
+align = 0
+
+[node name="Button3" type="Button" parent="."]
+margin_top = 240.0
+margin_right = 79.0
+margin_bottom = 289.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_hover = Color( 0.427451, 0.427451, 0.427451, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/focus = SubResource( 5 )
+text = "Exit"
+flat = true
+align = 0
+
+[node name="Label" type="Label" parent="."]
+margin_top = 62.0
+margin_right = 231.0
+margin_bottom = 138.0
+custom_fonts/font = SubResource( 3 )
+text = "Paused"
