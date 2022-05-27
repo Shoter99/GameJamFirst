@@ -17,4 +17,7 @@ func _on_playerDetector_body_entered(body):
 	self.hurt_and_die(1)
 	
 func _on_playerKiller_body_entered(body):
-	Global.life = Global.life - slimeDmg
+	if body.name == "KinematicBody2D":
+		Global.update_life(-slimeDmg)
+		print(Global.life)
+	

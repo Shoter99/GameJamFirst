@@ -239,7 +239,6 @@ gravity = 1500
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
-
 zoom = Vector2( 0.4, 0.4 )
 smoothing_enabled = true
 
@@ -248,7 +247,6 @@ margin_left = -423.0
 margin_top = 43.0
 margin_right = -423.0
 margin_bottom = 43.0
-
 
 [node name="Node2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 167, 315 )

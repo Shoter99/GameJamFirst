@@ -6,9 +6,10 @@ onready var empty_heart := load("res://Sprites/heart_empty.png")
 
 func _ready() -> void:
 	Global.connect("life_changed", self,"update_life")
-	update_life(Global.life, Global.max_life)
+	update_life(Global.life)
 
-func update_life(var life: int, var max_life: int):
+func update_life(var life: int):
+	var max_life := Global.max_life
 	for N in $CanvasLayer/MarginContainer/HBoxContainer.get_children():
 		if int(N.name) <= max_life:
 			if int(N.name) <= life:
