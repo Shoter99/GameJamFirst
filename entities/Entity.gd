@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 class_name Entity
-export var gravity = 128
+export var gravity = 400
 export var velocity: = Vector2(0.0,0.0)
 func _physics_process(delta):
 	velocity.y +=gravity*delta
