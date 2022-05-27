@@ -1,11 +1,13 @@
-extends KinematicBody2D
+extends Entity
 
 
 export var speed : int = 150
 export var swimSpeed : int = 75
 export var jumpSpeed : int = -300
-export var gravity : int = 400
-export var slideSpeed : int = 320
+
+#export var gravity : int = 400
+export var slideSpeed : int = 300
+
 export var health : int = 10
 var jumpsRemaining : int = 2
 var isSliding : bool = false
@@ -13,7 +15,7 @@ var isJumping : bool = false
 var isDead : bool = false
 var isInWater = false
 var canSwim = false
-var velocity = Vector2()
+#var velocity = Vector2()
 var canDoubleJump : bool = false
 
 
