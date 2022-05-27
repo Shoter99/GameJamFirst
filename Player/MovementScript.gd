@@ -21,9 +21,6 @@ var isGliding : bool = false
 var whereWall: = "right"
 
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("Melee").disabled = true
 	
@@ -52,7 +49,7 @@ func get_input():
 		if is_on_wall() == false:
 			if isSliding == false:
 				velocity.x = 0
-				if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
+				if Input.is_action_pressed("move_right"):
 					velocity.x = speed
 				if Input.is_action_pressed("move_left"):
 					velocity.x = -speed
@@ -78,22 +75,19 @@ func get_input():
 			if is_on_wall() and is_on_floor() == false:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
-					print ('test')
 				elif whereWall == "left":
 					velocity.x = -jumpSpeed
-					print ('nwm')
 				velocity.y = jumpSpeed
 				isJumping = true
 				jumpsRemaining = 2
 			
-func _process(delta):
+func _process(delta: float):
 	if health <= 0:
 		isDead = true
 		
-func _physics_process(delta):
+func _physics_process(delta : float):
 	
-	if is_on_floor() == false and is_on_wall():
-			
+	if is_on_floor() == false and is_on_wall():		
 		velocity.y = 0
 		velocity.x = 0
 	else:
@@ -102,6 +96,7 @@ func _physics_process(delta):
 		else:
 			velocity.y += gravity * delta
 	get_input()
+	var collision = get_slide_collision(1)
 	if isSliding:
 		if velocity.x > 0 and is_on_floor():
 			velocity.x -= 400 * delta
@@ -112,8 +107,14 @@ func _physics_process(delta):
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
+		whereWall = "nothing"
 	elif is_on_wall():
 		isOnWall = true
 		isJumping = false
+		if collision:
+			if collision.position.x > get_position().x:
+				whereWall = "right"
+			else:
+				whereWall = "left"
 	print (whereWall)
 		
