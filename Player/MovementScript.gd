@@ -23,6 +23,7 @@ var whereWall: = "right"
 
 func _ready():
 	get_node("Melee").disabled = true
+	Global.update_life(5)
 	
 func jump():
 	snapVector = Vector2(0, 0)
