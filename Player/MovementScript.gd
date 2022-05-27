@@ -15,15 +15,12 @@ var isInWater = false
 var canSwim = false
 var velocity = Vector2()
 var snapVector = Vector2.DOWN * 4
-var canDoubleJump : bool = true
 var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
 
 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("Melee").disabled = true
 	
@@ -49,39 +46,32 @@ func get_input():
 			velocity.y = swimSpeed
 		
 	else:
-		if is_on_wall() == false:
-			if isSliding == false:
-				velocity.x = 0
-				if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
-					velocity.x = speed
-				if Input.is_action_pressed("move_left"):
-					velocity.x = -speed
-			if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
-				if velocity.x == speed:
-					isSliding = true
-					velocity.x = slideSpeed
-				if velocity.x == -speed:
-					isSliding = true
-					velocity.x = - slideSpeed
-			if Input.is_action_just_released("Slide"):
-				isSliding = false
+		if isSliding == false and is_on_wall() == false:
+			velocity.x = 0
+			if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
+				velocity.x = speed
+			if Input.is_action_pressed("move_left"):
+				velocity.x = -speed
+		if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
+			if velocity.x == speed:
+				isSliding = true
+				velocity.x = slideSpeed
+			if velocity.x == -speed:
+				isSliding = true
+				velocity.x = - slideSpeed
+		if Input.is_action_just_released("Slide"):
+			isSliding = false
 			
 			
 		if Input.is_action_just_pressed("jump"):
-			if canDoubleJump == false and isJumping == false:
-				snapVector = Vector2(0, 0)
-				isJumping = true
-				velocity.y += jumpSpeed
-			elif canDoubleJump and jumpsRemaining > 0:
+			if jumpsRemaining > 0:
 				jump()
 				jumpsRemaining -= 1
 			if is_on_wall() and is_on_floor() == false:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
-					print ('test')
 				elif whereWall == "left":
 					velocity.x = -jumpSpeed
-					print ('nwm')
 				velocity.y = jumpSpeed
 				isJumping = true
 				jumpsRemaining = 2
@@ -91,7 +81,11 @@ func _process(delta):
 		isDead = true
 		
 func _physics_process(delta):
-	#print (velocity.y)
+	var space_state = get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var result = space_state.intersect_ray(Vector2(0, 0), Vector2(1000, 0))
+	if result:
+		print (result.position.x)
 	if is_on_floor() == false and is_on_wall():
 			
 		velocity.y = 0
@@ -115,5 +109,4 @@ func _physics_process(delta):
 	elif is_on_wall():
 		isOnWall = true
 		isJumping = false
-	print (whereWall)
 		
