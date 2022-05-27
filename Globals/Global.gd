@@ -2,7 +2,7 @@ extends Node
 
 
 var max_life := 7
-var life := 4
+var life := max_life
 
 signal life_changed(life)
 
