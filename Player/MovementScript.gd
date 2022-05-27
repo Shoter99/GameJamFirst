@@ -104,4 +104,3 @@ func _physics_process(delta):
 	elif is_on_wall():
 		isOnWall = true
 		isJumping = false
-	
