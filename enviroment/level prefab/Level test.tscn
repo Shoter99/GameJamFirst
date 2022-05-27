@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enviroment/blocks.png" type="Texture" id=2]
 [ext_resource path="res://entities/enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enviroment/Collectable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -238,5 +240,21 @@ gravity = 1500
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
 
+zoom = Vector2( 0.4, 0.4 )
+smoothing_enabled = true
+
+[node name="HUD" parent="KinematicBody2D/Camera2D" instance=ExtResource( 5 )]
+margin_left = -423.0
+margin_top = 43.0
+margin_right = -423.0
+margin_bottom = 43.0
+
+
 [node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 213, 359 )
+position = Vector2( 167, 315 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 216, 322 )
+
+[node name="Collectable" parent="." instance=ExtResource( 4 )]
+position = Vector2( 356, 317 )

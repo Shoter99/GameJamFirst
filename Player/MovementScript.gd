@@ -15,10 +15,10 @@ var isInWater = false
 var canSwim = false
 var velocity = Vector2()
 var snapVector = Vector2.DOWN * 4
-var canDoubleJump : bool = true
 var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
+
 
 
 func _ready():
@@ -46,6 +46,7 @@ func get_input():
 			velocity.y = swimSpeed
 		
 	else:
+
 		if is_on_wall() == false:
 			if isSliding == false:
 				velocity.x = 0
@@ -62,14 +63,11 @@ func get_input():
 					velocity.x = - slideSpeed
 			if Input.is_action_just_released("Slide"):
 				isSliding = false
+
 			
 			
 		if Input.is_action_just_pressed("jump"):
-			if canDoubleJump == false and isJumping == false:
-				snapVector = Vector2(0, 0)
-				isJumping = true
-				velocity.y += jumpSpeed
-			elif canDoubleJump and jumpsRemaining > 0:
+			if jumpsRemaining > 0:
 				jump()
 				jumpsRemaining -= 1
 			if is_on_wall() and is_on_floor() == false:
@@ -88,6 +86,8 @@ func _process(delta: float):
 func _physics_process(delta : float):
 	
 	if is_on_floor() == false and is_on_wall():		
+
+
 		velocity.y = 0
 		velocity.x = 0
 	else:
@@ -117,4 +117,5 @@ func _physics_process(delta : float):
 			else:
 				whereWall = "left"
 	print (whereWall)
+
 		

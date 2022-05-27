@@ -1,6 +1,9 @@
-#enemy is bugged
-
 extends Entity
+
+class_name Enemy
+export var enemyMaxHp: = 3
+export var enemyHp: = 3
+
 
 func _ready():
 	velocity.x = 32
@@ -10,8 +13,7 @@ func _physics_process(delta):
 	if is_on_wall():
 		velocity.x = -velocity.x
 	
-func _on_playerDetector_body_entered(body):
-	return
-	if body.global_positon.y > get_node("playerDetector").y:
-		return
-	queue_free()
+func hurt_and_die(x):
+	self.enemyHp = self.enemyHp - 1
+	if self.enemyHp == 0:
+		queue_free()
