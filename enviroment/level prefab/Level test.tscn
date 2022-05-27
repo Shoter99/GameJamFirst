@@ -248,9 +248,6 @@ margin_top = 43.0
 margin_right = -423.0
 margin_bottom = 43.0
 
-[node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 167, 315 )
-
 [node name="Node2D2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 322 )
 

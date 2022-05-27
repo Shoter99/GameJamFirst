@@ -1,6 +1,9 @@
 extends Enemy
 
+
 export var slimeDmg: = 1
+onready var enemyHealthBar = $EnemyHealthBar;
+
 
 #self.maxEnemyHealth = 2
 
@@ -15,6 +18,7 @@ func _physics_process(delta):
 
 func _on_playerDetector_body_entered(body):
 	self.hurt_and_die(1)
+	
 	
 func _on_playerKiller_body_entered(body):
 	if body.name == "KinematicBody2D":
