@@ -91,7 +91,7 @@ func _process(delta):
 		isDead = true
 		
 func _physics_process(delta):
-	#print (velocity.y)
+	
 	if is_on_floor() == false and is_on_wall():
 			
 		velocity.y = 0
