@@ -5,7 +5,7 @@ export var speed : int = 150
 export var swimSpeed : int = 75
 export var jumpSpeed : int = -300
 export var gravity : int = 400
-export var slideSpeed : int = 300
+export var slideSpeed : int = 320
 export var health : int = 10
 var jumpsRemaining : int = 2
 var isSliding : bool = false
@@ -42,7 +42,6 @@ func get_input():
 			if Input.is_action_pressed("move_left"):
 				velocity.x = -speed
 		if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
-			print ('debug')
 			if velocity.x == speed:
 				isSliding = true
 				velocity.x = slideSpeed
@@ -56,6 +55,7 @@ func get_input():
 		if Input.is_action_just_pressed("jump"):
 			if canDoubleJump == false and isJumping == false:
 				isJumping = true
+				print ('debug')
 				velocity.y += jumpSpeed
 			elif canDoubleJump and jumpsRemaining > 0:
 				velocity.y += jumpSpeed
@@ -66,16 +66,21 @@ func get_input():
 
 
 func _physics_process(delta):
+	print (velocity.y)
+	if is_on_floor() == false:
+		velocity.y += gravity * delta
+	else:
+		velocity.y = 0
 	get_input()
-	velocity.y += gravity * delta
 	if isSliding:
 		if velocity.x > 0 and is_on_floor():
-			velocity.x -= 300 * delta
+			velocity.x -= 400 * delta
 		elif velocity.x < 0 and is_on_floor():
-			velocity.x += 300 * delta
+			velocity.x += 400 * delta
+	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN * 4, Vector2.UP)
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
-	velocity = move_and_slide(velocity, Vector2(-1, 0))
-	print (isSliding)
+	#print (isSliding)
+	#print (is_on_floor())
 	
