@@ -1,10 +1,10 @@
-extends KinematicBody2D
+extends Entity
 
 
 export var speed : int = 150
 export var swimSpeed : int = 75
 export var jumpSpeed : int = -300
-export var gravity : int = 400
+export var playerGravity : int = 400
 export var slideSpeed : int = 320
 export var health : int = 10
 var jumpsRemaining : int = 2
@@ -13,7 +13,7 @@ var isJumping : bool = false
 var isDead : bool = false
 var isInWater = false
 var canSwim = false
-var velocity = Vector2()
+var playerVelocity = Vector2()
 var canDoubleJump : bool = false
 
 
@@ -26,28 +26,28 @@ func _ready():
 func get_input():
 	if isInWater:
 		if Input.is_action_pressed("swim_right"):
-			velocity.x = swimSpeed
+			playerVelocity.x = swimSpeed
 		if Input.is_action_pressed("swim_left"):
-			velocity.x = -swimSpeed
+			playerVelocity.x = -swimSpeed
 		if Input.is_action_pressed("swim_up"):
-			velocity.y = -swimSpeed
+			playerVelocity.y = -swimSpeed
 		if Input.is_action_pressed("swim_down"):
-			velocity.y = swimSpeed
+			playerVelocity.y = swimSpeed
 		
 	else:
 		if isSliding == false:
-			velocity.x = 0
-			if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
-				velocity.x = speed
+			playerVelocity.x = 0
+			if Input.is_action_pressed("move_right") and abs(playerVelocity.x) <= speed:
+				playerVelocity.x = speed
 			if Input.is_action_pressed("move_left"):
-				velocity.x = -speed
+				playerVelocity.x = -speed
 		if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
-			if velocity.x == speed:
+			if playerVelocity.x == speed:
 				isSliding = true
-				velocity.x = slideSpeed
-			if velocity.x == -speed:
+				playerVelocity.x = slideSpeed
+			if playerVelocity.x == -speed:
 				isSliding = true
-				velocity.x = - slideSpeed
+				playerVelocity.x = - slideSpeed
 		if Input.is_action_just_released("Slide"):
 			isSliding = false
 			
@@ -56,9 +56,9 @@ func get_input():
 			if canDoubleJump == false and isJumping == false:
 				isJumping = true
 				print ('debug')
-				velocity.y += jumpSpeed
+				playerVelocity.y += jumpSpeed
 			elif canDoubleJump and jumpsRemaining > 0:
-				velocity.y += jumpSpeed
+				playerVelocity.y += jumpSpeed
 				jumpsRemaining -= 1
 			
 		
@@ -66,18 +66,18 @@ func get_input():
 
 
 func _physics_process(delta):
-	print (velocity.y)
+	print (playerVelocity.y)
 	if is_on_floor() == false:
-		velocity.y += gravity * delta
+		playerVelocity.y += playerGravity * delta
 	else:
-		velocity.y = 0
+		playerVelocity.y = 0
 	get_input()
 	if isSliding:
-		if velocity.x > 0 and is_on_floor():
-			velocity.x -= 400 * delta
-		elif velocity.x < 0 and is_on_floor():
-			velocity.x += 400 * delta
-	velocity = move_and_slide_with_snap(velocity, Vector2.DOWN * 4, Vector2.UP)
+		if playerVelocity.x > 0 and is_on_floor():
+			playerVelocity.x -= 350 * delta
+		elif playerVelocity.x < 0 and is_on_floor():
+			playerVelocity.x += 350 * delta
+	playerVelocity = move_and_slide_with_snap(playerVelocity, Vector2.DOWN * 4, Vector2.UP)
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
