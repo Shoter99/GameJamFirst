@@ -26,13 +26,12 @@ extents = Vector2( 4, 1.5 )
 [node name="LeftRightEnemySlime" type="KinematicBody2D" parent="."]
 collision_layer = 16
 script = ExtResource( 2 )
-maxEnemyHealth = null
-enemyHealth = null
 
 [node name="Enemy" type="AnimatedSprite" parent="LeftRightEnemySlime"]
 position = Vector2( 0, -5 )
 frames = SubResource( 3 )
 animation = "walk"
+frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]

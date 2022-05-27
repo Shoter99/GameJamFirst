@@ -6,7 +6,7 @@ export var slimeDmg: = 1
 
 func _ready():
 	velocity.x = 32
-	self.enemyHealth = self.maxEnemyHealth
+	#self.enemyHealth = self.maxEnemyHealth
 
 
 func _physics_process(delta):
