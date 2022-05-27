@@ -23,7 +23,7 @@ var whereWall: = "right"
 
 func _ready():
 	get_node("Melee").disabled = true
-	Global.update_life(5)
+	Global.update_life(Global.max_life)
 	
 func jump():
 	snapVector = Vector2(0, 0)
@@ -52,8 +52,10 @@ func get_input():
 			if isSliding == false:
 				velocity.x = 0
 				if Input.is_action_pressed("move_right"):
+					get_node("Sprite").set_flip_h(false)
 					velocity.x = speed
 				if Input.is_action_pressed("move_left"):
+					get_node("Sprite").set_flip_h(true)
 					velocity.x = -speed
 			if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
 				if velocity.x == speed:
