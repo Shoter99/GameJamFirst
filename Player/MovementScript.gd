@@ -18,6 +18,7 @@ var snapVector = Vector2.DOWN * 4
 var canDoubleJump : bool = true
 var isOnWall : bool = false
 var isGliding : bool = false
+var whereWall: = "right"
 
 
 
@@ -25,6 +26,11 @@ var isGliding : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_node("Melee").disabled = true
+	
+func jump():
+	snapVector = Vector2(0, 0)
+	isJumping = true
+	velocity.y = jumpSpeed
 	
 func get_input():
 	if Input.is_action_just_pressed("attack"):
@@ -67,12 +73,16 @@ func get_input():
 				isJumping = true
 				velocity.y += jumpSpeed
 			elif canDoubleJump and jumpsRemaining > 0:
-				snapVector = Vector2(0, 0)
-				velocity.y = jumpSpeed
+				jump()
 				jumpsRemaining -= 1
 			if is_on_wall() and is_on_floor() == false:
+				if whereWall == "right":
+					velocity.x = jumpSpeed
+					print ('test')
+				elif whereWall == "left":
+					velocity.x = -jumpSpeed
+					print ('nwm')
 				velocity.y = jumpSpeed
-				velocity.x = jumpSpeed
 				isJumping = true
 				jumpsRemaining = 2
 			
@@ -83,6 +93,7 @@ func _process(delta):
 func _physics_process(delta):
 	#print (velocity.y)
 	if is_on_floor() == false and is_on_wall():
+			
 		velocity.y = 0
 		velocity.x = 0
 	else:
@@ -104,3 +115,5 @@ func _physics_process(delta):
 	elif is_on_wall():
 		isOnWall = true
 		isJumping = false
+	print (whereWall)
+		
