@@ -87,7 +87,14 @@ func _process(delta: float):
 		isDead = true
 		
 func _physics_process(delta : float):
-	
+	if velocity.x != 0 and velocity.y == 0:
+		$Sprite.play("walk")
+	elif velocity.x == 0 and velocity.y == 0:
+		$Sprite.play("idle")
+	elif velocity.y != 0:
+		$Sprite.play("jump")
+
+
 	if is_on_floor() == false and is_on_wall():		
 
 
