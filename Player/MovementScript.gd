@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+class_name Player
 export var speed : int = 150
 export var swimSpeed : int = 75
 export var jumpSpeed : int = -300
@@ -15,15 +15,21 @@ var isInWater = false
 var canSwim = false
 var velocity = Vector2()
 var canDoubleJump : bool = false
+var isOnWall : bool = false
 
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("Melee").disabled = true
 	
 func get_input():
+	if Input.is_action_just_pressed("attack"):
+		get_node("Melee").disabled = false
+		yield(get_tree().create_timer(0.2), "timeout")
+		get_node("Melee").disabled = true
+		
 	if isInWater:
 		if Input.is_action_pressed("swim_right"):
 			velocity.x = swimSpeed
@@ -35,39 +41,42 @@ func get_input():
 			velocity.y = swimSpeed
 		
 	else:
-		if isSliding == false:
-			velocity.x = 0
-			if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
-				velocity.x = speed
-			if Input.is_action_pressed("move_left"):
-				velocity.x = -speed
-		if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
-			if velocity.x == speed:
-				isSliding = true
-				velocity.x = slideSpeed
-			if velocity.x == -speed:
-				isSliding = true
-				velocity.x = - slideSpeed
-		if Input.is_action_just_released("Slide"):
-			isSliding = false
+		if is_on_wall() == false:
+			if isSliding == false:
+				velocity.x = 0
+				if Input.is_action_pressed("move_right") and abs(velocity.x) <= speed:
+					velocity.x = speed
+				if Input.is_action_pressed("move_left"):
+					velocity.x = -speed
+			if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
+				if velocity.x == speed:
+					isSliding = true
+					velocity.x = slideSpeed
+				if velocity.x == -speed:
+					isSliding = true
+					velocity.x = - slideSpeed
+			if Input.is_action_just_released("Slide"):
+				isSliding = false
 			
 			
 		if Input.is_action_just_pressed("jump"):
 			if canDoubleJump == false and isJumping == false:
 				isJumping = true
-				print ('debug')
+				if is_on_wall():
+					print ('23')
+					velocity.x += jumpSpeed
 				velocity.y += jumpSpeed
 			elif canDoubleJump and jumpsRemaining > 0:
 				velocity.y += jumpSpeed
 				jumpsRemaining -= 1
 			
+func _process(delta):
+	if health <= 0:
+		isDead = true
 		
-		
-
-
 func _physics_process(delta):
-	print (velocity.y)
-	if is_on_floor() == false:
+	#print (velocity.y)
+	if is_on_floor() == false and is_on_wall() == false:
 		velocity.y += gravity * delta
 	else:
 		velocity.y = 0
@@ -81,6 +90,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
-	#print (isSliding)
-	#print (is_on_floor())
+	elif is_on_wall():
+		isOnWall = true
+		isJumping = false
 	
