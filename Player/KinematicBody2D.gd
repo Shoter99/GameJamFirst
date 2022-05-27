@@ -6,10 +6,12 @@ export var jumpSpeed : int = -300
 export var gravity : int = 400
 export var slideSpeed : int = 300
 export var health : int = 10
+var jumpsRemaining : int = 2
 var isSliding : bool = false
 var isJumping : bool = false
 var isDead : bool = false
 var velocity = Vector2()
+var canDoubleJump : bool = false
 
 
 
@@ -38,8 +40,13 @@ func get_input():
 		isSliding = false
 		
 		
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jumpSpeed
+	if Input.is_action_just_pressed("jump"):
+		if canDoubleJump == false and is_on_floor():
+			velocity.y += jumpSpeed
+		elif canDoubleJump and jumpsRemaining > 0:
+			velocity.y += jumpSpeed
+			jumpsRemaining -= 1
+			
 		
 		
 
@@ -52,7 +59,8 @@ func _physics_process(delta):
 			velocity.x -= 300 * delta
 		elif velocity.x < 0:
 			velocity.x += 300 * delta
-	if isJumping and is_on_floor():
+	if is_on_floor():
+		jumpsRemaining = 2
 		isJumping = false
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 	print (isSliding)
