@@ -10,9 +10,9 @@ extents = Vector2( 7, 6 )
 script = ExtResource( 1 )
 speed = 10000
 
-[node name="Squere" type="Sprite" parent="."]
-position = Vector2( -1, -1 )
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
 shape = SubResource( 1 )

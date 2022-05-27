@@ -5,8 +5,10 @@ export var speed : int = 150
 export var jumpSpeed : int = -300
 export var gravity : int = 400
 export var slideSpeed : int = 300
+export var health : int = 10
 var isSliding : bool = false
 var isJumping : bool = false
+var isDead : bool = false
 var velocity = Vector2()
 
 
@@ -23,7 +25,7 @@ func get_input():
 			velocity.x = speed
 		if Input.is_action_pressed("move_left"):
 			velocity.x = -speed
-	if Input.is_action_just_pressed("Slide") and is_on_floor() and isSliding == false:
+	if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
 		print ('debug')
 		if velocity.x == speed:
 			isSliding = true
