@@ -116,6 +116,5 @@ func _physics_process(delta : float):
 				whereWall = "right"
 			else:
 				whereWall = "left"
-	print (whereWall)
 
 		
