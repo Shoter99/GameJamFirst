@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/enemy/LeftRightEnemy/EnemyBouncer.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="EnemyBouncer" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EnemyBouncerArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBouncerArea"]
+position = Vector2( 0, -11 )
+shape = SubResource( 1 )

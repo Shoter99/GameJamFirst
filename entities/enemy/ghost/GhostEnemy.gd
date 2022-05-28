@@ -11,7 +11,7 @@ func _ready():
 func _physics_process(delta):
 	var xDist = player.position.x - self.global_position.x
 	var yDist = player.position.y - self.global_position.y
-	print(yDist, "a", xDist) 
+	#print(yDist, "a", xDist) 
 	if abs(xDist)<200 and  abs(yDist)< 200:
 		velocity.y = yDist
 		velocity.x = xDist
