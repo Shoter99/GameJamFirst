@@ -29,7 +29,7 @@ func jump() -> void:
 	snapVector = Vector2(0, 0)
 	velocity.y = jumpSpeed
 	
-func get_input() -> void:
+func get_input(delta : float) -> void:
 	if Input.is_action_just_pressed("attack") and is_on_floor() and is_on_wall() == false:
 		if get_node("Sprite").flip_h:
 			get_node("MeleeLeft").disabled = false
@@ -66,11 +66,15 @@ func get_input() -> void:
 			if isSliding == false:
 				if Input.is_action_pressed("move_right") and velocity.x <= speed:
 					get_node("Sprite").set_flip_h(false)
-					velocity.x = speed
+					if velocity.x < speed:
+						#velocity.x += 1000 * delta
+						velocity.x = speed
 				elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 					get_node("Sprite").set_flip_h(true)
-					velocity.x = -speed
-				elif velocity.x >= -speed and velocity.x <= speed:
+					if velocity.x > -speed:
+						#velocity.x -= 1000*delta
+						velocity.x = -speed
+				elif velocity.x >= -speed/4 and velocity.x <= speed/4:
 					velocity.x = 0
 				if Input.is_action_pressed("Slide") and is_on_floor():
 					if velocity.x == speed:
@@ -124,17 +128,18 @@ func _physics_process(delta : float) -> void:
 			velocity.y = 75
 		else:
 			velocity.y += gravity * delta
-	get_input()
-	if isSliding:
-		if velocity.x > 0 and is_on_floor():
+	get_input(delta)
+	if isSliding or is_on_floor() == false:
+		if velocity.x > 0:
 			velocity.x -= 400 * delta
-		elif velocity.x < 0 and is_on_floor():
+		elif velocity.x < 0:
 			velocity.x += 400 * delta
 	else:
-		if velocity.x > speed:
-			velocity.x -= 400 * delta
-		elif velocity.x < -speed:
-			velocity.x += 400 * delta
+		if is_on_floor():
+			if velocity.x > 0:
+				velocity.x -= 600 * delta
+			elif velocity.x < 0:
+				velocity.x += 600 * delta
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 	snapVector = Vector2.DOWN * 6
 	if is_on_floor():
@@ -163,5 +168,5 @@ func _physics_process(delta : float) -> void:
 		$Sprite.play("jump")
 		isInAir = true
 		isOnWall = false
-	print (whereWall)
+	print (velocity.x)
 		
