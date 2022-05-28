@@ -19,7 +19,8 @@ var isGliding : bool = false
 var whereWall: = "right"
 
 func _ready():
-	get_node("Melee").disabled = true
+	get_node("MeleeLeft").disabled = true
+	get_node("MeleeRight").disabled = true
 	Global.update_life(Global.max_life)
 	
 func jump():
@@ -27,10 +28,15 @@ func jump():
 	velocity.y = jumpSpeed
 	
 func get_input():
-	if Input.is_action_just_pressed("attack"):
-		get_node("Melee").disabled = false
-		yield(get_tree().create_timer(0.2), "timeout")
-		get_node("Melee").disabled = true
+	if Input.is_action_just_pressed("attack") and is_on_floor() and is_on_wall() == false:
+		if get_node("Sprite").flip_h:
+			get_node("MeleeLeft").disabled = false
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("MeleeLeft").disabled = true
+		else:
+			get_node("MeleeRight").disabled = false
+			yield(get_tree().create_timer(0.2), "timeout")
+			get_node("MeleeRight").disabled = true
 		
 	if isInWater:
 		if Input.is_action_pressed("swim_right"):
@@ -52,29 +58,26 @@ func get_input():
 				if Input.is_action_pressed("move_left"):
 					get_node("Sprite").set_flip_h(true)
 					velocity.x = -speed
-			if Input.is_action_pressed("Slide") and is_on_floor() and isSliding == false:
-				if velocity.x == speed:
-					isSliding = true
-					velocity.x = slideSpeed
-				if velocity.x == -speed:
-					isSliding = true
-					velocity.x = - slideSpeed
-			if Input.is_action_just_released("Slide"):
+				if Input.is_action_pressed("Slide") and is_on_floor():
+					if velocity.x == speed:
+						isSliding = true
+						velocity.x = slideSpeed
+					if velocity.x == -speed:
+						isSliding = true
+						velocity.x = - slideSpeed
+			elif Input.is_action_just_released("Slide"):
 				isSliding = false
 			
 		if Input.is_action_just_pressed("jump") and isGliding == false:
 			if jumpsRemaining > 0:
 				jump()
 				jumpsRemaining -= 1
-				$Sprite.stop()
-				$Sprite.play("jump")
 			if isOnWall:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
 				elif whereWall == "left":
 					velocity.x = -jumpSpeed
-				velocity.y = jumpSpeed
-				jumpsRemaining = 2
+
 		if Input.is_action_pressed("glide") and is_on_floor() == false and is_on_wall() == false:
 			isGliding = true
 		else:
@@ -119,6 +122,7 @@ func _physics_process(delta : float):
 		isInAir = false
 		isOnWall = false
 	elif is_on_wall():
+		jumpsRemaining = 2
 		isInAir = false
 		isOnWall = true
 		if get_slide_collision(1):
