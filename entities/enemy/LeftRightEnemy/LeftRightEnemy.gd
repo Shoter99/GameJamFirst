@@ -9,9 +9,6 @@ var goingRight := 1
 
 #self.maxEnemyHealth = 2
 
-
-
-
 func _ready():
 	velocity.x = 32
 	self.setMaxHp(3)
@@ -20,10 +17,8 @@ func _ready():
 
 func _physics_process(delta):
 	if is_on_wall():
-		goingRight = goingRight * -1
-		velocity.x = -velocity.x
-
-		get_node("Enemy").set_flip_h(true if goingRight != 1 else false)
+		bounce()
+	
 	var vel := Vector2(enemySpeed * delta * goingRight, 0)
 	move_and_collide(vel)
 
@@ -31,14 +26,23 @@ func _on_playerDetector_body_entered(body):
 	player.velocity.y = -350
 	self.hurt_and_die(1)
 	
-	
-
-	
-	
 func _on_playerKiller_body_entered(body):
 	if body.name == "Player":
 		Global.update_life(-slimeDmg)
-		print(Global.life)
+		#print(Global.life)
 		player.velocity.y = -350
 		#player.velocity.x = -350# * sign(self.position.x-player.position.x)
 	
+func _on_BounceSenceArea_body_entered(body):
+	print(body.name)
+			#bounce()
+		
+func bounce():
+	goingRight = goingRight * -1
+	velocity.x = -velocity.x
+	get_node("Enemy").set_flip_h(true if goingRight != 1 else false)
+
+
+
+func _on_BounceDetectorArea_body_entered(body):
+	bounce()
