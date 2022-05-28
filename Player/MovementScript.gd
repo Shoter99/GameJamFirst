@@ -6,7 +6,6 @@ export var swimSpeed : int = 75
 export var jumpSpeed : int = -300
 export var gravity : int = 400
 export var slideSpeed : int = 320
-export var health : int = 10
 var jumpsRemaining : int = 2
 var isSliding : bool = false
 var isJumping : bool = false
@@ -66,8 +65,6 @@ func get_input():
 					velocity.x = - slideSpeed
 			if Input.is_action_just_released("Slide"):
 				isSliding = false
-
-			
 			
 		if Input.is_action_just_pressed("jump"):
 			if jumpsRemaining > 0:
@@ -83,7 +80,7 @@ func get_input():
 				jumpsRemaining = 2
 			
 func _process(delta: float):
-	if health <= 0:
+	if Global.life <= 0:
 		isDead = true
 		
 func _physics_process(delta : float):
@@ -106,7 +103,6 @@ func _physics_process(delta : float):
 		else:
 			velocity.y += gravity * delta
 	get_input()
-	var collision = get_slide_collision(1)
 	if isSliding:
 		if velocity.x > 0 and is_on_floor():
 			velocity.x -= 400 * delta
@@ -119,12 +115,14 @@ func _physics_process(delta : float):
 		isJumping = false
 		whereWall = "nothing"
 	elif is_on_wall():
+		#$Sprite.play("on_wall")
 		isOnWall = true
 		isJumping = false
-		if collision:
-			if collision.position.x > get_position().x:
+		if get_slide_collision(1):
+			if get_slide_collision(1).position.x > get_position().x:
 				whereWall = "right"
 			else:
 				whereWall = "left"
-
+	else:
+		whereWall = "nothing"
 		
