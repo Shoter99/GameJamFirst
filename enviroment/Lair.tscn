@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://enviroment/blocks.png" type="Texture" id=1]
+
+[node name="Lair" type="Node2D"]
+
+[node name="Blocks" type="Sprite" parent="."]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.6, 0.5 )
+texture = ExtResource( 1 )
