@@ -16,7 +16,9 @@ var velocity: Vector2 = Vector2()
 var snapVector: Vector2 = Vector2.DOWN * 6
 var isOnWall : bool = false
 var isGliding : bool = false
-var whereWall: = "right"
+var whereWall: = "nothing"
+var lastWall: = "nothing"
+onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready():
 	get_node("MeleeLeft").disabled = true
@@ -37,6 +39,17 @@ func get_input():
 			get_node("MeleeRight").disabled = false
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_node("MeleeRight").disabled = true
+	if Input.is_action_just_pressed("fire"):
+		var bulletInstance : = bullet.instance()
+		owner.add_child(bulletInstance)
+		if get_node("Sprite").flip_h:
+			bulletInstance.set_global_position($MeleeLeft.get_global_position())
+			bulletInstance.speed = -250
+			
+		else:
+			bulletInstance.set_global_position($MeleeRight.get_global_position())
+			bulletInstance.get_node("Sprite").set_flip_h(true)
+		
 		
 	if isInWater:
 		if Input.is_action_pressed("swim_right"):
@@ -75,8 +88,10 @@ func get_input():
 			if isOnWall:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
+					lastWall = "right"
 				elif whereWall == "left":
 					velocity.x = -jumpSpeed
+					lastWall = "left"
 
 		if Input.is_action_pressed("glide") and is_on_floor() == false and is_on_wall() == false:
 			isGliding = true
@@ -118,6 +133,7 @@ func _physics_process(delta : float):
 	snapVector = Vector2.DOWN * 6
 	if is_on_floor():
 		jumpsRemaining = 2
+		lastWall = "nothing"
 		whereWall = "nothing"
 		isInAir = false
 		isOnWall = false
