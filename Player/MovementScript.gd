@@ -17,6 +17,7 @@ var snapVector: Vector2 = Vector2.DOWN * 6
 var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
+onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready():
 	get_node("MeleeLeft").disabled = true
@@ -37,6 +38,12 @@ func get_input():
 			get_node("MeleeRight").disabled = false
 			yield(get_tree().create_timer(0.2), "timeout")
 			get_node("MeleeRight").disabled = true
+	if Input.is_action_just_pressed("fire"):
+		print ('faf')
+		var bulletInstance : = bullet.instance()
+		owner.add_child(bulletInstance)
+		bulletInstance.transform = $MeleeRight.global_transform
+		
 		
 	if isInWater:
 		if Input.is_action_pressed("swim_right"):
