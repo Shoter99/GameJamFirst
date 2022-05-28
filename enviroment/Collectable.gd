@@ -1,6 +1,6 @@
 extends Area2D
 
-var CollectedEffect := preload("res://enviroment/CollectableEffect.tscn")
+var CollectedEffect := preload("res://enviroment/Particles/Collectable/CollectableEffect.tscn")
 
 func _on_Collectable_body_entered(body):
 	Global.collected += 1

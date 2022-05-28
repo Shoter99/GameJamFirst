@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enviroment/blocks.png" type="Texture" id=2]
 [ext_resource path="res://entities/enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enviroment/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Timer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -225,6 +226,10 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 9/z_index = 0
 
 [node name="Node2D" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 400.0, 208.0 ],
+"_edit_vertical_guides_": [ 655.0, 97.0 ]
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -239,8 +244,14 @@ gravity = 1500
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.3, 0.3 )
+limit_left = 97
+limit_top = 208
+limit_right = 655
+limit_bottom = 400
+limit_smoothed = true
 smoothing_enabled = true
+smoothing_speed = 10.0
 
 [node name="HUD" parent="KinematicBody2D/Camera2D" instance=ExtResource( 5 )]
 margin_left = -423.0
@@ -253,3 +264,9 @@ position = Vector2( 216, 322 )
 
 [node name="Collectable" parent="." instance=ExtResource( 4 )]
 position = Vector2( 356, 317 )
+
+[node name="Timer" parent="." instance=ExtResource( 6 )]
+position = Vector2( 331, 307 )
+
+[connection signal="timeChanged" from="Timer" to="KinematicBody2D/Camera2D/HUD" method="_on_Timer_timeChanged"]
+[connection signal="timeout" from="Timer" to="KinematicBody2D/Camera2D/HUD" method="_on_Timer_timeout"]

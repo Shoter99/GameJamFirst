@@ -7,6 +7,8 @@ signal enemy_health_changed(new_hp)
 export var enemyMaxHp: = 3
 export var enemyHp: = 3
 
+onready var death_particles := preload("res://enviroment/Particles/Enemy/EnemyParticles.tscn")
+
 func _ready():
 	velocity.x = 32
 	
@@ -19,6 +21,9 @@ func hurt_and_die(x):
 	self.enemyHp = self.enemyHp - 1
 	emit_signal("enemy_health_changed", self.enemyHp)
 	if self.enemyHp == 0:
+		var effect := death_particles.instance()
+		effect.global_position = global_position
+		get_tree().current_scene.add_child(effect)
 		queue_free()
 
 func get_current_hp():
