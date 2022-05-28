@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://enviroment/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/LevelLimit.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
 
 [node name="Node2D" type="Node2D"]
 __meta__ = {
@@ -58,3 +61,13 @@ position = Vector2( 118, 476 )
 
 [node name="GhostNode" parent="." instance=ExtResource( 5 )]
 position = Vector2( 738, -518 )
+
+[node name="LevelLimit" type="Area2D" parent="."]
+position = Vector2( 55, 620 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelLimit"]
+scale = Vector2( 1000, 1 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]
