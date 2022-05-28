@@ -1,7 +1,7 @@
 extends Node
 
 
-var max_life : int= 7
+var max_life : int= 3
 var life : int = 0
 var collected : int = 0
 
