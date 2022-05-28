@@ -11,6 +11,7 @@ var isSliding : bool = false
 var isInAir : bool = false
 var isDead : bool = false
 var isInWater : bool = false
+var accelerating : bool = false
 var canSwim: bool = false
 var velocity: Vector2 = Vector2()
 var snapVector: Vector2 = Vector2.DOWN * 6
@@ -67,15 +68,25 @@ func get_input(delta : float) -> void:
 				if Input.is_action_pressed("move_right") and velocity.x <= speed:
 					get_node("Sprite").set_flip_h(false)
 					if velocity.x < speed:
-						#velocity.x += 1000 * delta
-						velocity.x = speed
+						if velocity.x > 0:
+							velocity.x += 1000 * delta
+						else:
+							velocity.x += 2500 * delta
+						#velocity.x = speed
+						accelerating = true
 				elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 					get_node("Sprite").set_flip_h(true)
 					if velocity.x > -speed:
-						#velocity.x -= 1000*delta
-						velocity.x = -speed
+						if velocity.x < 0:
+							velocity.x -= 1000*delta
+						else:
+							velocity.x -= 2500*delta
+						#velocity.x = -speed
+						accelerating = true
 				elif velocity.x >= -speed/4 and velocity.x <= speed/4:
 					velocity.x = 0
+				else:
+					accelerating = false
 				if Input.is_action_pressed("Slide") and is_on_floor():
 					if velocity.x == speed:
 						isSliding = true
@@ -129,12 +140,12 @@ func _physics_process(delta : float) -> void:
 		else:
 			velocity.y += gravity * delta
 	get_input(delta)
-	if isSliding or is_on_floor() == false:
+	if (isSliding or is_on_floor() == false) and accelerating == false:
 		if velocity.x > 0:
 			velocity.x -= 400 * delta
 		elif velocity.x < 0:
 			velocity.x += 400 * delta
-	else:
+	elif accelerating == false:
 		if is_on_floor():
 			if velocity.x > 0:
 				velocity.x -= 600 * delta
