@@ -84,12 +84,11 @@ func _process(delta: float):
 		isDead = true
 		
 func _physics_process(delta : float):
-	if velocity.x != 0 and velocity.y == 0:
-		$Sprite.play("walk")
-	elif velocity.x == 0 and velocity.y == 0:
-		$Sprite.play("idle")
-	elif velocity.y != 0:
-		$Sprite.play("jump")
+	if is_on_floor() and is_on_wall() == false:
+		if velocity.x != 0 and velocity.y == 0:
+			$Sprite.play("walk")
+		elif velocity.x == 0 and velocity.y == 0:
+			$Sprite.play("idle")
 
 
 	if is_on_floor() == false and is_on_wall():		
@@ -121,8 +120,15 @@ func _physics_process(delta : float):
 		if get_slide_collision(1):
 			if get_slide_collision(1).position.x > get_position().x:
 				whereWall = "right"
+				$Sprite.play("on_wall")
+				get_node("Sprite").set_flip_h(true)
 			else:
 				whereWall = "left"
+				$Sprite.play("on_wall")
+				get_node("Sprite").set_flip_h(false)
+				
 	else:
 		whereWall = "nothing"
+		$Sprite.play("jump")
+	print(velocity.y)
 		
