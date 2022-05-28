@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Player/MovementScript.gd" type="Script" id=1]
+[ext_resource path="res://new_script.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player/player_jump_up.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/player/player_jump_down.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/player/player.png" type="Texture" id=4]
