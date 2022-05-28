@@ -8,12 +8,12 @@ export var gravity : int = 400
 export var slideSpeed : int = 320
 var jumpsRemaining : int = 2
 var isSliding : bool = false
-var isJumping : bool = false
+var isInAir : bool = false
 var isDead : bool = false
-var isInWater = false
-var canSwim = false
-var velocity = Vector2()
-var snapVector = Vector2.DOWN * 6
+var isInWater : bool = false
+var canSwim: bool = false
+var velocity: Vector2 = Vector2()
+var snapVector: Vector2 = Vector2.DOWN * 6
 var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
@@ -24,7 +24,6 @@ func _ready():
 	
 func jump():
 	snapVector = Vector2(0, 0)
-	isJumping = true
 	velocity.y = jumpSpeed
 	
 func get_input():
@@ -69,18 +68,24 @@ func get_input():
 				jumpsRemaining -= 1
 				$Sprite.stop()
 				$Sprite.play("jump")
-			if is_on_wall() and is_on_floor() == false:
+			if isOnWall:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
 				elif whereWall == "left":
 					velocity.x = -jumpSpeed
 				velocity.y = jumpSpeed
-				isJumping = true
 				jumpsRemaining = 2
 		if Input.is_action_pressed("glide") and is_on_floor() == false and is_on_wall() == false:
 			isGliding = true
 		else:
 			isGliding = false
+		
+		if isOnWall and Input.is_action_just_pressed("release"):
+			if whereWall == "right":
+				velocity.x = -speed
+			elif whereWall == "left":
+				velocity.x = speed
+				
 			
 func _process(delta: float):
 	if Global.life <= 0:
@@ -92,9 +97,7 @@ func _physics_process(delta : float):
 			$Sprite.play("walk")
 		elif velocity.x == 0 and is_on_floor():
 			$Sprite.play("idle")
-
-
-	if is_on_floor() == false and is_on_wall():
+	if isOnWall:
 		velocity.y = 0
 		velocity.x = 0
 	else:
@@ -112,12 +115,12 @@ func _physics_process(delta : float):
 	snapVector = Vector2.DOWN * 6
 	if is_on_floor():
 		jumpsRemaining = 2
-		isJumping = false
 		whereWall = "nothing"
+		isInAir = false
+		isOnWall = false
 	elif is_on_wall():
-		#$Sprite.play("on_wall")
+		isInAir = false
 		isOnWall = true
-		isJumping = false
 		if get_slide_collision(1):
 			if get_slide_collision(1).position.x > get_position().x:
 				whereWall = "right"
@@ -131,4 +134,6 @@ func _physics_process(delta : float):
 	else:
 		whereWall = "nothing"
 		$Sprite.play("jump")
+		isInAir = true
+		isOnWall = false
 		
