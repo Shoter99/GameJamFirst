@@ -13,7 +13,7 @@ var isDead : bool = false
 var isInWater = false
 var canSwim = false
 var velocity = Vector2()
-var snapVector = Vector2.DOWN * 4
+var snapVector = Vector2.DOWN * 6
 var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
@@ -108,7 +108,7 @@ func _physics_process(delta : float):
 		elif velocity.x < 0 and is_on_floor():
 			velocity.x += 400 * delta
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
-	snapVector = Vector2.DOWN * 4
+	snapVector = Vector2.DOWN * 6
 	if is_on_floor():
 		jumpsRemaining = 2
 		isJumping = false
