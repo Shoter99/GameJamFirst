@@ -18,8 +18,6 @@ var isOnWall : bool = false
 var isGliding : bool = false
 var whereWall: = "right"
 
-
-
 func _ready():
 	get_node("Melee").disabled = true
 	Global.update_life(Global.max_life)
@@ -46,7 +44,6 @@ func get_input():
 			velocity.y = swimSpeed
 		
 	else:
-
 		if is_on_wall() == false:
 			if isSliding == false:
 				velocity.x = 0
@@ -66,10 +63,12 @@ func get_input():
 			if Input.is_action_just_released("Slide"):
 				isSliding = false
 			
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") and isGliding == false:
 			if jumpsRemaining > 0:
 				jump()
 				jumpsRemaining -= 1
+				$Sprite.stop()
+				$Sprite.play("jump")
 			if is_on_wall() and is_on_floor() == false:
 				if whereWall == "right":
 					velocity.x = jumpSpeed
@@ -78,6 +77,10 @@ func get_input():
 				velocity.y = jumpSpeed
 				isJumping = true
 				jumpsRemaining = 2
+		if Input.is_action_pressed("glide") and is_on_floor() == false and is_on_wall() == false:
+			isGliding = true
+		else:
+			isGliding = false
 			
 func _process(delta: float):
 	if Global.life <= 0:
@@ -85,15 +88,13 @@ func _process(delta: float):
 		
 func _physics_process(delta : float):
 	if is_on_floor() and is_on_wall() == false:
-		if velocity.x != 0 and velocity.y == 0:
+		if velocity.x != 0 and is_on_floor():
 			$Sprite.play("walk")
-		elif velocity.x == 0 and velocity.y == 0:
+		elif velocity.x == 0 and is_on_floor():
 			$Sprite.play("idle")
 
 
-	if is_on_floor() == false and is_on_wall():		
-
-
+	if is_on_floor() == false and is_on_wall():
 		velocity.y = 0
 		velocity.x = 0
 	else:
@@ -130,5 +131,4 @@ func _physics_process(delta : float):
 	else:
 		whereWall = "nothing"
 		$Sprite.play("jump")
-	print(velocity.y)
 		
