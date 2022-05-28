@@ -277,3 +277,4 @@ position = Vector2( 356, 317 )
 position = Vector2( 68, 327 )
 
 [connection signal="timeChanged" from="Timer" to="Player/Camera2D/HUD" method="_on_Timer_timeChanged"]
+[connection signal="timeout" from="Timer" to="Player/Camera2D/HUD" method="_on_Timer_timeout"]
