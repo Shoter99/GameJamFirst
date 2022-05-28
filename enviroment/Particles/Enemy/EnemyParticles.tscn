@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://enviroment/Particles/EffectsScripts.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.446927, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0170454 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 20, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -14.14
+angle = 305.5
+scale_curve = SubResource( 3 )
+color = Color( 0.0313726, 0.556863, 0.313726, 1 )
+
+[node name="EnemyParticles" type="Particles2D"]
+position = Vector2( 0, -10 )
+emitting = false
+amount = 30
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.43
+process_material = SubResource( 1 )
+script = ExtResource( 1 )
