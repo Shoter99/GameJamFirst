@@ -4,21 +4,22 @@ class_name Enemy
 
 signal enemy_health_changed(new_hp)
 
-export var enemyMaxHp: = 3
-export var enemyHp: = 3
+export var enemyMaxHp: = 1
+export var enemyHp: = 1
+
 
 onready var death_particles := preload("res://enviroment/Particles/Enemy/EnemyParticles.tscn")
 
 func _ready():
 	velocity.x = 32
-	
 
-func _physics_process(delta):
-	if is_on_wall():
-		velocity.x = -velocity.x
+
+#func _physics_process(delta):
+#	if is_on_wall():
+#		velocity.x = -velocity.x
 	
 func hurt_and_die(x):
-	self.enemyHp = self.enemyHp - 1
+	self.enemyHp = self.enemyHp - x
 	emit_signal("enemy_health_changed", self.enemyHp)
 	if self.enemyHp == 0:
 		var effect := death_particles.instance()
@@ -28,3 +29,7 @@ func hurt_and_die(x):
 
 func get_current_hp():
 	return self.enemyHp
+
+func setMaxHp(x):
+	enemyMaxHp = x
+	enemyHp = enemyMaxHp
