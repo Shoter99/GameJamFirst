@@ -20,16 +20,16 @@ var whereWall: = "nothing"
 var lastWall: = "nothing"
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
-func _ready():
+func _ready() -> void:
 	get_node("MeleeLeft").disabled = true
 	get_node("MeleeRight").disabled = true
 	Global.update_life(Global.max_life)
 	
-func jump():
+func jump() -> void:
 	snapVector = Vector2(0, 0)
 	velocity.y = jumpSpeed
 	
-func get_input():
+func get_input() -> void:
 	if Input.is_action_just_pressed("attack") and is_on_floor() and is_on_wall() == false:
 		if get_node("Sprite").flip_h:
 			get_node("MeleeLeft").disabled = false
@@ -64,13 +64,14 @@ func get_input():
 	else:
 		if is_on_wall() == false:
 			if isSliding == false:
-				velocity.x = 0
-				if Input.is_action_pressed("move_right"):
+				if Input.is_action_pressed("move_right") and velocity.x <= speed:
 					get_node("Sprite").set_flip_h(false)
 					velocity.x = speed
-				if Input.is_action_pressed("move_left"):
+				elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 					get_node("Sprite").set_flip_h(true)
 					velocity.x = -speed
+				elif velocity.x >= -speed and velocity.x <= speed:
+					velocity.x = 0
 				if Input.is_action_pressed("Slide") and is_on_floor():
 					if velocity.x == speed:
 						isSliding = true
@@ -87,10 +88,10 @@ func get_input():
 				jumpsRemaining -= 1
 			if isOnWall:
 				if whereWall == "right":
-					velocity.x = jumpSpeed
+					velocity.x = -speed * 2
 					lastWall = "right"
 				elif whereWall == "left":
-					velocity.x = -jumpSpeed
+					velocity.x = speed * 2
 					lastWall = "left"
 
 		if Input.is_action_pressed("glide") and is_on_floor() == false and is_on_wall() == false:
@@ -105,11 +106,11 @@ func get_input():
 				velocity.x = speed
 				
 			
-func _process(delta: float):
+func _process(delta: float) -> void:
 	if Global.life <= 0:
 		isDead = true
 		
-func _physics_process(delta : float):
+func _physics_process(delta : float) -> void:
 	if is_on_floor() and is_on_wall() == false:
 		if velocity.x != 0 and is_on_floor():
 			$Sprite.play("walk")
@@ -129,6 +130,11 @@ func _physics_process(delta : float):
 			velocity.x -= 400 * delta
 		elif velocity.x < 0 and is_on_floor():
 			velocity.x += 400 * delta
+	else:
+		if velocity.x > speed:
+			velocity.x -= 400 * delta
+		elif velocity.x < -speed:
+			velocity.x += 400 * delta
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 	snapVector = Vector2.DOWN * 6
 	if is_on_floor():
@@ -141,19 +147,21 @@ func _physics_process(delta : float):
 		jumpsRemaining = 2
 		isInAir = false
 		isOnWall = true
-		if get_slide_collision(1):
-			if get_slide_collision(1).position.x > get_position().x:
-				whereWall = "right"
-				$Sprite.play("on_wall")
-				get_node("Sprite").set_flip_h(true)
-			else:
-				whereWall = "left"
-				$Sprite.play("on_wall")
-				get_node("Sprite").set_flip_h(false)
+		for i in range (get_slide_count()):
+			if get_slide_collision(i):
+				if get_slide_collision(i).position.x > get_position().x:
+					whereWall = "right"
+					$Sprite.play("on_wall")
+					get_node("Sprite").set_flip_h(true)
+				else:
+					whereWall = "left"
+					$Sprite.play("on_wall")
+					get_node("Sprite").set_flip_h(false)
 				
 	else:
 		whereWall = "nothing"
 		$Sprite.play("jump")
 		isInAir = true
 		isOnWall = false
+	print (whereWall)
 		
