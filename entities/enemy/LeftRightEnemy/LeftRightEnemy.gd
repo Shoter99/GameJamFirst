@@ -23,18 +23,18 @@ func _physics_process(delta):
 	move_and_collide(vel)
 
 func _on_playerDetector_body_entered(body):
-	player.velocity.y = -350
+	player.velocity.y = -450
 	self.hurt_and_die(1)
+	bounce()
 	
 func _on_playerKiller_body_entered(body):
 	if body.name == "Player":
 		Global.update_life(-slimeDmg)
 		#print(Global.life)
-		player.velocity.y = -350
+		player.velocity.y = -450
 		#player.velocity.x = -350# * sign(self.position.x-player.position.x)
 	
-func _on_BounceSenceArea_body_entered(body):
-	print(body.name)
+
 			#bounce()
 		
 func bounce():

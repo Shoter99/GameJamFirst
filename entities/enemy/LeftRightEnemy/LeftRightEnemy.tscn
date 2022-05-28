@@ -28,12 +28,13 @@ extents = Vector2( 4, 1.5 )
 [node name="Node2D" type="Node2D"]
 
 [node name="LeftRightEnemySlime" type="KinematicBody2D" parent="."]
-collision_layer = 16
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="BounceDetectorArea" type="Area2D" parent="LeftRightEnemySlime"]
 collision_layer = 0
-collision_mask = 129
+collision_mask = 128
 
 [node name="BounceDetectorShape" type="CollisionShape2D" parent="LeftRightEnemySlime/BounceDetectorArea"]
 position = Vector2( 0, -4.5 )
@@ -48,6 +49,7 @@ playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]
 position = Vector2( 0, -3.5 )
+collision_layer = 0
 
 [node name="PlayerkillerShape" type="CollisionShape2D" parent="LeftRightEnemySlime/playerKiller"]
 modulate = Color( 0.545098, 0.0431373, 0.0431373, 1 )
