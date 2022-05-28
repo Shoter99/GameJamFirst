@@ -4,7 +4,7 @@
 [ext_resource path="res://enviroment/blocks.png" type="Texture" id=2]
 [ext_resource path="res://entities/enemy/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enviroment/Collectable.tscn" type="PackedScene" id=4]
-[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Timer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=7]
 
@@ -249,23 +249,7 @@ position = Vector2( 393, 298 )
 speed = 200
 gravity = 1500
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 48, 7 )
-current = true
-zoom = Vector2( 0.3, 0.3 )
-limit_left = 97
-limit_top = 208
-limit_right = 655
-limit_bottom = 400
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 10.0
-
-[node name="HUD" parent="Player/Camera2D" instance=ExtResource( 5 )]
-margin_left = -423.0
-margin_top = 43.0
-margin_right = -423.0
-margin_bottom = 43.0
+[node name="Camera2D" parent="Player" instance=ExtResource( 5 )]
 
 [node name="Node2D2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 216, 322 )
@@ -275,6 +259,3 @@ position = Vector2( 356, 317 )
 
 [node name="Timer" parent="." instance=ExtResource( 6 )]
 position = Vector2( 68, 327 )
-
-[connection signal="timeChanged" from="Timer" to="Player/Camera2D/HUD" method="_on_Timer_timeChanged"]
-[connection signal="timeout" from="Timer" to="Player/Camera2D/HUD" method="_on_Timer_timeout"]

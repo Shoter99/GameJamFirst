@@ -6,8 +6,10 @@ export var timeLeft = 60
 
 func _ready() -> void:
 	Global.connect("life_changed", self,"update_life")
+	Global.connect("collectabe_changed", self, "update_collectable")
 	update_life(Global.life)
 	$CanvasLayer/TimeLeft.text = str(timeLeft)
+	$CanvasLayer/Collectable.text = str(Global.collected)+"/"+str(Global.to_collect)
 
 func update_life(var life: int):
 	var max_life := Global.max_life
@@ -21,6 +23,10 @@ func update_life(var life: int):
 		else:
 			N.visible = false
 
+func update_collectable(var collected: int):
+	var max_to_collect := Global.to_collect;
+	$CanvasLayer/Collectable.text = str(collected)+"/"+str(max_to_collect)
+	
 
 func _on_Timer_timeout():
 	Global.update_life(-Global.max_life)
