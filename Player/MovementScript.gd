@@ -121,7 +121,10 @@ func is_player_on_wall():
 		return true				
 	else:
 		$Sprite.play("jump")
-		return false
+		isInAir = true
+		isOnWall = false
+	#print (velocity.x)
+
 		
 func check_where_wall():
 	for i in range (get_slide_count()):
