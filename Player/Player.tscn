@@ -22,24 +22,30 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 4 ), ExtResource( 7 ) ],
+
 "loop": true,
-"name": "walk",
+"name": "on_wall",
 "speed": 5.0
 }, {
+
 "frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 3 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
+
 "loop": true,
-"name": "on_wall",
+"name": "walk",
 "speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
+
 script = ExtResource( 8 )
+
 
 [node name="MeleeRight" type="CollisionShape2D" parent="."]
 position = Vector2( 12, 2 )
@@ -56,6 +62,7 @@ position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -2 )
 frames = SubResource( 3 )
 animation = "idle"
 playing = true
