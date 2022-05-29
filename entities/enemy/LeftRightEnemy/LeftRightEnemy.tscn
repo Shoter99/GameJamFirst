@@ -44,7 +44,6 @@ shape = SubResource( 5 )
 position = Vector2( 0, -5 )
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]
@@ -69,6 +68,7 @@ shape = SubResource( 2 )
 [node name="EnemyHealthBar" parent="LeftRightEnemySlime" instance=ExtResource( 4 )]
 margin_top = -15.0
 margin_bottom = -15.0
+enemy_max_hp = 1
 
 [connection signal="enemy_health_changed" from="LeftRightEnemySlime" to="LeftRightEnemySlime/EnemyHealthBar" method="_on_LeftRightEnemySlime_enemy_health_changed"]
 [connection signal="body_entered" from="LeftRightEnemySlime/BounceDetectorArea" to="LeftRightEnemySlime" method="_on_BounceDetectorArea_body_entered"]
