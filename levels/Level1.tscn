@@ -8,10 +8,9 @@
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=7]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ 593.0 ],
 "_edit_vertical_guides_": [ 0.0 ]

@@ -226,7 +226,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 9/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ 400.0, 208.0 ],
 "_edit_vertical_guides_": [ 655.0, 97.0 ]

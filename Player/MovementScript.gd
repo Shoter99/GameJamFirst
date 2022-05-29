@@ -6,6 +6,10 @@ export var jumpSpeed : int = -300
 export var gravity : int = 400
 var jumpsRemaining : int = 1
 
+func _ready():
+	get_node("MeleeLeft").disabled = true
+	get_node("MeleeRight").disabled = true
+
 func water_movement(velocity, isOnWall, delta):
 	gravity = 200
 	apply_gravity(velocity, isOnWall, delta)
@@ -41,6 +45,16 @@ func disable_snap_vector() -> Vector2:
 	if Input.is_action_just_pressed("jump"):
 		return Vector2 (0, 0)
 	return Vector2.DOWN * 6
+
+func change_jumps(jumpsRemaining, isOnFloor, isOnWall):
+	if isOnFloor or isOnWall:
+		jumpsRemaining = 1
+		
+	if (Input.is_action_just_pressed("jump") and jumpsRemaining > 0) or (isOnWall and Input.is_action_just_pressed("release")):
+		 jumpsRemaining -= 1 
+	
+	return jumpsRemaining
+
 	
 func jump(velocity) -> Vector2:
 	return Vector2(velocity.x, jumpSpeed)
@@ -51,6 +65,14 @@ func jump_from_wall(whereWall, velocity):
 	elif whereWall == "left":
 		velocity.x = speed * .1
 	return velocity
+	
+func jump_away_from_wall(whereWall, velocity):
+	velocity = jump(velocity)
+	if whereWall == "right":
+		velocity.x = -speed * 1
+	elif whereWall == "left":
+		velocity.x = speed * 1
+	return velocity	
 		
 func release_from_wall(whereWall, velocity) -> Vector2:
 	if whereWall == "right":
@@ -106,19 +128,16 @@ func movement(delta, velocity) -> Vector2:
 		return Vector2 (0, velocity.y)
 	return velocity
 
-func checkAcceleration(velocity) -> bool:
-	if is_on_wall() == false:
-		if Input.is_action_pressed("move_right") and velocity.x <= speed:
-			return true
-		elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
-			return true
+func checkAcceleration(velocity, isOnWall) -> bool:
+	if (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")) and isOnWall == false:
+		return true
 	return false
 	
-func is_player_on_wall():
+func is_player_on_wall() -> bool:
 	if is_on_floor():
 		return false
 	elif is_on_wall():
-		return true				
+		return true
 	else:
 		$Sprite.play("jump")
 		return false
@@ -137,15 +156,20 @@ func check_where_wall():
 				
 				
 func apply_jump(isOnFloor, isOnWall, whereWall, velocity, jumpsRemaining):
-	if Input.is_action_just_pressed("jump") and (isOnFloor or isOnWall):
+	if isOnWall:
+		if Input.is_action_just_pressed("release"):
+			velocity = release_from_wall(whereWall, velocity)
+		elif whereWall == "left" and Input.is_action_pressed("move_right") and Input.is_action_just_pressed("jump"):
+			return jump_away_from_wall(whereWall, velocity)
+		elif whereWall == "right" and Input.is_action_pressed("move_left") and Input.is_action_just_pressed("jump"):
+			return jump_away_from_wall(whereWall, velocity)
+	
+	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
 		velocity = jump(velocity)
 		if isOnWall:
-			velocity = jump_from_wall(whereWall, velocity)
+			return jump_from_wall(whereWall, velocity)
 			
-	if isOnWall and Input.is_action_just_pressed("release"):
-		velocity = release_from_wall(whereWall, velocity)
 	return velocity
-	
 		
 func get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, delta) -> Vector2:
 	play_animations(velocity)
@@ -165,7 +189,7 @@ func get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, delta) -> Vecto
 func apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, snapVector, delta) -> Vector2:
 	snapVector = Vector2(0, 0)
 	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, delta)
-	accelerating = checkAcceleration(velocity)
+	accelerating = checkAcceleration(velocity, isOnWall)
 	snapVector = Vector2.DOWN * 6
 	velocity = friction(velocity, accelerating, isOnFloor, delta)
 	return(velocity)

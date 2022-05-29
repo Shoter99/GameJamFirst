@@ -15,15 +15,8 @@ func water_movement(velocity, isOnWall, delta) -> Vector2:
 		velocity.y = -swimSpeed * delta
 	if Input.is_action_pressed("swim_down"):
 		velocity.y = swimSpeed * delta
-	return velocity
-
-func evolution1_movement(delta) -> void:
-	velocity = water_movement(velocity, isOnWall, delta)
 	if Input.is_action_just_pressed("fire"):
 		fire(bullet)
-	velocity = move_and_slide(velocity)
+	return velocity
 
 
-func _physics_process(delta : float):
-	if inWater:
-		evolution1_movement(delta)
