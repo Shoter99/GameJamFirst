@@ -5,6 +5,7 @@ class_name Evolution2
 
 
 func _ready():
+	Global.set_start_options(5, 30)
 	jumpsRemaining = 2
 
 

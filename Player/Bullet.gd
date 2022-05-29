@@ -10,6 +10,7 @@ func _physics_process(delta : float):
 	var collision = move_and_collide(velocity * delta)
 
 func _on_Area2D_body_entered(body):
-	if(body.name == "LeftRightEnemySlime"):
-		body.hurt_and_die(-1)
+	print(body.is_in_group("Enemy"))
+	if(body.is_in_group("Enemy")):
+		body.hurt_and_die(1)
 	queue_free()

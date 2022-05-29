@@ -17,7 +17,6 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-
 extents = Vector2( 8, 4.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -26,11 +25,10 @@ extents = Vector2( 5, 6.5 )
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 4.5 )
 
-
-[node name="EnemyLeftRight" type="Node2D"]
+[node name="EnemyLeftRight" type="Node2D" groups=["Enemy"]]
 scale = Vector2( 2, 2 )
 
-[node name="LeftRightEnemySlime" type="KinematicBody2D" parent="."]
+[node name="LeftRightEnemySlime" type="KinematicBody2D" parent="." groups=["Enemy"]]
 collision_layer = 128
 collision_mask = 2
 script = ExtResource( 2 )
@@ -48,10 +46,10 @@ shape = SubResource( 5 )
 position = Vector2( 0, -5 )
 frames = SubResource( 3 )
 animation = "walk"
+frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]
-
 position = Vector2( 0, 4 )
 collision_layer = 0
 
@@ -66,9 +64,8 @@ collision_layer = 0
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime/playerDetector"]
-position = Vector2( 0, -3 )
+position = Vector2( 0, -6 )
 shape = SubResource( 2 )
-
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime"]
 position = Vector2( 0, -4.5 )
@@ -79,14 +76,6 @@ visible = false
 margin_top = -15.0
 margin_bottom = -15.0
 enemy_max_hp = 1
-
-[node name="playerDetector" type="Area2D" parent="LeftRightEnemySlime"]
-position = Vector2( 0, -4.5 )
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime/playerDetector"]
-position = Vector2( 0, -6 )
-shape = SubResource( 2 )
 
 [connection signal="enemy_health_changed" from="LeftRightEnemySlime" to="LeftRightEnemySlime/EnemyHealthBar" method="_on_LeftRightEnemySlime_enemy_health_changed"]
 [connection signal="body_entered" from="LeftRightEnemySlime/BounceDetectorArea" to="LeftRightEnemySlime" method="_on_BounceDetectorArea_body_entered"]

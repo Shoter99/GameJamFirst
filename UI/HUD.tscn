@@ -88,13 +88,11 @@ text = "60"
 
 [node name="EvolutionProgress" type="TextureProgress" parent="CanvasLayer"]
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -176.0
-margin_top = -267.0
-margin_right = -160.0
-margin_bottom = -251.0
+margin_left = -178.0
+margin_top = 81.0
+margin_right = -162.0
+margin_bottom = 97.0
 rect_scale = Vector2( 10, 10 )
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 5 )

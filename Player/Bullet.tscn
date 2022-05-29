@@ -12,9 +12,7 @@ height = 8.0
 
 [node name="Bullet" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
-
 collision_layer = 8
-
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -30,7 +28,7 @@ disabled = true
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 2, 0 )
 collision_layer = 0
-collision_mask = 2
+collision_mask = 130
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708

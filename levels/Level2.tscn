@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/Level2.gd" type="Script" id=2]
 [ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
@@ -14,6 +13,7 @@
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, -184 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 593.0 ],
 "_edit_vertical_guides_": [ 0.0 ]
@@ -21,31 +21,6 @@ __meta__ = {
 
 [node name="Lair" parent="." instance=ExtResource( 8 )]
 position = Vector2( 472, 544 )
-
-[node name="Player" parent="." groups=["Player"] instance=ExtResource( 3 )]
-position = Vector2( 608, 168 )
-jumpSpeed = -200
-
-[node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
-modulate = Color( 0.0666667, 0.290196, 0.203922, 1 )
-self_modulate = Color( 0.0352941, 0.32549, 0.25098, 1 )
-position = Vector2( 44, -26 )
-scale = Vector2( 2.34203, 2.82513 )
-z_index = -2
-limit_left = 0
-limit_top = -10000
-limit_right = 10000
-limit_bottom = 593
-
-[node name="ColorRect" type="ColorRect" parent="Player/Camera2D"]
-modulate = Color( 0, 0.239216, 0.372549, 1 )
-show_behind_parent = true
-margin_left = -93.9356
-margin_top = -92.7391
-margin_right = -53.9356
-margin_bottom = -52.7391
-rect_scale = Vector2( 7.68, 4.36 )
-color = Color( 0, 1, 0.6, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 16, 0 )
@@ -210,7 +185,12 @@ position = Vector2( 1072, 344 )
 [node name="Lair2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1256, 752 )
 
-[node name="EnemyLeftRight" parent="." groups=["Enemy"] instance=ExtResource( 6 )]
+[node name="EnemyLeftRight" parent="." instance=ExtResource( 6 )]
 position = Vector2( 119, 476 )
+
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 457, 64 )
+
+[node name="Player" type="Node2D" parent="." groups=["Player"]]
 
 [connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]

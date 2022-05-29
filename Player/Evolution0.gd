@@ -16,7 +16,8 @@ onready var bullet: = preload("res://Player/Bullet.tscn")
 func _ready():
 	get_node("MeleeLeft").disabled = true
 	get_node("MeleeRight").disabled = true
-	Global.update_life(Global.max_life)
+	Global.set_start_options(2,10)
+	
 		
 func evolution0_movement(delta):
 		snapVector = disable_snap_vector()

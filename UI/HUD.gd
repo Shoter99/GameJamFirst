@@ -10,11 +10,11 @@ func _ready() -> void:
 	update_life(Global.life)
 	$CanvasLayer/TimeLeft.text = str(timeLeft)
 	$CanvasLayer/EvolutionProgress.value = 0
-	$CanvasLayer/EvolutionProgress.max_value = Global.to_collect
+	
 	
 
 func update_life(var life: int):
-	var max_life := Global.max_life
+	var max_life : int = Global.max_life
 	for N in $CanvasLayer/MarginContainer/HBoxContainer.get_children():
 		if int(N.name) <= max_life:
 			if int(N.name) <= life:
@@ -26,6 +26,7 @@ func update_life(var life: int):
 			N.visible = false
 
 func update_collectable(var collected: int):
+	$CanvasLayer/EvolutionProgress.max_value = Global.to_collect
 	$CanvasLayer/EvolutionProgress.value = collected
 	
 

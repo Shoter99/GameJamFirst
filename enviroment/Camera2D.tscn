@@ -7,10 +7,6 @@
 position = Vector2( 48, 7 )
 current = true
 zoom = Vector2( 0.3, 0.3 )
-limit_left = 97
-limit_top = 208
-limit_right = 655
-limit_bottom = 400
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 10.0
