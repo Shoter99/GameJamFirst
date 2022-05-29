@@ -20,6 +20,7 @@ func hurt_and_die(x):
 	if self.enemyHp == 0:
 		var effect := death_particles.instance()
 		effect.global_position = global_position
+		effect.global_position.y += 250
 		get_tree().current_scene.add_child(effect)
 		queue_free()
 

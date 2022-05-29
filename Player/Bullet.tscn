@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/bullet_for_player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Bullet.gd" type="Script" id=2]
@@ -6,9 +6,15 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.14706, 2.30378 )
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.0
+height = 8.0
+
 [node name="Bullet" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
+
 collision_layer = 8
+
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -19,3 +25,15 @@ texture = ExtResource( 1 )
 position = Vector2( 1, 0 )
 scale = Vector2( 1.36, 0.868137 )
 shape = SubResource( 1 )
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 2, 0 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
