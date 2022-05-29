@@ -30,6 +30,14 @@ func jump() -> void:
 	snapVector = Vector2(0, 0)
 	velocity.y = jumpSpeed
 	
+func knock_up(directon):
+	snapVector = Vector2(0, 0)
+	velocity.y = jumpSpeed
+	velocity.x = speed * sign(directon)
+	$Sprite.play("idle")
+	$Sprite.play("jump")
+	
+	
 func get_input(delta : float) -> void:
 	if Input.is_action_just_pressed("attack") and is_on_floor() and is_on_wall() == false:
 		if get_node("Sprite").flip_h:
