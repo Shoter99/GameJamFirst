@@ -40,7 +40,7 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 			elif velocity.x < 0:
 				return Vector2 (velocity.x + 600 * delta, velocity.y)
 	return velocity
-	
+
 func disable_snap_vector() -> Vector2:
 	if Input.is_action_just_pressed("jump"):
 		return Vector2 (0, 0)
@@ -49,38 +49,35 @@ func disable_snap_vector() -> Vector2:
 func change_jumps(isOnFloor, isOnWall):
 	if isOnFloor or isOnWall:
 		jumpsRemaining = 1
-		
 	if (Input.is_action_just_pressed("jump") and jumpsRemaining > 0) or (isOnWall and Input.is_action_just_pressed("release")):
 		 jumpsRemaining -= 1 
-	
 	return jumpsRemaining
 
-	
 func jump(velocity) -> Vector2:
 	return Vector2(velocity.x, jumpSpeed)
-	
+
 func jump_from_wall(whereWall, velocity):
 	if whereWall == "right":
 		velocity.x = -speed * .1
 	elif whereWall == "left":
 		velocity.x = speed * .1
 	return velocity
-	
+
 func jump_away_from_wall(whereWall, velocity):
 	velocity = jump(velocity*1.2)
 	if whereWall == "right":
 		velocity.x = -speed * 1
 	elif whereWall == "left":
 		velocity.x = speed * 1
-	return velocity	
-		
+	return velocity
+
 func release_from_wall(whereWall, velocity) -> Vector2:
 	if whereWall == "right":
 		return Vector2(-speed*.1, velocity.y)
 	elif whereWall == "left":
 		return Vector2(speed*.1, velocity.y)
 	return velocity
-		
+
 func attack() -> void:
 	if get_node("Sprite").flip_h:
 		get_node("MeleeLeft").disabled = false
@@ -90,7 +87,7 @@ func attack() -> void:
 		get_node("MeleeRight").disabled = false
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_node("MeleeRight").disabled = true
-		
+
 func move_left(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(true)
 	if velocity.x > -speed:
@@ -99,7 +96,7 @@ func move_left(delta, velocity) -> Vector2:
 		else:
 			return Vector2 (velocity.x - 2500 * delta, velocity.y)
 	return velocity
-	
+
 func move_right(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(false)
 	if velocity.x < speed:
@@ -108,7 +105,7 @@ func move_right(delta, velocity) -> Vector2:
 		else:
 			return Vector2 (velocity.x + 2500 * delta, velocity.y)
 	return velocity
-		
+
 func movement(delta, velocity) -> Vector2:
 	if Input.is_action_pressed("move_right") and velocity.x <= speed:
 		return move_right(delta, velocity)
@@ -122,7 +119,7 @@ func checkAcceleration(isOnWall) -> bool:
 	if (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")) and isOnWall == false:
 		return true
 	return false
-	
+
 func is_player_on_wall() -> bool:
 	if is_on_floor():
 		return false
@@ -131,7 +128,7 @@ func is_player_on_wall() -> bool:
 	else:
 		$Sprite.play("jump")
 		return false
-		
+
 func check_where_wall():
 	for i in range (get_slide_count()):
 		if get_slide_collision(i):
@@ -143,8 +140,7 @@ func check_where_wall():
 				$Sprite.play("on_wall")
 				get_node("Sprite").set_flip_h(false)
 				return "left"
-				
-				
+
 func apply_jump(isOnWall, whereWall, velocity):
 	if isOnWall:
 		if Input.is_action_just_pressed("release"):
@@ -153,14 +149,13 @@ func apply_jump(isOnWall, whereWall, velocity):
 			return jump_away_from_wall(whereWall, velocity)
 		elif whereWall == "right" and Input.is_action_pressed("move_left") and Input.is_action_just_pressed("jump"):
 			return jump_away_from_wall(whereWall, velocity)
-	
+
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
 		velocity = jump(velocity)
 		if isOnWall:
 			return jump_from_wall(whereWall, velocity)
-			
 	return velocity
-		
+
 func get_input(velocity, isOnFloor, isOnWall, whereWall, delta) -> Vector2:
 	play_animations(velocity)
 	if isOnFloor == false:
@@ -169,11 +164,9 @@ func get_input(velocity, isOnFloor, isOnWall, whereWall, delta) -> Vector2:
 		attack()
 	if isOnWall == false:
 		velocity = movement(delta, velocity)
-	
 	velocity = apply_jump(isOnWall, whereWall, velocity)
-
 	return velocity
-		
+
 func apply_movement(velocity, isOnFloor, isOnWall, whereWall, accelerating, delta) -> Vector2:
 	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, delta)
 	accelerating = checkAcceleration(isOnWall)

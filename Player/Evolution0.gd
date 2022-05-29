@@ -11,7 +11,7 @@ var isOnWall : bool = false
 var isOnFloor : bool = false
 var inWater : bool = false
 var whereWall: = "nothing"
-		
+
 func evolution0_movement(delta):
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, accelerating, delta)
@@ -21,7 +21,7 @@ func evolution0_movement(delta):
 		if isOnWall:
 			whereWall = check_where_wall()
 		isOnFloor = is_on_floor()
-	
+
 func _physics_process(delta : float):
 	if inWater:
 		velocity = move_and_slide(water_movement(velocity, isOnWall, delta))

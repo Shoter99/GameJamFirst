@@ -9,7 +9,7 @@ func fire(bullet) -> void:
 	owner.add_child(bulletInstance)
 	if get_node("Sprite").flip_h:
 		bulletInstance.set_global_position($MeleeLeft.get_global_position())
-		bulletInstance.speed = -250	
+		bulletInstance.speed = -250
 	else:
 		bulletInstance.set_global_position($MeleeRight.get_global_position())
 		bulletInstance.get_node("Sprite").set_flip_h(true)
