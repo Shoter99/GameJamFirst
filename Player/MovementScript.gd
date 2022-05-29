@@ -179,5 +179,5 @@ func _physics_process(delta : float) -> void:
 		$Sprite.play("jump")
 		isInAir = true
 		isOnWall = false
-	print (velocity.x)
+	#print (velocity.x)
 		

@@ -10,10 +10,6 @@ export var enemyHp: = 1
 
 onready var death_particles := preload("res://enviroment/Particles/Enemy/EnemyParticles.tscn")
 
-func _ready():
-	velocity.x = 32
-
-
 #func _physics_process(delta):
 #	if is_on_wall():
 #		velocity.x = -velocity.x

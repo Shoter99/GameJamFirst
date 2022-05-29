@@ -3,10 +3,11 @@
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://enviroment/Collectable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=7]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

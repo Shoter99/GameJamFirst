@@ -7,20 +7,20 @@ onready var player = get_tree().get_nodes_in_group("Player")[0]
 func _ready():
 	self.setMaxHp(1)
 	self.gravity = 0
+	velocity.x = 0
+	velocity.y = 0
 
 func _physics_process(delta):
 	var xDist = player.global_position.x - self.global_position.x
 	var yDist = player.global_position.y - self.global_position.y
-	print(self.global_position.y, "a", player.position.y) 
-	if abs(xDist)<200 and  abs(yDist)< 200:
+	#print(self.global_position.y, "a", player.position.y) 
+	if abs(xDist)<200 and  abs(yDist)< 200 and velocity.x != 0:
 		velocity.y = yDist
 		velocity.x = xDist
-	else:
-		velocity.x = 0
-		velocity.y = 0
+
 	
 
 func _on_playerKiller_body_entered(body):
 	if body.name == "Player":
 		Global.update_life(-ghostDmg)
-		player.velocity.y = -500
+		player.velocity.y = -250
