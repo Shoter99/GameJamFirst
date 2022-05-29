@@ -3,7 +3,7 @@
 [ext_resource path="res://Sprites/slime_walk2.png" type="Texture" id=1]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/slime_walk1.png" type="Texture" id=3]
-[ext_resource path="res://entities/enemy/EnemyHealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/enemy/healthbar/EnemyHealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 4.5 )
@@ -19,17 +19,17 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6, 3.5 )
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 3.5 )
-
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 1.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 3.5 )
 
 [node name="Node2D" type="Node2D"]
 
 [node name="LeftRightEnemySlime" type="KinematicBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 130
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="BounceDetectorArea" type="Area2D" parent="LeftRightEnemySlime"]
@@ -44,7 +44,6 @@ shape = SubResource( 5 )
 position = Vector2( 0, -5 )
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]
@@ -55,16 +54,17 @@ collision_layer = 0
 modulate = Color( 0.545098, 0.0431373, 0.0431373, 1 )
 shape = SubResource( 4 )
 
+[node name="playerDetector" type="Area2D" parent="LeftRightEnemySlime"]
+position = Vector2( 0, -3.5 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime/playerDetector"]
+position = Vector2( 0, -5 )
+shape = SubResource( 2 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime"]
 position = Vector2( 0, -3.5 )
 shape = SubResource( 1 )
-
-[node name="playerDetector" type="Area2D" parent="LeftRightEnemySlime/CollisionShape2D"]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime/CollisionShape2D/playerDetector"]
-position = Vector2( 0, -5 )
-shape = SubResource( 2 )
 
 [node name="EnemyHealthBar" parent="LeftRightEnemySlime" instance=ExtResource( 4 )]
 margin_top = -15.0
@@ -73,4 +73,4 @@ margin_bottom = -15.0
 [connection signal="enemy_health_changed" from="LeftRightEnemySlime" to="LeftRightEnemySlime/EnemyHealthBar" method="_on_LeftRightEnemySlime_enemy_health_changed"]
 [connection signal="body_entered" from="LeftRightEnemySlime/BounceDetectorArea" to="LeftRightEnemySlime" method="_on_BounceDetectorArea_body_entered"]
 [connection signal="body_entered" from="LeftRightEnemySlime/playerKiller" to="LeftRightEnemySlime" method="_on_playerKiller_body_entered"]
-[connection signal="body_entered" from="LeftRightEnemySlime/CollisionShape2D/playerDetector" to="LeftRightEnemySlime" method="_on_playerDetector_body_entered"]
+[connection signal="body_entered" from="LeftRightEnemySlime/playerDetector" to="LeftRightEnemySlime" method="_on_playerDetector_body_entered"]
