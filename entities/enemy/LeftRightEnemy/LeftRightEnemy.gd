@@ -46,5 +46,6 @@ func bounce():
 
 
 
+
 func _on_BounceDetectorArea_body_entered(body):
 	bounce()

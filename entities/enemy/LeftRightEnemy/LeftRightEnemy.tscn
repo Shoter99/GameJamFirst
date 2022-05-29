@@ -6,7 +6,7 @@
 [ext_resource path="res://entities/enemy/EnemyHealthBar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 10, 4.5 )
+extents = Vector2( 5.25001, 9.25 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -17,13 +17,13 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6, 3.5 )
+extents = Vector2( 6.25, 3.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 4.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.5, 1.5 )
+extents = Vector2( 5, 0.5 )
 
 [node name="EnemyLeftRight" type="Node2D"]
 scale = Vector2( 2, 2 )
@@ -35,17 +35,17 @@ script = ExtResource( 2 )
 
 [node name="BounceDetectorArea" type="Area2D" parent="LeftRightEnemySlime"]
 collision_layer = 0
-collision_mask = 128
+collision_mask = 130
 
 [node name="BounceDetectorShape" type="CollisionShape2D" parent="LeftRightEnemySlime/BounceDetectorArea"]
-position = Vector2( 0, -4.5 )
+position = Vector2( -0.250017, -5.25003 )
+rotation = 1.5708
 shape = SubResource( 5 )
 
 [node name="Enemy" type="AnimatedSprite" parent="LeftRightEnemySlime"]
 position = Vector2( 0, -5 )
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="LeftRightEnemySlime"]
@@ -54,6 +54,7 @@ collision_layer = 2
 
 [node name="PlayerkillerShape" type="CollisionShape2D" parent="LeftRightEnemySlime/playerKiller"]
 modulate = Color( 0.545098, 0.0431373, 0.0431373, 1 )
+position = Vector2( -0.75, 0 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime"]
@@ -71,7 +72,7 @@ position = Vector2( 0, -4.5 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftRightEnemySlime/playerDetector"]
-position = Vector2( 0, -7 )
+position = Vector2( 0, -6 )
 shape = SubResource( 2 )
 
 [connection signal="enemy_health_changed" from="LeftRightEnemySlime" to="LeftRightEnemySlime/EnemyHealthBar" method="_on_LeftRightEnemySlime_enemy_health_changed"]
