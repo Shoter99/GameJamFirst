@@ -9,9 +9,9 @@ func _ready():
 	self.gravity = 0
 
 func _physics_process(delta):
-	var xDist = player.position.x - self.global_position.x
-	var yDist = player.position.y - self.global_position.y
-	#print(yDist, "a", xDist) 
+	var xDist = player.global_position.x - self.global_position.x
+	var yDist = player.global_position.y - self.global_position.y
+	print(self.global_position.y, "a", player.position.y) 
 	if abs(xDist)<200 and  abs(yDist)< 200:
 		velocity.y = yDist
 		velocity.x = xDist
