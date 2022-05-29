@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-class_name Player
-export var speed : int = 150
+class_name Player, "res://Sprites/player.png"
+export var speed : float = 150
 export var jumpSpeed : int = -300
 export var gravity : int = 400
 var jumpsRemaining : int = 1
@@ -10,9 +10,9 @@ func _ready():
 	get_node("MeleeLeft").disabled = true
 	get_node("MeleeRight").disabled = true
 
-func water_movement(velocity, isOnWall, delta):
+func water_movement(velocity, isOnWall, delta) -> Vector2:
 	gravity = 200
-	apply_gravity(velocity, isOnWall, delta)
+	return apply_gravity(velocity, isOnWall, delta)
 
 func play_animations(velocity) -> void:
 	if is_on_floor() and is_on_wall() == false:
@@ -46,7 +46,7 @@ func disable_snap_vector() -> Vector2:
 		return Vector2 (0, 0)
 	return Vector2.DOWN * 6
 
-func change_jumps(jumpsRemaining, isOnFloor, isOnWall):
+func change_jumps(isOnFloor, isOnWall):
 	if isOnFloor or isOnWall:
 		jumpsRemaining = 1
 		
@@ -67,7 +67,7 @@ func jump_from_wall(whereWall, velocity):
 	return velocity
 	
 func jump_away_from_wall(whereWall, velocity):
-	velocity = jump(velocity)
+	velocity = jump(velocity*1.2)
 	if whereWall == "right":
 		velocity.x = -speed * 1
 	elif whereWall == "left":
@@ -90,16 +90,6 @@ func attack() -> void:
 		get_node("MeleeRight").disabled = false
 		yield(get_tree().create_timer(0.2), "timeout")
 		get_node("MeleeRight").disabled = true
-		
-func fire(bullet) -> void:
-	var bulletInstance = bullet.instance()
-	owner.add_child(bulletInstance)
-	if get_node("Sprite").flip_h:
-		bulletInstance.set_global_position($MeleeLeft.get_global_position())
-		bulletInstance.speed = -250	
-	else:
-		bulletInstance.set_global_position($MeleeRight.get_global_position())
-		bulletInstance.get_node("Sprite").set_flip_h(true)
 		
 func move_left(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(true)
@@ -128,7 +118,7 @@ func movement(delta, velocity) -> Vector2:
 		return Vector2 (0, velocity.y)
 	return velocity
 
-func checkAcceleration(velocity, isOnWall) -> bool:
+func checkAcceleration(isOnWall) -> bool:
 	if (Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left")) and isOnWall == false:
 		return true
 	return false
@@ -155,7 +145,7 @@ func check_where_wall():
 				return "left"
 				
 				
-func apply_jump(isOnFloor, isOnWall, whereWall, velocity, jumpsRemaining):
+func apply_jump(isOnWall, whereWall, velocity):
 	if isOnWall:
 		if Input.is_action_just_pressed("release"):
 			velocity = release_from_wall(whereWall, velocity)
@@ -171,26 +161,22 @@ func apply_jump(isOnFloor, isOnWall, whereWall, velocity, jumpsRemaining):
 			
 	return velocity
 		
-func get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, delta) -> Vector2:
+func get_input(velocity, isOnFloor, isOnWall, whereWall, delta) -> Vector2:
 	play_animations(velocity)
 	if isOnFloor == false:
 		velocity = apply_gravity(velocity, isOnWall, delta)
 	if Input.is_action_just_pressed("attack") and is_on_floor() and is_on_wall() == false:
 		attack()
-	if Input.is_action_just_pressed("fire"):
-		fire(bullet)
 	if isOnWall == false:
 		velocity = movement(delta, velocity)
 	
-	velocity = apply_jump(isOnFloor, isOnWall, whereWall, velocity, jumpsRemaining)
+	velocity = apply_jump(isOnWall, whereWall, velocity)
 
 	return velocity
 		
-func apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, snapVector, delta) -> Vector2:
-	snapVector = Vector2(0, 0)
-	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, delta)
-	accelerating = checkAcceleration(velocity, isOnWall)
-	snapVector = Vector2.DOWN * 6
+func apply_movement(velocity, isOnFloor, isOnWall, whereWall, accelerating, delta) -> Vector2:
+	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, delta)
+	accelerating = checkAcceleration(isOnWall)
 	velocity = friction(velocity, accelerating, isOnFloor, delta)
 	return(velocity)
 	

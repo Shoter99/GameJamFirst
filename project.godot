@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Evolution2.gd"
 }, {
+"base": "Evolution2",
+"class": "Evolution3",
+"language": "GDScript",
+"path": "res://Player/Evolution3.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Evolution0": "",
 "Evolution1": "",
 "Evolution2": "",
-"Player": ""
+"Evolution3": "",
+"Player": "res://Sprites/player.png"
 }
 
 [application]

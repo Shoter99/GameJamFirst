@@ -1,13 +1,11 @@
 extends Evolution1
 
-
 class_name Evolution2
-
 
 func _ready():
 	jumpsRemaining = 2
 
-func change_jumps(jumpsRemaining, isOnFloor, isOnWall):
+func change_jumps(isOnFloor, isOnWall):
 	if isOnFloor or isOnWall:
 		jumpsRemaining = 2
 		
