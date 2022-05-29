@@ -23,7 +23,7 @@ __meta__ = {
 position = Vector2( 472, 544 )
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 3 )]
-position = Vector2( 472, 520 )
+position = Vector2( 608, 168 )
 jumpSpeed = -200
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
@@ -85,12 +85,6 @@ position = Vector2( 24, 704 )
 position = Vector2( 928, 576 )
 
 [node name="left right enemies" type="Node2D" parent="."]
-
-[node name="Node2D13" parent="left right enemies" instance=ExtResource( 6 )]
-position = Vector2( 696, 232 )
-
-[node name="Node2D12" parent="left right enemies" instance=ExtResource( 6 )]
-position = Vector2( 736, 208 )
 
 [node name="Node2D" parent="left right enemies" instance=ExtResource( 6 )]
 position = Vector2( 840, 216 )
