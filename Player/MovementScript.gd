@@ -47,16 +47,16 @@ func jump(velocity) -> Vector2:
 	
 func jump_from_wall(whereWall, velocity):
 	if whereWall == "right":
-		velocity.x = -speed * 2
+		velocity.x = -speed * .1
 	elif whereWall == "left":
-		velocity.x = speed * 2
+		velocity.x = speed * .1
 	return velocity
 		
 func release_from_wall(whereWall, velocity) -> Vector2:
 	if whereWall == "right":
-		return Vector2(-speed, velocity.y)
+		return Vector2(-speed*.1, velocity.y)
 	elif whereWall == "left":
-		return Vector2(speed, velocity.y)
+		return Vector2(speed*.1, velocity.y)
 	return velocity
 		
 func attack() -> void:
@@ -121,10 +121,7 @@ func is_player_on_wall():
 		return true				
 	else:
 		$Sprite.play("jump")
-		isInAir = true
-		isOnWall = false
-	#print (velocity.x)
-
+		return false
 		
 func check_where_wall():
 	for i in range (get_slide_count()):

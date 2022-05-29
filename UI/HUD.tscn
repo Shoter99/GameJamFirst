@@ -98,5 +98,3 @@ margin_bottom = -251.0
 rect_scale = Vector2( 10, 10 )
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 5 )
-tint_under = Color( 0.67451, 0.0117647, 0.0117647, 1 )
-tint_progress = Color( 0.67451, 0.0117647, 0.0117647, 1 )

@@ -4,7 +4,7 @@ extends Node
 var max_life : int= 3
 var life : int = 0
 var collected : int = 0
-var to_collect: int = 3
+var to_collect: int = 20
 
 signal life_changed(life)
 signal collectabe_changed(collected)
