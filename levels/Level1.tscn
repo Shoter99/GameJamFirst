@@ -8,7 +8,6 @@
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=7]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Node2D" type="Node2D"]
@@ -30,7 +29,6 @@ position = Vector2( 800, 265 )
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 3 )]
 position = Vector2( 49, 478 )
-jumpSpeed = -200
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
 modulate = Color( 0.0666667, 0.290196, 0.203922, 1 )
