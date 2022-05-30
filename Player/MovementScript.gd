@@ -11,10 +11,8 @@ func _ready():
 	get_node("MeleeRight").disabled = true
 
 func water_movement(velocity, delta):
-	gravity = 200
-	velocity = apply_gravity(velocity, isOnWall, delta)
-	gravity = 400
-	return velocity
+	move_and_slide(Vector2.ZERO)
+	Global.life = 0
 
 func is_player_on_wall():
 	if is_on_floor():

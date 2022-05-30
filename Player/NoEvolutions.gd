@@ -36,7 +36,7 @@ func knock_up(directon):
 	
 func _physics_process(delta : float):
 	if inWater:
-		water_movement(velocity, delta)
+		velocity = water_movement(velocity, delta)
 	else:
 		evolution0_movement(delta)
 	
