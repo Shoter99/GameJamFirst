@@ -24,7 +24,7 @@ func evolution0_movement(delta):
 	
 func _physics_process(delta : float):
 	if inWater:
-		water_movement(velocity, delta)
+		velocity = water_movement(velocity, delta)
 	else:
 		evolution0_movement(delta)
 	
