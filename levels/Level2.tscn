@@ -2,16 +2,16 @@
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/Level2.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=7]
-[ext_resource path="res://enviroment/Lair.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyTurret.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 position = Vector2( 0, -184 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -19,8 +19,31 @@ __meta__ = {
 "_edit_vertical_guides_": [ 0.0 ]
 }
 
-[node name="Lair" parent="." instance=ExtResource( 8 )]
-position = Vector2( 472, 544 )
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Point1" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 342, 345 )
+
+[node name="Sprite" type="Sprite" parent="SpawnPoints/Point1"]
+position = Vector2( 0, 14 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Point2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 1259, 730 )
+
+[node name="Sprite" type="Sprite" parent="SpawnPoints/Point2"]
+position = Vector2( 0, 14 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Point3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 336, -321 )
+
+[node name="Sprite" type="Sprite" parent="SpawnPoints/Point3"]
+position = Vector2( 0, 14 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 16, 0 )
@@ -182,14 +205,8 @@ position = Vector2( 864, -150 )
 [node name="Collectable10" parent="Collectables/with walljump" instance=ExtResource( 4 )]
 position = Vector2( 1072, 344 )
 
-[node name="Lair2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1256, 752 )
-
 [node name="EnemyLeftRight" parent="." instance=ExtResource( 6 )]
 position = Vector2( 119, 476 )
-
-[node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 457, 64 )
 
 [node name="Player" type="Node2D" parent="." groups=["Player"]]
 
