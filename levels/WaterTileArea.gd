@@ -11,6 +11,8 @@ func _on_WaterTileArea_body_entered(body):
 		#player.get_child(0).velocity.y = -1000
 		player.get_child(0).inWater = true
 		#print("Entered water")
+	if body.name.left(9) == "GhostNode":
+		body.hurt_and_die(1)
 
 
 
