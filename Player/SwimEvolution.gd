@@ -1,12 +1,13 @@
-extends Evolution0
+extends JumpEvolution
 
-class_name Evolution1
+class_name SwimEvolution
 
 var swimSpeed : int = 5000
 
 func _ready():
 	Global.set_start_options(4, 20)
-func water_movement(velocity, isOnWall, delta) -> Vector2:
+	
+func water_movement(velocity, delta) -> Vector2:
 	velocity = Vector2(0, 0)
 	if Input.is_action_pressed("swim_right"):
 		velocity.x = swimSpeed * delta
@@ -18,13 +19,3 @@ func water_movement(velocity, isOnWall, delta) -> Vector2:
 		velocity.y = swimSpeed * delta
 	return velocity
 
-func evolution1_movement(delta) -> void:
-	velocity = water_movement(velocity, isOnWall, delta)
-	if Input.is_action_just_pressed("fire"):
-		fire(bullet)
-	velocity = move_and_slide(velocity)
-
-
-func _physics_process(delta : float):
-	if inWater:
-		evolution1_movement(delta)

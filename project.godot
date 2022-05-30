@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "SwimEvolution",
+"class": "DoubleJumpEvolution",
+"language": "GDScript",
+"path": "res://Player/DoubleJumpEvolution.gd"
+}, {
 "base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
@@ -19,33 +24,46 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/Entity.gd"
 }, {
+"base": "WallJumpEvolution",
+"class": "FireEvolution",
+"language": "GDScript",
+"path": "res://Player/FireEvolution.gd"
+}, {
+"base": "NoEvolution",
+"class": "JumpEvolution",
+"language": "GDScript",
+"path": "res://Player/JumpEvolution.gd"
+}, {
 "base": "Player",
-"class": "Evolution0",
+"class": "NoEvolution",
 "language": "GDScript",
-"path": "res://Player/Evolution0.gd"
-}, {
-"base": "Evolution0",
-"class": "Evolution1",
-"language": "GDScript",
-"path": "res://Player/Evolution1.gd"
-}, {
-"base": "Evolution1",
-"class": "Evolution2",
-"language": "GDScript",
-"path": "res://Player/Evolution2.gd"
+"path": "res://Player/NoEvolutions.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/MovementScript.gd"
+}, {
+"base": "JumpEvolution",
+"class": "SwimEvolution",
+"language": "GDScript",
+"path": "res://Player/SwimEvolution.gd"
+}, {
+"base": "DoubleJumpEvolution",
+"class": "WallJumpEvolution",
+"language": "GDScript",
+"path": "res://Player/WallJumpEvolution.gd"
 } ]
 _global_script_class_icons={
+"DoubleJumpEvolution": "",
 "Enemy": "",
 "Entity": "",
-"Evolution0": "",
-"Evolution1": "",
-"Evolution2": "",
-"Player": ""
+"FireEvolution": "",
+"JumpEvolution": "",
+"NoEvolution": "",
+"Player": "",
+"SwimEvolution": "",
+"WallJumpEvolution": ""
 }
 
 [application]
