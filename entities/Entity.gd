@@ -9,6 +9,6 @@ func _physics_process(delta):
 	if abs(velocity.x)>512:
 		velocity.x = 512*sign(velocity.x)
 	if is_on_floor():
-		velocity.y = 0
+		velocity.y = min(0,velocity.y)
 	else:
 		velocity.y +=gravity*delta
