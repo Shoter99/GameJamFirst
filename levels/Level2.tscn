@@ -159,86 +159,9 @@ position = Vector2( 864, -150 )
 [node name="Collectable10" parent="Collectables/with walljump" instance=ExtResource( 4 )]
 position = Vector2( 1072, 344 )
 
-<<<<<<< HEAD
 [node name="EnemyLeftRight" parent="." instance=ExtResource( 6 )]
 position = Vector2( 119, 476 )
 
-=======
-[node name="Lair2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1256, 752 )
-
-[node name="Ghosts" type="Node2D" parent="."]
-position = Vector2( 24, 0 )
-scale = Vector2( 2, 2 )
-
-[node name="GhostNode3" parent="Ghosts" instance=ExtResource( 5 )]
-position = Vector2( 448, 440 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="GhostNode2" parent="Ghosts" instance=ExtResource( 5 )]
-position = Vector2( 420, -208 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="GhostNode" parent="Ghosts" instance=ExtResource( 5 )]
-position = Vector2( 496, 444 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="LeftRightEnemies" type="Node2D" parent="."]
-position = Vector2( 624, -32 )
-scale = Vector2( 2, 2 )
-
-[node name="EnemyLeftRight2" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -272, 364 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight3" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -224, 364.5 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight4" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -168, 369.5 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -132, 372 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight5" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( 100, 124 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight6" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -68, 56 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight7" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -20, 56 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight8" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( 28, 52 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight9" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( 88, 64 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight10" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -88, -4 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight11" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( -52, -4 )
-scale = Vector2( 1, 1 )
-
-[node name="EnemyLeftRight12" parent="LeftRightEnemies" instance=ExtResource( 6 )]
-position = Vector2( 24, -16 )
-scale = Vector2( 1, 1 )
-
-[node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 536, 768 )
-
->>>>>>> FixingEnemies
 [node name="Player" type="Node2D" parent="." groups=["Player"]]
 
 [connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]
