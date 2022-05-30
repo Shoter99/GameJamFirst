@@ -23,9 +23,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walk",
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -33,14 +33,14 @@ animations = [ {
 "name": "on_wall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
-"loop": false,
-"name": "jump",
+"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 } ]
 
 [node name="Evolution0" type="KinematicBody2D" groups=["Player"]]
-collision_mask = 131
+collision_mask = 147
 script = ExtResource( 7 )
 
 [node name="MeleeRight" type="CollisionShape2D" parent="."]
