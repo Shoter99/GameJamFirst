@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/player/player_mid_air.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/player/player_move1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/player/player_on_wall.png" type="Texture" id=6]
-[ext_resource path="res://Player/NoEvolutions.gd" type="Script" id=7]
+[ext_resource path="res://Player/FireEvolution.gd" type="Script" id=7]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=2]

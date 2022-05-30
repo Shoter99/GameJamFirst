@@ -17,5 +17,8 @@ func water_movement(velocity, delta) -> Vector2:
 		velocity.y = -swimSpeed * delta
 	if Input.is_action_pressed("swim_down"):
 		velocity.y = swimSpeed * delta
+	
+	velocity = move_and_slide(velocity)
+	
 	return velocity
 
