@@ -19,7 +19,7 @@ func get_input(velocity, isOnFloor, _isOnWall, _whereWall, _bullet, _jumpsRemain
 	play_animations(velocity)
 	if isOnFloor == false:
 		velocity = apply_gravity(velocity, isOnFloor, delta)
-	velocity = movement(delta, isOnWall, velocity)
+	velocity = movement(delta, velocity, isOnWall)
 	velocity = jump(velocity, isOnFloor)
 	return velocity
 	

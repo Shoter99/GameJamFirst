@@ -8,18 +8,24 @@ func _ready():
 	
 func jump(velocity, _isOnFloor) -> Vector2:
 	if Input.is_action_just_pressed("jump"):
+		$Sprite.play("idle")
+		$Sprite.play("jump")
 		return Vector2(velocity.x, jumpSpeed)
 	return velocity
 
-func apply_jump(_whereWall, velocity, jumpsRemaining):
+func apply_jump(_whereWall, velocity, jumpsRemaining) -> Vector2:
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
-		velocity = jump(velocity, isOnFloor)
+		$Sprite.play("idle")
+		$Sprite.play("jump")
+		return jump(velocity, isOnFloor)
 	return velocity
 	
-func change_jumps(jumpsRemaining, isOnFloor, isOnWall) -> int:
+func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 	if isOnFloor:
 		jumpsRemaining = 2
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
+		$Sprite.play("idle")
+		$Sprite.play("jump")
 		jumpsRemaining -= 1
 	return jumpsRemaining
 
@@ -27,7 +33,7 @@ func get_input(velocity, isOnFloor, isOnWall, whereWall, _bullet, jumpsRemaining
 	play_animations(velocity)
 	if isOnFloor == false:
 		velocity = apply_gravity(velocity, isOnWall, delta)
-	velocity = movement(delta, isOnWall, velocity)
+	velocity = movement(delta, velocity, isOnWall)
 	velocity = apply_jump(whereWall, velocity, jumpsRemaining)
 	return velocity
 

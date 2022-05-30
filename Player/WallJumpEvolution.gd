@@ -3,7 +3,7 @@ extends DoubleJumpEvolution
 
 class_name WallJumpEvolution
 
-func movement(delta, isOnWall, velocity) -> Vector2:
+func movement(delta, velocity, isOnWall) -> Vector2:
 	if isOnWall == false:
 		if Input.is_action_pressed("move_right") and velocity.x <= speed:
 			return move_right(delta, velocity)
@@ -19,7 +19,7 @@ func movement(delta, isOnWall, velocity) -> Vector2:
 
 	return velocity
 	
-func change_jumps(jumpsRemaining, isOnFloor, isOnWall) -> int:
+func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 	if isOnFloor or isOnWall:
 		jumpsRemaining = 2
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
@@ -27,16 +27,19 @@ func change_jumps(jumpsRemaining, isOnFloor, isOnWall) -> int:
 	return jumpsRemaining
 
 func check_where_wall():
-	for i in range (get_slide_count()):
-		if get_slide_collision(i):
-			if get_slide_collision(i).position.x > get_position().x:
-				$Sprite.play("on_wall")
-				get_node("Sprite").set_flip_h(true)
-				return "right"
-			else:
-				$Sprite.play("on_wall")
-				get_node("Sprite").set_flip_h(false)
-				return "left"
+	if inWater:
+		return "nothing"
+	else:
+		for i in range (get_slide_count()):
+			if get_slide_collision(i):
+				if get_slide_collision(i).position.x > get_position().x:
+					$Sprite.play("on_wall")
+					get_node("Sprite").set_flip_h(true)
+					return "right"
+				else:
+					$Sprite.play("on_wall")
+					get_node("Sprite").set_flip_h(false)
+					return "left"
 
 func apply_gravity(velocity, isOnWall, delta) -> Vector2:
 	if isOnWall:
