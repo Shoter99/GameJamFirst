@@ -25,8 +25,9 @@ func _physics_process(delta):
 	#move_and_collide(vel)
 
 func _on_playerDetector_body_entered(body):
+
 	if body.is_in_group("Player"):
-		player.get_child(0).knock_up(player.get_child(0).global_position.x - self.global_position.x)
+		player.get_child(0).velocity.y = -150
 		self.hurt_and_die(1)
 		bounce()
 	if body.name == "Bullet":
@@ -39,7 +40,7 @@ func _on_playerKiller_body_entered(body):
 		Global.update_life(-slimeDmg)
 		#print(Global.life)
 
-		player.get_child(0).knock_up(player.get_child(0).global_position.x - self.global_position.x)
+		player.get_child(0).velocity.y = -500
 
 		
 func bounce():

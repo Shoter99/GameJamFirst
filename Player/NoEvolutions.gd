@@ -22,18 +22,6 @@ func evolution0_movement(delta):
 		isOnFloor = is_on_floor()
 		isOnWall = is_player_on_wall()
 	
-func knock_up(directon):
-	snapVector = Vector2(0, 0)
-	velocity.y = -150
-	velocity.x = 150 * sign(directon)
-	var tmp = snapVector
-	snapVector = Vector2.ZERO
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
-	snapVector = tmp
-	
-	$Sprite.play("idle")
-	$Sprite.play("jump")
-	
 func _physics_process(delta : float):
 	if inWater:
 		water_movement(velocity, delta)
