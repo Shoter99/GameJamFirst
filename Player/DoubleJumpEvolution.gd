@@ -31,8 +31,7 @@ func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 
 func get_input(velocity, isOnFloor, isOnWall, whereWall, _bullet, jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
-	if isOnFloor == false:
-		velocity = apply_gravity(velocity, isOnWall, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	velocity = apply_jump(whereWall, velocity, jumpsRemaining)
 	return velocity
@@ -40,5 +39,5 @@ func get_input(velocity, isOnFloor, isOnWall, whereWall, _bullet, jumpsRemaining
 func _physics_process(delta : float):
 	yield(get_tree().create_timer(delta), "timeout")
 	jumpsRemaining = change_jumps(jumpsRemaining, isOnFloor, isOnWall)
-	
+
 

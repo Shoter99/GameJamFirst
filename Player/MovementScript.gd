@@ -5,12 +5,14 @@ export var speed : int = 150
 export var gravity : int = 400
 var jumpsRemaining : int = 2
 var isOnWall : bool = false
+var floorFriction : float = 600
+var airResistance : float = 60
 
 func _ready():
 	get_node("MeleeLeft").disabled = true
 	get_node("MeleeRight").disabled = true
 
-func water_movement(velocity, delta) -> Vector2:
+func water_movement(_velocity, _delta) -> Vector2:
 	Global.life = 0
 	return move_and_slide(Vector2.ZERO)
 
@@ -30,31 +32,31 @@ func play_animations(velocity) -> void:
 		elif velocity.x == 0 and is_on_floor():
 			$Sprite.play("idle")
 
-func apply_gravity(velocity, _isOnWall, delta) -> Vector2:
+func apply_gravity(velocity, _isOnWall, isOnFloor, delta) -> Vector2:
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
 func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
-				if velocity.x - 400 * delta >= 0:
-					return Vector2(velocity.x - 400 * delta, velocity.y)
+				if velocity.x - airResistance * delta >= 0:
+					return Vector2(velocity.x - airResistance * delta, velocity.y)
 				else:
 					return Vector2(0, velocity.y)
 			elif velocity.x < 0:
-				if velocity.x + 400 * delta <= 0:
-					return Vector2 (velocity.x + 400 * delta, velocity.y)
+				if velocity.x + airResistance * delta <= 0:
+					return Vector2 (velocity.x + airResistance * delta, velocity.y)
 				else:
 					return Vector2 (0, velocity.y)
 		else:
 			if velocity.x > 0:
-				if velocity.x - 600 * delta >= 0:
-					return Vector2(velocity.x - 600 * delta, velocity.y)
+				if velocity.x - floorFriction * delta >= 0:
+					return Vector2(velocity.x - floorFriction * delta, velocity.y)
 				else:
 					return Vector2(0, velocity.y)
 			elif velocity.x < 0:
-				if velocity.x + 600 * delta <= 0:
-					return Vector2 (velocity.x + 600 * delta, velocity.y)
+				if velocity.x + floorFriction * delta <= 0:
+					return Vector2 (velocity.x + floorFriction * delta, velocity.y)
 				else:
 					return Vector2 (0, velocity.y)
 	return velocity
@@ -102,8 +104,7 @@ func checkAcceleration(velocity) -> bool:
 	
 func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
-	if isOnFloor == false:
-		velocity = apply_gravity(velocity, isOnWall, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	return velocity
 		
