@@ -17,13 +17,12 @@ func _ready():
 
 func evolution0_movement(delta):
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall()
 	return velocity
 	
 func knock_up(directon):
-	snapVector = Vector2(0, 0)
 	velocity.y = -150
 	velocity.x = 150 * sign(directon)
 	var tmp = snapVector

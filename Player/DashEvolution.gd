@@ -5,54 +5,55 @@ class_name DashEvolution
 var dashSpeed : int = 450
 var isDashing : bool = false
 var courutineActive : bool = false
+var tooMuchSpeedSlowdown : float = 1500
 
 func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
 				if velocity.x <= speed:
-					if velocity.x - 60 * delta >= 0:
-						return Vector2(velocity.x - 60 * delta, velocity.y)
+					if velocity.x - airResistance * delta >= 0:
+						return Vector2(velocity.x - airResistance * delta, velocity.y)
 					else:
 						return Vector2(0, velocity.y)
 				elif velocity.x > speed:
-					if velocity.x - 1500 * delta >= speed:
-						return Vector2(velocity.x - 1500 * delta, velocity.y)
+					if velocity.x - tooMuchSpeedSlowdown * delta >= speed:
+						return Vector2(velocity.x - tooMuchSpeedSlowdown * delta, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
 					
 			elif velocity.x < 0:
 				if velocity.x >= -speed:
-					if velocity.x + 60 * delta <= 0:
-						return Vector2 (velocity.x + 60 * delta, velocity.y)
+					if velocity.x + airResistance * delta <= 0:
+						return Vector2 (velocity.x + airResistance * delta, velocity.y)
 					else:
 						return Vector2 (0, velocity.y)
 				elif velocity.x < -speed:
-					if velocity.x + 1500 * delta <= speed:
-						return Vector2(velocity.x + 1500 * delta, velocity.y)
+					if velocity.x + tooMuchSpeedSlowdown * delta <= speed:
+						return Vector2(velocity.x + tooMuchSpeedSlowdown * delta, velocity.y)
 					else:
 						return Vector2 (-speed, velocity.y)
 		else:
 			if velocity.x > 0:
 				if velocity.x <= speed:
-					if velocity.x - 600 * delta >= 0:
-						return Vector2(velocity.x - 600 * delta, velocity.y)
+					if velocity.x - floorFriction * delta >= 0:
+						return Vector2(velocity.x - floorFriction * delta, velocity.y)
 					else:
 						return Vector2(0, velocity.y)
 				elif velocity.x > speed:
-					if velocity.x - 1500 * delta >= speed:
-						return Vector2(velocity.x - 1500 * delta, velocity.y)
+					if velocity.x - tooMuchSpeedSlowdown * delta >= speed:
+						return Vector2(velocity.x - tooMuchSpeedSlowdown * delta, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
 			elif velocity.x < 0:
 				if velocity.x >= -speed:
-					if velocity.x + 600 * delta <= 0:
-						return Vector2 (velocity.x + 600 * delta, velocity.y)
+					if velocity.x + floorFriction * delta <= 0:
+						return Vector2 (velocity.x + floorFriction * delta, velocity.y)
 					else:
 						return Vector2 (0, velocity.y)
 				elif velocity.x < -speed:
-					if velocity.x + 1500 * delta <= speed:
-						return Vector2(velocity.x + 1500 * delta, velocity.y)
+					if velocity.x + tooMuchSpeedSlowdown * delta <= speed:
+						return Vector2(velocity.x + tooMuchSpeedSlowdown * delta, velocity.y)
 					else:
 						return Vector2 (-speed, velocity.y)
 	return velocity
@@ -76,7 +77,7 @@ func evolution0_movement(delta):
 	if isDashing == false:
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
+		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
 		snapVector = Vector2.DOWN * 6
 		isOnFloor = is_on_floor()
 		isOnWall = is_player_on_wall()
@@ -97,5 +98,7 @@ func _physics_process(_delta):
 		yield(get_tree().create_timer(0.0001), "timeout")
 		courutineActive = false
 		isDashing = false
+	print (velocity)
+	print (isOnFloor)
 
 

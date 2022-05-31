@@ -3,6 +3,23 @@ extends DoubleJumpEvolution
 
 class_name WallJumpEvolution
 
+var waitingForJump : bool = false
+var canJump : bool = false
+var waitTime : float = 0.15
+
+
+func rightJumpCourutine():
+	yield(get_tree().create_timer(waitTime), "timeout")
+	if Input.is_action_pressed("move_right"):
+		canJump = true
+	waitingForJump = false
+		
+func leftJumpCourutine():
+	yield(get_tree().create_timer(waitTime), "timeout")
+	if Input.is_action_pressed("move_left"):
+		canJump = true
+	waitingForJump = false
+
 func movement(delta, velocity, isOnWall) -> Vector2:
 	if isOnWall == false:
 		if Input.is_action_pressed("move_right") and velocity.x <= speed:
@@ -39,11 +56,10 @@ func check_where_wall():
 					get_node("Sprite").set_flip_h(false)
 					return "left"
 
-func apply_gravity(velocity, isOnWall, delta) -> Vector2:
+func apply_gravity(velocity, isOnWall, isOnFloor, delta) -> Vector2:
 	if isOnWall:
 		return Vector2 (0, 0)
-	else:
-		return Vector2(velocity.x, velocity.y + gravity * delta)
+	return Vector2(velocity.x, velocity.y + gravity * delta)
 
 func jump_on_wall(whereWall, velocity) -> Vector2:
 	velocity = jump(velocity, isOnFloor)
@@ -61,29 +77,22 @@ func release_from_wall(whereWall, velocity) -> Vector2:
 		return Vector2(speed*.1, velocity.y)
 	return velocity
 
-func jump_away_from_wall(whereWall, velocity):
-	if Input.is_action_pressed("move_left") and whereWall == "right":
-		velocity.x = -speed * 1
-		velocity = jump(velocity, isOnFloor)
-		return velocity
-	if Input.is_action_pressed("move_right") and whereWall == "left":
-		velocity.x = speed * .1
-		velocity = jump(velocity, isOnFloor)
-		return velocity
-	return velocity
-
 func apply_jump(whereWall, velocity, jumpsRemaining):
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0 and isOnWall == false:
 		velocity = jump(velocity, isOnFloor)
 	if isOnWall:
-		if Input.is_action_just_pressed("release"):
+		if Input.is_action_just_pressed("release") or canJump:
+			canJump = false
 			return release_from_wall(whereWall, velocity)
-		if Input.is_action_just_pressed("jump") and Input.is_action_pressed("move_left") and whereWall == "right":
-			return jump_away_from_wall(whereWall, velocity)
-		if Input.is_action_just_pressed("jump") and Input.is_action_pressed("move_right") and whereWall == "left":
-			return jump_away_from_wall(whereWall, velocity)
 		if Input.is_action_just_pressed("jump"):
 			return jump_on_wall(whereWall, velocity)
+		if Input.is_action_just_pressed("move_left") and whereWall == "right" and waitingForJump == false:
+			waitingForJump = true
+			leftJumpCourutine()			
+		if Input.is_action_just_pressed("move_right") and whereWall == "left" and waitingForJump == false:
+			waitingForJump = true
+			rightJumpCourutine()
+			
 	return velocity
 	
 func evolution0_movement(delta):

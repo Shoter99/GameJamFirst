@@ -16,8 +16,7 @@ func fire(bullet) -> void:
 func get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
 	fire(bullet)
-	if isOnFloor == false:
-		velocity = apply_gravity(velocity, isOnWall, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	velocity = apply_jump(whereWall, velocity, jumpsRemaining)
 	return velocity
