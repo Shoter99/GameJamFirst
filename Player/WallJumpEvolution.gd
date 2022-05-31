@@ -9,8 +9,6 @@ func movement(delta, velocity, isOnWall) -> Vector2:
 			return move_right(delta, velocity)
 		elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 			return move_left(delta, velocity)
-		elif velocity.x >= -speed/4 and velocity.x <= speed/4:
-			return Vector2 (0, velocity.y)
 	else:
 		if Input.is_action_pressed("move_right") and Input.is_action_just_pressed("release"):
 			return move_right(delta, velocity)
@@ -49,10 +47,11 @@ func apply_gravity(velocity, isOnWall, delta) -> Vector2:
 
 func jump_on_wall(whereWall, velocity) -> Vector2:
 	velocity = jump(velocity, isOnFloor)
+	velocity.x = velocity.x * 1.5
 	if whereWall == "right":
-		velocity.x = -speed * .1
+		velocity.x = -speed * 1.2
 	elif whereWall == "left":
-		velocity.x = speed * .1
+		velocity.x = speed * 1.2
 	return velocity
 
 func release_from_wall(whereWall, velocity) -> Vector2:

@@ -37,13 +37,13 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
-				if velocity.x - 400 * delta >= 0:
-					return Vector2(velocity.x - 400 * delta, velocity.y)
+				if velocity.x - 40 * delta >= 0:
+					return Vector2(velocity.x - 40 * delta, velocity.y)
 				else:
 					return Vector2(0, velocity.y)
 			elif velocity.x < 0:
-				if velocity.x + 400 * delta <= 0:
-					return Vector2 (velocity.x + 400 * delta, velocity.y)
+				if velocity.x + 40 * delta <= 0:
+					return Vector2 (velocity.x + 40 * delta, velocity.y)
 				else:
 					return Vector2 (0, velocity.y)
 		else:

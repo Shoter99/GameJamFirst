@@ -39,4 +39,3 @@ func _physics_process(delta : float):
 		velocity = water_movement(velocity, delta)
 	else:
 		evolution0_movement(delta)
-	

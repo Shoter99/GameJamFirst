@@ -11,25 +11,25 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 		if isOnFloor == false:
 			if velocity.x > 0:
 				if velocity.x <= speed:
-					if velocity.x - 400 * delta >= 0:
-						return Vector2(velocity.x - 400 * delta, velocity.y)
+					if velocity.x - 40 * delta >= 0:
+						return Vector2(velocity.x - 40 * delta, velocity.y)
 					else:
 						return Vector2(0, velocity.y)
 				elif velocity.x > speed:
-					if velocity.x - 600 * delta >= speed:
-						return Vector2(velocity.x - 600 * delta, velocity.y)
+					if velocity.x - 1500 * delta >= speed:
+						return Vector2(velocity.x - 1500 * delta, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
 					
 			elif velocity.x < 0:
 				if velocity.x >= -speed:
-					if velocity.x + 400 * delta <= 0:
-						return Vector2 (velocity.x + 400 * delta, velocity.y)
+					if velocity.x + 40 * delta <= 0:
+						return Vector2 (velocity.x + 40 * delta, velocity.y)
 					else:
 						return Vector2 (0, velocity.y)
 				elif velocity.x < -speed:
-					if velocity.x + 600 * delta <= speed:
-						return Vector2(velocity.x + 600 * delta, velocity.y)
+					if velocity.x + 1500 * delta <= speed:
+						return Vector2(velocity.x + 1500 * delta, velocity.y)
 					else:
 						return Vector2 (-speed, velocity.y)
 		else:
@@ -40,8 +40,8 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 					else:
 						return Vector2(0, velocity.y)
 				elif velocity.x > speed:
-					if velocity.x - 900 * delta >= speed:
-						return Vector2(velocity.x - 900 * delta, velocity.y)
+					if velocity.x - 1500 * delta >= speed:
+						return Vector2(velocity.x - 1500 * delta, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
 			elif velocity.x < 0:
@@ -51,8 +51,8 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 					else:
 						return Vector2 (0, velocity.y)
 				elif velocity.x < -speed:
-					if velocity.x + 900 * delta <= speed:
-						return Vector2(velocity.x + 900 * delta, velocity.y)
+					if velocity.x + 1500 * delta <= speed:
+						return Vector2(velocity.x + 1500 * delta, velocity.y)
 					else:
 						return Vector2 (-speed, velocity.y)
 	return velocity
