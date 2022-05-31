@@ -2,7 +2,9 @@ extends Area2D
 
 var CollectedEffect := preload("res://enviroment/Particles/Collectable/CollectableEffect.tscn")
 
+
 func _on_Collectable_body_entered(body):
+	emit_signal("collected")
 	Global.update_collectable(2)
 	var effect := CollectedEffect.instance()
 	effect.global_position = global_position

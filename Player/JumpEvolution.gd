@@ -11,6 +11,7 @@ func disable_snap_vector() -> Vector2:
 
 func jump(velocity, isOnFloor) -> Vector2:
 	if Input.is_action_just_pressed("jump") and isOnFloor:
+		Global.emit_signal("jump")
 		return Vector2(velocity.x, jumpSpeed)
 	return velocity
 
