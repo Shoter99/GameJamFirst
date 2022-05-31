@@ -10,13 +10,11 @@ func _ready():
 	get_node("MeleeLeft").disabled = true
 	get_node("MeleeRight").disabled = true
 
-func water_movement(velocity, delta):
-	gravity = 200
-	velocity = apply_gravity(velocity, isOnWall, delta)
-	gravity = 400
-	return velocity
+func water_movement(velocity, delta) -> Vector2:
+	Global.life = 0
+	return move_and_slide(Vector2.ZERO)
 
-func is_player_on_wall():
+func is_player_on_wall() -> bool:
 	if is_on_floor():
 		return false
 	elif is_on_wall():
@@ -39,21 +37,36 @@ func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
-				return Vector2(velocity.x - 400 * delta, velocity.y)
+				if velocity.x - 400 * delta >= 0:
+					return Vector2(velocity.x - 400 * delta, velocity.y)
+				else:
+					return Vector2(0, velocity.y)
 			elif velocity.x < 0:
-				return Vector2 (velocity.x + 400 * delta, velocity.y)
+				if velocity.x + 400 * delta <= 0:
+					return Vector2 (velocity.x + 400 * delta, velocity.y)
+				else:
+					return Vector2 (0, velocity.y)
 		else:
 			if velocity.x > 0:
-				return Vector2 (velocity.x - 600 * delta, velocity.y)
+				if velocity.x - 600 * delta >= 0:
+					return Vector2(velocity.x - 600 * delta, velocity.y)
+				else:
+					return Vector2(0, velocity.y)
 			elif velocity.x < 0:
-				return Vector2 (velocity.x + 600 * delta, velocity.y)
+				if velocity.x + 600 * delta <= 0:
+					return Vector2 (velocity.x + 600 * delta, velocity.y)
+				else:
+					return Vector2 (0, velocity.y)
 	return velocity
 		
 func move_left(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(true)
 	if velocity.x > -speed:
 		if velocity.x < 0:
-			return Vector2 (velocity.x - 1000 * delta, velocity.y)
+			if velocity.x - 1000 * delta >= -speed:
+				return Vector2 (velocity.x - 1000 * delta, velocity.y)
+			else:
+				return Vector2 (-speed, velocity.y)
 		else:
 			return Vector2 (velocity.x - 2500 * delta, velocity.y)
 	return velocity
@@ -62,7 +75,10 @@ func move_right(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(false)
 	if velocity.x < speed:
 		if velocity.x > 0:
-			return Vector2 (velocity.x + 1000 * delta, velocity.y)
+			if velocity.x + 1000 * delta <= speed:
+				return Vector2 (velocity.x + 1000 * delta, velocity.y)
+			else:
+				return Vector2 (speed, velocity.y)
 		else:
 			return Vector2 (velocity.x + 2500 * delta, velocity.y)
 	return velocity
