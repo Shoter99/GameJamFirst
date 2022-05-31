@@ -14,13 +14,13 @@ onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready():
 	Global.set_start_options(2,10)
-	
-		
+
 func evolution0_movement(delta):
-		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
-		isOnFloor = is_on_floor()
-		isOnWall = is_player_on_wall()
+	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
+	isOnFloor = is_on_floor()
+	isOnWall = is_player_on_wall()
+	return velocity
 	
 func knock_up(directon):
 	snapVector = Vector2(0, 0)
