@@ -18,6 +18,7 @@ func hurt_and_die(x):
 	self.enemyHp = self.enemyHp - x
 	emit_signal("enemy_health_changed", self.enemyHp)
 	if self.enemyHp == 0:
+		
 		Global.update_collectable(1)
 		var effect := death_particles.instance()
 		effect.global_position = global_position

@@ -77,6 +77,10 @@ margin_top = -15.0
 margin_bottom = -15.0
 enemy_max_hp = 1
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -1, -5 )
+scale = Vector2( 0.6, 0.5 )
+
 [connection signal="enemy_health_changed" from="LeftRightEnemySlime" to="LeftRightEnemySlime/EnemyHealthBar" method="_on_LeftRightEnemySlime_enemy_health_changed"]
 [connection signal="body_entered" from="LeftRightEnemySlime/BounceDetectorArea" to="LeftRightEnemySlime" method="_on_BounceDetectorArea_body_entered"]
 [connection signal="body_entered" from="LeftRightEnemySlime/playerKiller" to="LeftRightEnemySlime" method="_on_playerKiller_body_entered"]
