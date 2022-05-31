@@ -98,7 +98,5 @@ func _physics_process(_delta):
 		yield(get_tree().create_timer(0.0001), "timeout")
 		courutineActive = false
 		isDashing = false
-	print (velocity)
-	print (isOnFloor)
 
 
