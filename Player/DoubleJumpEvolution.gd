@@ -31,7 +31,7 @@ func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 
 func get_input(velocity, isOnFloor, isOnWall, whereWall, _bullet, jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
-	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, isGliding, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	velocity = apply_jump(whereWall, velocity, jumpsRemaining)
 	return velocity

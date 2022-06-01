@@ -56,7 +56,7 @@ func check_where_wall():
 					get_node("Sprite").set_flip_h(false)
 					return "left"
 
-func apply_gravity(velocity, isOnWall, isOnFloor, delta) -> Vector2:
+func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2:
 	if isOnWall:
 		return Vector2 (0, 0)
 	return Vector2(velocity.x, velocity.y + gravity * delta)
@@ -86,10 +86,10 @@ func apply_jump(whereWall, velocity, jumpsRemaining):
 			return release_from_wall(whereWall, velocity)
 		if Input.is_action_just_pressed("jump"):
 			return jump_on_wall(whereWall, velocity)
-		if Input.is_action_just_pressed("move_left") and whereWall == "right" and waitingForJump == false:
+		if Input.is_action_pressed("move_left") and whereWall == "right" and waitingForJump == false:
 			waitingForJump = true
 			leftJumpCourutine()			
-		if Input.is_action_just_pressed("move_right") and whereWall == "left" and waitingForJump == false:
+		if Input.is_action_pressed("move_right") and whereWall == "left" and waitingForJump == false:
 			waitingForJump = true
 			rightJumpCourutine()
 			
@@ -101,7 +101,7 @@ func evolution0_movement(delta):
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
-	isOnWall = is_player_on_wall()
+	isOnWall = is_player_on_wall(isGliding)
 	if isOnWall:
 		whereWall = check_where_wall()
 

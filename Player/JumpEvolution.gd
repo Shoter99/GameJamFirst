@@ -18,7 +18,7 @@ func jump(velocity, isOnFloor) -> Vector2:
 
 func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
-	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, isGliding, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	velocity = jump(velocity, isOnFloor)
 	return velocity
@@ -29,6 +29,6 @@ func evolution0_movement(delta):
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
-	isOnWall = is_player_on_wall()
+	isOnWall = is_player_on_wall(isGliding)
 
 

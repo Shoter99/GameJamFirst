@@ -7,7 +7,7 @@ var isDashing : bool = false
 var courutineActive : bool = false
 var tooMuchSpeedSlowdown : float = 1500
 
-func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
+func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
@@ -79,10 +79,10 @@ func evolution0_movement(delta):
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
 		snapVector = Vector2.DOWN * 6
-		isOnFloor = is_on_floor()
-		isOnWall = is_player_on_wall()
+		isOnWall = is_player_on_wall(isGliding)
 		if isOnWall:
 			whereWall = check_where_wall()
+		isOnFloor = is_on_floor()
 		if Input.is_action_just_pressed("Dash"):
 			velocity = dash(velocity)
 			isDashing = check_if_dashing()
@@ -90,7 +90,7 @@ func evolution0_movement(delta):
 	else:
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 		isOnFloor = is_on_floor()
-		isOnWall = is_player_on_wall()
+		isOnWall = is_player_on_wall(velocity)
 		
 func _physics_process(_delta):
 	if courutineActive == false and isDashing == true:

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/FireEvolution.gd"
 }, {
+"base": "DashEvolution",
+"class": "GlideEvolution",
+"language": "GDScript",
+"path": "res://Player/GlideEvolution.gd"
+}, {
 "base": "NoEvolution",
 "class": "JumpEvolution",
 "language": "GDScript",
@@ -65,6 +70,7 @@ _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
 "FireEvolution": "",
+"GlideEvolution": "",
 "JumpEvolution": "",
 "NoEvolution": "",
 "Player": "",

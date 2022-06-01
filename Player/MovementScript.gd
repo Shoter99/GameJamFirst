@@ -7,6 +7,7 @@ var jumpsRemaining : int = 2
 var isOnWall : bool = false
 var floorFriction : float = 600
 var airResistance : float = 60
+var isGliding : bool = false
 
 func _ready():
 	get_node("MeleeLeft").disabled = true
@@ -16,7 +17,7 @@ func water_movement(_velocity, _delta) -> Vector2:
 	Global.life = 0
 	return move_and_slide(Vector2.ZERO)
 
-func is_player_on_wall() -> bool:
+func is_player_on_wall(_isGliding) -> bool:
 	if is_on_floor():
 		return false
 	elif is_on_wall():
@@ -32,10 +33,10 @@ func play_animations(velocity) -> void:
 		elif velocity.x == 0 and is_on_floor():
 			$Sprite.play("idle")
 
-func apply_gravity(velocity, _isOnWall, isOnFloor, delta) -> Vector2:
+func apply_gravity(velocity, _isOnWall, isOnFloor, _isGliding, delta) -> Vector2:
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
-func friction(velocity, accelerating, isOnFloor, delta) -> Vector2:
+func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	if accelerating == false:
 		if isOnFloor == false:
 			if velocity.x > 0:
@@ -104,13 +105,13 @@ func checkAcceleration(velocity) -> bool:
 	
 func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
-	velocity = apply_gravity(velocity, isOnWall, isOnFloor, delta)
+	velocity = apply_gravity(velocity, isOnWall, isOnFloor, isGliding, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	return velocity
 		
 func apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet,  accelerating, delta) -> Vector2:
 	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, jumpsRemaining, delta)
 	accelerating = checkAcceleration(velocity)
-	velocity = friction(velocity, accelerating, isOnFloor, delta)
+	velocity = friction(velocity, accelerating, isOnFloor, isGliding, delta)
 	return(velocity)
 	
