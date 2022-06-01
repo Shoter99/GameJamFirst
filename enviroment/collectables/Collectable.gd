@@ -4,10 +4,12 @@ var CollectedEffect := preload("res://enviroment/Particles/Collectable/Collectab
 
 
 func _on_Collectable_body_entered(body):
-	emit_signal("collected")
+	if not body.is_in_group("Player"):
+		return
+	#emit_signal("collected")
 	Global.update_collectable(2)
 	var effect := CollectedEffect.instance()
 	effect.global_position = global_position
 	get_tree().current_scene.add_child(effect)
-	print(Global.collected)
+	#print(Global.collected)
 	queue_free()

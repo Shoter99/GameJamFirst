@@ -22,6 +22,6 @@ func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
-	p.global_position.y += 175
+	#p.global_position.y += 175
 	$Player.add_child(p)
 #	$Player.global_position = playerPos.global_position

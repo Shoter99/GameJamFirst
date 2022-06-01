@@ -8,8 +8,8 @@ export onready var velocity = Vector2(-128,0)
 func _ready():
 	pass
 	
-func	_physics_process(delta):
-	move_and_slide(velocity)
+func	_physics_process(_delta):
+	velocity = move_and_slide(velocity)
 	
 func flip():
 	self.scale = Vector2(-1,1)

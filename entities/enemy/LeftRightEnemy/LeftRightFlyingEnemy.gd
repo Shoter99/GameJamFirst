@@ -16,11 +16,6 @@ func _ready():
 	self.setMaxHp(1)
 	enemyHealthBar.enemy_max_hp = get_current_hp()
 	#self.enemyHealth = self.maxEnemyHealth
-
-
-func _physics_process(delta):
-	if is_on_wall():
-		bounce()
 	
 	#var vel := Vector2(enemySpeed * delta * goingRight, 0)
 	#move_and_collide(vel)
