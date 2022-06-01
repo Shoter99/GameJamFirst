@@ -26,7 +26,7 @@ func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaini
 func evolution0_movement(delta):
 	snapVector = disable_snap_vector()
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall(isGliding)

@@ -10,17 +10,20 @@ var isOnFloor : bool = false
 var inWater : bool = false
 var whereWall: = "nothing"
 var lastWall: = "nothing"
+var maxSlides : int = 4
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready():
 	Global.set_start_options(2,10)
+	
+func change_jumps(_jumpsRemaining, _isOnFloor, _isOnWall) -> int:
+	return 2
 
 func evolution0_movement(delta):
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall(isGliding)
-	return velocity
 	
 func knock_up(directon):
 	velocity.y = -150
@@ -38,3 +41,4 @@ func _physics_process(delta : float):
 		velocity = water_movement(velocity, delta)
 	else:
 		evolution0_movement(delta)
+		jumpsRemaining = change_jumps(jumpsRemaining, isOnFloor, isOnWall)

@@ -5,7 +5,15 @@ class_name WallJumpEvolution
 
 var waitingForJump : bool = false
 var canJump : bool = false
+var onWallFirstTime : bool = true
 var waitTime : float = 0.15
+var wallFriction : float = -50
+
+func change_max_slides(isOnFloor) -> int:
+	if isOnFloor:
+		return 4
+	else:
+		return 1
 
 
 func rightJumpCourutine():
@@ -58,7 +66,13 @@ func check_where_wall():
 
 func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2:
 	if isOnWall:
-		return Vector2 (0, 0)
+		if onWallFirstTime:
+			onWallFirstTime = false
+			return Vector2 (0, 0)
+		else:
+			return Vector2 (0, velocity.y - wallFriction * delta)
+		#return Vector2(0, 0)
+	onWallFirstTime = true
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
 func jump_on_wall(whereWall, velocity) -> Vector2:
@@ -98,11 +112,12 @@ func apply_jump(whereWall, velocity, jumpsRemaining):
 func evolution0_movement(delta):
 	snapVector = disable_snap_vector()
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall(isGliding)
 	if isOnWall:
 		whereWall = check_where_wall()
+	maxSlides = change_max_slides(isOnFloor)
 
 

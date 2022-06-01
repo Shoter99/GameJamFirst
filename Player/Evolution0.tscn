@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/player/player.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/player/player_jump_up.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/player/player_mid_air.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/player/player_move1.png" type="Texture" id=5]
 [ext_resource path="res://Player/GlideEvolution.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/player/player_on_wall.png" type="Texture" id=7]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -20,6 +21,11 @@ animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "on_wall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
@@ -53,7 +59,7 @@ shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
-animation = "idle"
+animation = "on_wall"
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 8 )]

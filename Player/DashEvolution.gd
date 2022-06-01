@@ -77,11 +77,12 @@ func evolution0_movement(delta):
 	if isDashing == false:
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true)
-		snapVector = Vector2.DOWN * 6
+		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 		isOnWall = is_player_on_wall(isGliding)
 		if isOnWall:
 			whereWall = check_where_wall()
+		maxSlides = change_max_slides(isOnWall)
+		snapVector = Vector2.DOWN * 6
 		isOnFloor = is_on_floor()
 		if Input.is_action_just_pressed("Dash"):
 			velocity = dash(velocity)
@@ -91,6 +92,7 @@ func evolution0_movement(delta):
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 		isOnFloor = is_on_floor()
 		isOnWall = is_player_on_wall(velocity)
+		maxSlides = change_max_slides(isOnFloor)
 		
 func _physics_process(_delta):
 	if courutineActive == false and isDashing == true:

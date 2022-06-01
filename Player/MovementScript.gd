@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-class_name Player
-export var speed : int = 150
-export var gravity : int = 400
+class_name Player, "res://Sprites/player.png"
+export var speed : float = 150
+export var gravity : float = 400
 var jumpsRemaining : int = 2
 var isOnWall : bool = false
 var floorFriction : float = 600
@@ -33,7 +33,7 @@ func play_animations(velocity) -> void:
 		elif velocity.x == 0 and is_on_floor():
 			$Sprite.play("idle")
 
-func apply_gravity(velocity, _isOnWall, isOnFloor, _isGliding, delta) -> Vector2:
+func apply_gravity(velocity, _isOnWall, _isOnFloor, _isGliding, delta) -> Vector2:
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
 func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
