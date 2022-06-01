@@ -1,12 +1,8 @@
 extends Node2D
 
-onready var spawnList = [
-	$SpawnPoints/Point1,
-	$SpawnPoints/Point2,
-	$SpawnPoints/Point3,
-	
-]
 var rng = RandomNumberGenerator.new()
+onready var spawnList = $SpawnPoints.get_children()
+onready var checkpointCount = $SpawnPoints.get_child_count()
 func _ready():
 	
 	for i in 3:
@@ -18,12 +14,12 @@ func _ready():
 					createPlayer(Global.evolution1)
 				2:
 					createPlayer(Global.evolution2)
-					
+	for j in checkpointCount:
+		#print(j)
+		spawnList[j].id = j
 		
 func createPlayer(player):
-	rng.randomize()
-	var randomNumber = rng.randi_range(0,2)
-	var playerPos = spawnList[randomNumber]
+	var playerPos = spawnList[Global.currentCheckpoint]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
 	p.global_position.y += 175

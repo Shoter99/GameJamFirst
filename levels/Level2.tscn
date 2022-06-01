@@ -2,6 +2,7 @@
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/Level2.gd" type="Script" id=2]
+[ext_resource path="res://entities/enemy/EnemyTurret/EnemyPeeper.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=6]
@@ -11,11 +12,7 @@
 [ext_resource path="res://enviroment/water/sewer_water_depths_bottom_block.png" type="Texture" id=10]
 [ext_resource path="res://levels/WaterTileArea.gd" type="Script" id=11]
 [ext_resource path="res://Sounds/SoundManager.tscn" type="PackedScene" id=12]
-
-[ext_resource path="res://entities/enemy/EnemyTurret/EnemyPeeper.tscn" type="PackedScene" id=13]
-
 [ext_resource path="res://enviroment/SpawnPoint.tscn" type="PackedScene" id=13]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -93,17 +90,8 @@ position = Vector2( -336, 48 )
 
 [node name="Peepers" type="Node2D" parent="EnemyTurrets"]
 
-[node name="EnemyPeeperBody4" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
-position = Vector2( 1064, -80 )
-
-[node name="EnemyPeeperBody2" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
-position = Vector2( 864, -88 )
-
-[node name="EnemyPeeperBody" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
-position = Vector2( 912, -88 )
-
-[node name="EnemyPeeperBody3" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
-position = Vector2( 952, -88 )
+[node name="EnemyPeeperBody" parent="EnemyTurrets/Peepers" instance=ExtResource( 3 )]
+position = Vector2( 912, 8 )
 
 [node name="EnemyTurretBody" parent="EnemyTurrets" instance=ExtResource( 9 )]
 position = Vector2( 760, -160 )
