@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/Level2.gd" type="Script" id=2]
@@ -11,7 +11,11 @@
 [ext_resource path="res://enviroment/water/sewer_water_depths_bottom_block.png" type="Texture" id=10]
 [ext_resource path="res://levels/WaterTileArea.gd" type="Script" id=11]
 [ext_resource path="res://Sounds/SoundManager.tscn" type="PackedScene" id=12]
+
+[ext_resource path="res://entities/enemy/EnemyTurret/EnemyPeeper.tscn" type="PackedScene" id=13]
+
 [ext_resource path="res://enviroment/SpawnPoint.tscn" type="PackedScene" id=13]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -87,11 +91,36 @@ position = Vector2( -336, 48 )
 
 [node name="EnemyTurrets" type="Node2D" parent="."]
 
-[node name="Enemy" parent="EnemyTurrets" instance=ExtResource( 9 )]
+[node name="Peepers" type="Node2D" parent="EnemyTurrets"]
+
+[node name="EnemyPeeperBody4" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
+position = Vector2( 1064, -80 )
+
+[node name="EnemyPeeperBody2" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
+position = Vector2( 864, -88 )
+
+[node name="EnemyPeeperBody" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
+position = Vector2( 912, -88 )
+
+[node name="EnemyPeeperBody3" parent="EnemyTurrets/Peepers" instance=ExtResource( 13 )]
+position = Vector2( 952, -88 )
+
+[node name="EnemyTurretBody" parent="EnemyTurrets" instance=ExtResource( 9 )]
 position = Vector2( 760, -160 )
 
-[node name="Enemy2" parent="EnemyTurrets" instance=ExtResource( 9 )]
+[node name="EnemyTurretBody2" parent="EnemyTurrets" instance=ExtResource( 9 )]
 position = Vector2( 1000, -160 )
+direction = 1
+
+[node name="EnemyTurretBody5" parent="EnemyTurrets" instance=ExtResource( 9 )]
+position = Vector2( 936, 576 )
+direction = 1
+
+[node name="EnemyTurretBody4" parent="EnemyTurrets" instance=ExtResource( 9 )]
+position = Vector2( 24, 704 )
+
+[node name="EnemyTurretBody3" parent="EnemyTurrets" instance=ExtResource( 9 )]
+position = Vector2( 24, 640 )
 
 [node name="LeftRightEnemies" type="Node2D" parent="."]
 
@@ -165,17 +194,6 @@ position = Vector2( 856, -384 )
 
 [node name="GhostNode" parent="ghosts" instance=ExtResource( 5 )]
 position = Vector2( 336, -496 )
-
-[node name="turrets" type="Node2D" parent="."]
-
-[node name="Enemy3" parent="turrets" instance=ExtResource( 9 )]
-position = Vector2( 24, 640 )
-
-[node name="Enemy2" parent="turrets" instance=ExtResource( 9 )]
-position = Vector2( 24, 704 )
-
-[node name="Enemy" parent="turrets" instance=ExtResource( 9 )]
-position = Vector2( 928, 576 )
 
 [node name="LevelLimit" type="Area2D" parent="."]
 position = Vector2( 55, 620 )
