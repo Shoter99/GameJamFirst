@@ -34,7 +34,7 @@ func set_animation():
 	elif d>-58: $RotatingPeeper.play("down r")
 	else: $RotatingPeeper.play("down")
 		
-func _process(delta):
+func _process(_delta):
 	set_animation()
 	
 func _physics_process(delta):
