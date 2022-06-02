@@ -23,7 +23,7 @@ func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaini
 	velocity = jump(velocity, isOnFloor)
 	return velocity
 	
-func evolution0_movement(delta):
+func evolution0_movement(delta) -> void:
 	snapVector = disable_snap_vector()
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)

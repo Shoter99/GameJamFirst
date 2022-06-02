@@ -8,10 +8,12 @@ var isOnWall : bool = false
 var floorFriction : float = 600
 var airResistance : float = 60
 var isGliding : bool = false
+var lastWall : = "nothing"
 
 func _ready():
-	get_node("MeleeLeft").disabled = true
-	get_node("MeleeRight").disabled = true
+	#get_node("MeleeLeft").disabled = true
+	#get_node("MeleeRight").disabled = true
+	pass
 
 func water_movement(_velocity, _delta) -> Vector2:
 	Global.life = 0
@@ -19,6 +21,7 @@ func water_movement(_velocity, _delta) -> Vector2:
 
 func is_player_on_wall(_isGliding) -> bool:
 	if is_on_floor():
+		lastWall = "nothing"
 		return false
 	elif is_on_wall():
 		return true
@@ -87,9 +90,9 @@ func move_right(delta, velocity) -> Vector2:
 	return velocity
 		
 func movement(delta, velocity, _isOnWall) -> Vector2:
-	if Input.is_action_pressed("move_right") and velocity.x <= speed:
+	if Input.is_action_pressed("move_right") and velocity.x <= speed and is_on_wall() == false:
 		return move_right(delta, velocity)
-	elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
+	elif Input.is_action_pressed("move_left") and velocity.x >= -speed and is_on_wall() == false:
 		return move_left(delta, velocity)
 	elif velocity.x >= -speed/4 and velocity.x <= speed/4:
 		return Vector2 (0, velocity.y)

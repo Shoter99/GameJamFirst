@@ -80,10 +80,11 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						return Vector2 (-speed, velocity.y)
 	return velocity
 	
-func evolution0_movement(delta):
+func evolution0_movement(delta) -> void:
 	if isDashing == false:
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
+		#print (maxSlides)
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 		snapVector = Vector2.DOWN * 6
 		isOnWall = is_player_on_wall(isGliding)
@@ -97,6 +98,7 @@ func evolution0_movement(delta):
 
 func is_player_on_wall(isGliding) -> bool:
 	if is_on_floor():
+		lastWall = "nothing"
 		return false
 	elif is_on_wall() and isGliding == false:
 		return true
@@ -117,7 +119,7 @@ func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2
 		return Vector2(velocity.x, glideStrength)
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
-func _physics_process(_delta : float):
+func _physics_process(_delta : float) -> void:
 	if Input.is_action_pressed("glide") and isOnFloor == false and velocity.y > 0:
 		isGliding = true
 	else:

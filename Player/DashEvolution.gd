@@ -73,7 +73,7 @@ func check_if_dashing() -> bool:
 		return true
 	return false
 	
-func evolution0_movement(delta):
+func evolution0_movement(delta) -> void:
 	if isDashing == false:
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
@@ -94,7 +94,7 @@ func evolution0_movement(delta):
 		isOnWall = is_player_on_wall(velocity)
 		maxSlides = change_max_slides(isOnFloor)
 		
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if courutineActive == false and isDashing == true:
 		courutineActive = true
 		yield(get_tree().create_timer(0.0001), "timeout")

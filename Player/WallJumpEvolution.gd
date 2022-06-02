@@ -10,19 +10,19 @@ var waitTime : float = 0.15
 var wallFriction : float = -50
 
 func change_max_slides(isOnFloor) -> int:
-	if isOnFloor:
+	if isOnFloor and isOnWall == false:
 		return 4
 	else:
 		return 1
 
 
-func rightJumpCourutine():
+func rightJumpCourutine() -> void:
 	yield(get_tree().create_timer(waitTime), "timeout")
 	if Input.is_action_pressed("move_right"):
 		canJump = true
 	waitingForJump = false
 		
-func leftJumpCourutine():
+func leftJumpCourutine() -> void:
 	yield(get_tree().create_timer(waitTime), "timeout")
 	if Input.is_action_pressed("move_left"):
 		canJump = true
@@ -35,9 +35,9 @@ func movement(delta, velocity, isOnWall) -> Vector2:
 		elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 			return move_left(delta, velocity)
 	else:
-		if Input.is_action_pressed("move_right") and Input.is_action_just_pressed("release"):
+		if Input.is_action_pressed("move_right") and Input.is_action_pressed("release"):
 			return move_right(delta, velocity)
-		elif Input.is_action_pressed("move_left") and Input.is_action_just_pressed("release"):
+		elif Input.is_action_pressed("move_left") and Input.is_action_pressed("release"):
 			return move_left(delta, velocity)
 
 	return velocity
@@ -49,7 +49,7 @@ func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 		jumpsRemaining -= 1
 	return jumpsRemaining
 
-func check_where_wall():
+func check_where_wall() -> String:
 	if inWater:
 		return "nothing"
 	else:
@@ -63,25 +63,29 @@ func check_where_wall():
 					$Sprite.play("on_wall")
 					get_node("Sprite").set_flip_h(false)
 					return "left"
+	return "nothing"
 
 func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2:
 	if isOnWall:
 		if onWallFirstTime:
 			onWallFirstTime = false
-			return Vector2 (0, 0)
+			return Vector2 (velocity.x, 0)
 		else:
-			return Vector2 (0, velocity.y - wallFriction * delta)
+			return Vector2 (velocity.x, velocity.y - wallFriction * delta)
 		#return Vector2(0, 0)
 	onWallFirstTime = true
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
 func jump_on_wall(whereWall, velocity) -> Vector2:
+	lastWall = whereWall
 	velocity = jump(velocity, isOnFloor)
-	velocity.x = velocity.x * 1.5
+	velocity.x = velocity.x * 1.6
 	if whereWall == "right":
-		velocity.x = -speed * 1.2
+		lastWall = "right"
+		velocity.x = -speed * 1.4
 	elif whereWall == "left":
-		velocity.x = speed * 1.2
+		lastWall = "left"
+		velocity.x = speed * 1.4
 	return velocity
 
 func release_from_wall(whereWall, velocity) -> Vector2:
@@ -91,28 +95,28 @@ func release_from_wall(whereWall, velocity) -> Vector2:
 		return Vector2(speed*.1, velocity.y)
 	return velocity
 
-func apply_jump(whereWall, velocity, jumpsRemaining):
+func apply_jump(whereWall, velocity, jumpsRemaining) -> Vector2:
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0 and isOnWall == false:
 		velocity = jump(velocity, isOnFloor)
 	if isOnWall:
 		if Input.is_action_just_pressed("release") or canJump:
 			canJump = false
 			return release_from_wall(whereWall, velocity)
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") and whereWall != lastWall:
 			return jump_on_wall(whereWall, velocity)
 		if Input.is_action_pressed("move_left") and whereWall == "right" and waitingForJump == false:
 			waitingForJump = true
-			leftJumpCourutine()			
+			leftJumpCourutine()
 		if Input.is_action_pressed("move_right") and whereWall == "left" and waitingForJump == false:
 			waitingForJump = true
 			rightJumpCourutine()
 			
 	return velocity
 	
-func evolution0_movement(delta):
+func evolution0_movement(delta) -> void:
 	snapVector = disable_snap_vector()
 	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
+	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides, deg2rad(45), false)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall(isGliding)

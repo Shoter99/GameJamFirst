@@ -3,7 +3,7 @@ extends SwimEvolution
 
 class_name DoubleJumpEvolution
 
-func _ready():
+func _ready() -> void:
 	Global.set_start_options(5, 30)
 	
 func jump(velocity, _isOnFloor) -> Vector2:

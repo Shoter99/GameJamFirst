@@ -8,7 +8,7 @@ var acceleration : float = 200
 var deceleration : float = 300
 var directionChangeSpeed : float = 700
 
-func _ready():
+func _ready() -> void:
 	Global.set_start_options(4, 20)
 	
 func water_movement(velocity, delta) -> Vector2:
