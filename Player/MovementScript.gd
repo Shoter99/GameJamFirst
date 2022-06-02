@@ -11,6 +11,7 @@ var isGliding : bool = false
 var lastWall : = "nothing"
 
 func _ready():
+	#get_node("WallDetector").set_deffered("disabled", true)
 	#get_node("MeleeLeft").disabled = true
 	#get_node("MeleeRight").disabled = true
 	pass

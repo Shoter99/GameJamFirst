@@ -7,7 +7,7 @@ var waitingForJump : bool = false
 var canJump : bool = false
 var onWallFirstTime : bool = true
 var waitTime : float = 0.15
-var wallFriction : float = -50
+var wallFriction : float = -40
 
 func change_max_slides(isOnFloor) -> int:
 	if isOnFloor and isOnWall == false:
@@ -79,9 +79,13 @@ func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2
 	if isOnWall:
 		if onWallFirstTime:
 			onWallFirstTime = false
-			return Vector2 (velocity.x, 0)
+			if whereWall == "right":
+				return Vector2 (3, 0)
+			return Vector2 (-3, 0)
 		else:
-			return Vector2 (velocity.x, velocity.y - wallFriction * delta)
+			if whereWall == "right":
+				return Vector2 (3, velocity.y - wallFriction * delta)
+			return Vector2 (-3, velocity.y - wallFriction * delta)
 		#return Vector2(0, 0)
 	onWallFirstTime = true
 	return Vector2(velocity.x, velocity.y + gravity * delta)

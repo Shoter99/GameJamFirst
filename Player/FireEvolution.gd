@@ -7,10 +7,10 @@ func fire(bullet) -> void:
 		var bulletInstance = bullet.instance()
 		get_tree().root.add_child(bulletInstance)
 		if get_node("Sprite").flip_h:
-			bulletInstance.set_global_position($MeleeLeft.get_global_position())
+			bulletInstance.set_global_position($FireLeft.get_global_position())
 			bulletInstance.speed = -250	
 		else:
-			bulletInstance.set_global_position($MeleeRight.get_global_position())
+			bulletInstance.set_global_position($FireRight.get_global_position())
 			bulletInstance.get_node("Sprite").set_flip_h(true)
 		
 func get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, jumpsRemaining, delta) -> Vector2:
