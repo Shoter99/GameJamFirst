@@ -52,3 +52,5 @@ func set_start_options(var life: int, var collect: int):
 	max_life = life
 	set_life(max_life)
 	to_collect = collect
+	
+

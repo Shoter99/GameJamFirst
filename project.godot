@@ -73,7 +73,7 @@ _global_script_class_icons={
 "GlideEvolution": "",
 "JumpEvolution": "",
 "NoEvolution": "",
-"Player": "",
+"Player": "res://Sprites/player.png",
 "SwimEvolution": "",
 "WallJumpEvolution": ""
 }
@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GameJamFirst"
-run/main_scene="res://levels/Level2.tscn"
+run/main_scene="res://levels/final levels/Level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
