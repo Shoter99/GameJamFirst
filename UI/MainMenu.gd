@@ -6,7 +6,7 @@ extends Control
 
 
 func _on_Start_pressed():
-	get_tree().change_scene("res://levels/Level2.tscn")
+	get_tree().change_scene("res://levels/final levels/Level1.tscn")
 
 
 func _on_Credits_pressed():
