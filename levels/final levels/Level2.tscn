@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://levels/LevelLimit.gd" type="Script" id=2]
+[ext_resource path="res://levels/WaterTileArea.gd" type="Script" id=3]
+[ext_resource path="res://enviroment/water/sewer_water_depths_bottom_block.png" type="Texture" id=4]
+[ext_resource path="res://enviroment/water/water_surface.tres" type="Texture" id=5]
+[ext_resource path="res://levels/final levels/Level.gd" type="Script" id=6]
+[ext_resource path="res://enviroment/SpawnPoint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sounds/SoundManager.tscn" type="PackedScene" id=12]
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "water_surface.tres 0"
+0/texture = ExtResource( 5 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 16 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 5 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "sewer_water_depths_bottom_block.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 16, 16 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 6 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 593.0 ],
+"_edit_vertical_guides_": [ 0.0 ]
+}
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2( 1064, -96 )
+
+[node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 8 )]
+position = Vector2( -928, 416 )
+
+[node name="EnemyTurrets" type="Node2D" parent="."]
+
+[node name="LeftRightEnemies" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 16, 0 )
+z_index = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 130
+collision_mask = 2
+format = 1
+
+[node name="WaterTileArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="WaterTileMap" type="TileMap" parent="WaterTileArea"]
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_use_parent = true
+collision_layer = 16
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -130999, 0, 0, -130998, 0, 0, -65463, 1, 0, -65462, 1, 0, 73, 1, 0, 74, 1, 0, 65609, 1, 0, 65610, 1, 0, 65611, 1, 0, 131145, 1, 0, 131146, 1, 0, 131147, 1, 0, 196681, 1, 0, 196682, 1, 0, 196683, 1, 0, 2293792, 0, 0, 2293793, 0, 0, 2293794, 0, 0, 2293795, 0, 0, 2293796, 0, 0, 2359328, 1, 0, 2359329, 1, 0, 2359330, 1, 0, 2359331, 1, 0, 2359332, 1, 0, 2424864, 1, 0, 2424865, 1, 0, 2424866, 1, 0, 2424867, 1, 0, 2424868, 1, 0, 2490400, 1, 0, 2490401, 1, 0, 2490402, 1, 0, 2490403, 1, 0, 2490404, 1, 0, 2555936, 1, 0, 2555937, 1, 0, 2555938, 1, 0, 2555939, 1, 0, 2555940, 1, 0, 2621472, 1, 0, 2621473, 1, 0, 2621474, 1, 0, 2621475, 1, 0, 2621476, 1, 0, 2687008, 1, 0, 2687009, 1, 0, 2687010, 1, 0, 2687011, 1, 0, 2687012, 1, 0, 2752544, 1, 0, 2752545, 1, 0, 2752546, 1, 0, 2752547, 1, 0, 2752548, 1, 0, 2818074, 0, 0, 2818075, 0, 0, 2818076, 0, 0, 2818077, 0, 0, 2818079, 1, 0, 2818080, 1, 0, 2818081, 1, 0, 2818082, 1, 0, 2818083, 1, 0, 2818084, 1, 0, 2883611, 1, 0, 2883612, 1, 0, 2883613, 1, 0, 2883614, 1, 0, 2883615, 1, 0, 2883616, 1, 0, 2883617, 1, 0, 2883618, 1, 0, 2883619, 1, 0, 2883620, 1, 0, 2883621, 1, 0, 2883628, 0, 0, 2883629, 0, 0, 2883630, 0, 0, 2883631, 0, 0, 2883632, 0, 0, 2949148, 1, 0, 2949149, 1, 0, 2949150, 1, 0, 2949151, 1, 0, 2949152, 1, 0, 2949153, 1, 0, 2949154, 1, 0, 2949155, 1, 0, 2949156, 1, 0, 2949157, 1, 0, 2949158, 1, 0, 2949159, 1, 0, 2949160, 1, 0, 2949161, 1, 0, 2949162, 1, 0, 2949163, 1, 0, 2949164, 1, 0, 2949165, 1, 0, 2949166, 1, 0, 2949167, 1, 0, 3014687, 1, 0, 3014688, 1, 0, 3014689, 1, 0, 3014690, 1, 0, 3014691, 1, 0, 3014692, 1, 0, 3014693, 1, 0, 3014694, 1, 0, 3014695, 1, 0, 3014696, 1, 0, 3014697, 1, 0, 3014698, 1, 0, 3014699, 1, 0, 3014700, 1, 0, 3014701, 1, 0, 3014702, 1, 0, 3080224, 1, 0, 3080225, 1, 0, 3080226, 1, 0, 3080227, 1, 0, 3080228, 1, 0, 3080229, 1, 0 )
+
+[node name="ghosts" type="Node2D" parent="."]
+
+[node name="LevelLimit" type="Area2D" parent="."]
+position = Vector2( 55, 620 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelLimit"]
+position = Vector2( 1, 172 )
+scale = Vector2( 1000, 1 )
+shape = SubResource( 4 )
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="." groups=["Player"]]
+
+[node name="SoundManager" parent="." instance=ExtResource( 12 )]
+
+[connection signal="body_entered" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_entered"]
+[connection signal="body_exited" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_exited"]
+[connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]
