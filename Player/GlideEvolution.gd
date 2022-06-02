@@ -19,7 +19,6 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 							return Vector2(velocity.x - tooMuchSpeedSlowdown * delta, velocity.y)
 						else:
 							return Vector2(speed, velocity.y)
-						
 				elif velocity.x < 0:
 					if velocity.x >= -speed:
 						if velocity.x + airResistance * delta <= 0:
@@ -66,7 +65,6 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						return Vector2(velocity.x - tooMuchSpeedSlowdown * delta * 10, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
-
 			elif velocity.x < 0:
 				if velocity.x >= -speed:
 					if velocity.x + airResistance * delta * 10 <= 0:
@@ -79,12 +77,11 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 					else:
 						return Vector2 (-speed, velocity.y)
 	return velocity
-	
+
 func evolution0_movement(delta) -> void:
 	if isDashing == false:
 		snapVector = disable_snap_vector()
-		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
-		#print (maxSlides)
+		velocity = apply_movement(velocity, isOnFloor, whereWall, bullet, accelerating, delta)
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 		snapVector = Vector2.DOWN * 6
 		isOnWall = is_player_on_wall(isGliding)
@@ -110,10 +107,13 @@ func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2
 	if isOnWall:
 		if onWallFirstTime:
 			onWallFirstTime = false
-			return Vector2 (0, 0)
+			if whereWall == "right":
+				return Vector2 (3, 0)
+			return Vector2 (-3, 0)
 		else:
-			return Vector2 (0, velocity.y - wallFriction * delta)
-		#return Vector2 (0, 0)
+			if whereWall == "right":
+				return Vector2 (3, velocity.y - wallFriction * delta)
+			return Vector2 (-3, velocity.y - wallFriction * delta)
 	onWallFirstTime = true
 	if isGliding:
 		return Vector2(velocity.x, glideStrength)
@@ -124,5 +124,5 @@ func _physics_process(_delta : float) -> void:
 		isGliding = true
 	else:
 		isGliding = false
-		
+
 

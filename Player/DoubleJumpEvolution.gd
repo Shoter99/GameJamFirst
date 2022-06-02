@@ -5,7 +5,7 @@ class_name DoubleJumpEvolution
 
 func _ready() -> void:
 	Global.set_start_options(5, 30)
-	
+
 func jump(velocity, _isOnFloor) -> Vector2:
 	if Input.is_action_just_pressed("jump"):
 		$Sprite.play("idle")
@@ -19,7 +19,7 @@ func apply_jump(_whereWall, velocity, jumpsRemaining) -> Vector2:
 		$Sprite.play("jump")
 		return jump(velocity, isOnFloor)
 	return velocity
-	
+
 func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 	if isOnFloor:
 		jumpsRemaining = 2
@@ -29,11 +29,9 @@ func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 		jumpsRemaining -= 1
 	return jumpsRemaining
 
-func get_input(velocity, isOnFloor, isOnWall, whereWall, _bullet, jumpsRemaining, delta) -> Vector2:
+func get_input(velocity, isOnFloor, whereWall, _bullet, jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
 	velocity = apply_gravity(velocity, isOnWall, isOnFloor, isGliding, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	velocity = apply_jump(whereWall, velocity, jumpsRemaining)
 	return velocity
-
-
