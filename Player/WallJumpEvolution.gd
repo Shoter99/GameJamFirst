@@ -15,6 +15,16 @@ func change_max_slides(isOnFloor) -> int:
 	else:
 		return 1
 
+func is_player_on_wall(_isGliding) -> bool:
+	if is_on_floor():
+		lastWall = "nothing"
+		return false
+	elif is_on_wall():
+		return true
+	else:
+		$Sprite.play("jump")
+		return false
+
 
 func rightJumpCourutine() -> void:
 	yield(get_tree().create_timer(waitTime), "timeout")

@@ -21,7 +21,6 @@ func water_movement(_velocity, _delta) -> Vector2:
 
 func is_player_on_wall(_isGliding) -> bool:
 	if is_on_floor():
-		lastWall = "nothing"
 		return false
 	elif is_on_wall():
 		return true

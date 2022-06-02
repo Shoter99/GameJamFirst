@@ -110,9 +110,9 @@ func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2
 	if isOnWall:
 		if onWallFirstTime:
 			onWallFirstTime = false
-			return Vector2 (0, 0)
+			return Vector2 (velocity.x, 0)
 		else:
-			return Vector2 (0, velocity.y - wallFriction * delta)
+			return Vector2 (velocity.x, velocity.y - wallFriction * delta)
 		#return Vector2 (0, 0)
 	onWallFirstTime = true
 	if isGliding:
