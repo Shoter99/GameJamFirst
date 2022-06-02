@@ -7,7 +7,7 @@ func _on_Collectable_body_entered(body):
 	if not body.is_in_group("Player"):
 		return
 	#emit_signal("collected")
-	Global.update_collectable(2)
+	Global.update_collectable(3)
 	var effect := CollectedEffect.instance()
 	effect.global_position = global_position
 	get_tree().current_scene.add_child(effect)

@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/SwimEvolution.gd"
 }, {
+"base": "GlideEvolution",
+"class": "WallClimbEvolution",
+"language": "GDScript",
+"path": "res://Player/WallClimbEvolution.gd"
+}, {
 "base": "DoubleJumpEvolution",
 "class": "WallJumpEvolution",
 "language": "GDScript",
@@ -75,18 +80,29 @@ _global_script_class_icons={
 "NoEvolution": "",
 "Player": "res://Sprites/player.png",
 "SwimEvolution": "",
+"WallClimbEvolution": "",
 "WallJumpEvolution": ""
 }
 
 [application]
 
 config/name="GameJamFirst"
-run/main_scene="res://levels/final levels/Level1.tscn"
+run/main_scene="res://UI/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Globals/Global.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
+window/size/test_width=1024
+window/size/test_height=575
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [global]
 
@@ -185,6 +201,16 @@ glide={
 fire={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pauseGame={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+restartLevel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 

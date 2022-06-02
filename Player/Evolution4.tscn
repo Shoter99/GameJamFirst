@@ -5,12 +5,12 @@
 [ext_resource path="res://Sprites/player/player_jump_down.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/player/player_mid_air.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/player/player_move1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/player/player_on_wall.png" type="Texture" id=6]
-[ext_resource path="res://Player/JumpEvolution.gd" type="Script" id=7]
+[ext_resource path="res://Player/WallJumpEvolution.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/player/player_on_wall.png" type="Texture" id=7]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 7.5 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -24,41 +24,43 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "on_wall",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "on_wall",
-"speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=5]
 radius = 0.0
 
-[node name="Evolution1" type="KinematicBody2D" groups=["Player"]]
+[node name="Evolution0" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 147
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
-[node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
-modulate = Color( 0, 1, 0.647059, 1 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -4.17233e-07 )
 frames = SubResource( 3 )
 animation = "idle"
 playing = true
 
-[node name="Camera2D" parent="." groups=["Player"] instance=ExtResource( 8 )]
-position = Vector2( 1, -1 )
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( 5, 1 )
 
 [node name="FireRight" type="CollisionShape2D" parent="."]
-position = Vector2( 10, 2 )
-shape = SubResource( 4 )
+position = Vector2( 9, 2 )
+shape = SubResource( 5 )
+disabled = true
 
 [node name="FireLeft" type="CollisionShape2D" parent="."]
 position = Vector2( -9, 2 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+disabled = true

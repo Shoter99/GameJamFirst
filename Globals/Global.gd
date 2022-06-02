@@ -43,14 +43,18 @@ func update_collectable(var delta: int):
 		restart_level()
 	
 func restart_level():
-	life = 0
-	collected = 0
+	reset_collected()
 	get_tree().reload_current_scene()
 
+func reset_collected():
+	life = 0
+	collected = 0
 
 func set_start_options(var life: int, var collect: int):
 	max_life = life
 	set_life(max_life)
 	to_collect = collect
-	
 
+func _unhandled_input(event):
+	if event.is_action_pressed("restartLevel"):
+		restart_level()

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 class_name Player, "res://Sprites/player.png"
 export var speed : float = 150
 export var gravity : float = 400
@@ -8,10 +9,13 @@ var isOnWall : bool = false
 var floorFriction : float = 600
 var airResistance : float = 60
 var isGliding : bool = false
+var lastWall : = "nothing"
 
 func _ready():
-	get_node("MeleeLeft").disabled = true
-	get_node("MeleeRight").disabled = true
+	#get_node("WallDetector").set_deffered("disabled", true)
+	#get_node("MeleeLeft").disabled = true
+	#get_node("MeleeRight").disabled = true
+	pass
 
 func water_movement(_velocity, _delta) -> Vector2:
 	Global.life = 0
@@ -61,7 +65,7 @@ func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 				else:
 					return Vector2 (0, velocity.y)
 	return velocity
-		
+
 func move_left(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(true)
 	if velocity.x > -speed:
@@ -73,7 +77,7 @@ func move_left(delta, velocity) -> Vector2:
 		else:
 			return Vector2 (velocity.x - 2500 * delta, velocity.y)
 	return velocity
-	
+
 func move_right(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(false)
 	if velocity.x < speed:
@@ -85,11 +89,11 @@ func move_right(delta, velocity) -> Vector2:
 		else:
 			return Vector2 (velocity.x + 2500 * delta, velocity.y)
 	return velocity
-		
+
 func movement(delta, velocity, _isOnWall) -> Vector2:
-	if Input.is_action_pressed("move_right") and velocity.x <= speed:
+	if Input.is_action_pressed("move_right") and velocity.x <= speed and is_on_wall() == false:
 		return move_right(delta, velocity)
-	elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
+	elif Input.is_action_pressed("move_left") and velocity.x >= -speed and is_on_wall() == false:
 		return move_left(delta, velocity)
 	elif velocity.x >= -speed/4 and velocity.x <= speed/4:
 		return Vector2 (0, velocity.y)
@@ -102,16 +106,16 @@ func checkAcceleration(velocity) -> bool:
 		elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 			return true
 	return false
-	
-func get_input(velocity, isOnFloor, isOnWall, _whereWall, _bullet, _jumpsRemaining, delta) -> Vector2:
+
+func get_input(velocity, isOnFloor, _whereWall, _bullet, _jumpsRemaining, delta) -> Vector2:
 	play_animations(velocity)
 	velocity = apply_gravity(velocity, isOnWall, isOnFloor, isGliding, delta)
 	velocity = movement(delta, velocity, isOnWall)
 	return velocity
-		
-func apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet,  accelerating, delta) -> Vector2:
-	velocity = get_input(velocity, isOnFloor, isOnWall, whereWall, bullet, jumpsRemaining, delta)
+
+func apply_movement(velocity, isOnFloor, whereWall, bullet,  accelerating, delta) -> Vector2:
+	velocity = get_input(velocity, isOnFloor, whereWall, bullet, jumpsRemaining, delta)
 	accelerating = checkAcceleration(velocity)
 	velocity = friction(velocity, accelerating, isOnFloor, isGliding, delta)
 	return(velocity)
-	
+
