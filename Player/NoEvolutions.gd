@@ -1,5 +1,6 @@
 extends Player
 
+
 class_name NoEvolution
 var isInAir : bool = false
 var isDead : bool = false
@@ -19,11 +20,11 @@ func change_jumps(_jumpsRemaining, _isOnFloor, _isOnWall) -> int:
 	return 2
 
 func evolution0_movement(delta) -> void:
-	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
+	velocity = apply_movement(velocity, isOnFloor, whereWall, bullet, accelerating, delta)
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 	isOnFloor = is_on_floor()
 	isOnWall = is_player_on_wall(isGliding)
-	
+
 func knock_up(directon) -> void:
 	velocity.y = -150
 	velocity.x = 150 * sign(directon)
@@ -31,10 +32,9 @@ func knock_up(directon) -> void:
 	snapVector = Vector2.ZERO
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP)
 	snapVector = tmp
-	
 	$Sprite.play("idle")
 	$Sprite.play("jump")
-	
+
 func _physics_process(delta : float) ->void:
 	if inWater:
 		velocity = water_movement(velocity, delta)

@@ -1,5 +1,6 @@
 extends GlideEvolution
 
+
 class_name WallClimbEvolution
 
 func jump_on_wall(whereWall, velocity) -> Vector2:
@@ -27,7 +28,6 @@ func apply_jump(whereWall, velocity, jumpsRemaining) -> Vector2:
 		if Input.is_action_pressed("move_right") and whereWall == "left" and waitingForJump == false:
 			waitingForJump = true
 			rightJumpCourutine()
-			
 	return velocity
 
 func is_player_on_wall(isGliding) -> bool:

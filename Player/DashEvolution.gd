@@ -73,15 +73,15 @@ func check_if_dashing() -> bool:
 		return true
 	return false
 	
-func evolution0_movement(delta) -> void:
+func evolution0_movement(delta : float) -> void:
 	if isDashing == false:
 		snapVector = disable_snap_vector()
-		velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
+		velocity = apply_movement(velocity, isOnFloor, whereWall, bullet, accelerating, delta)
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
 		isOnWall = is_player_on_wall(isGliding)
 		if isOnWall:
 			whereWall = check_where_wall()
-		maxSlides = change_max_slides(isOnWall)
+		maxSlides = change_max_slides(isOnFloor)
 		snapVector = Vector2.DOWN * 6
 		isOnFloor = is_on_floor()
 		if Input.is_action_just_pressed("Dash"):

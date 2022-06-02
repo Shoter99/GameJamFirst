@@ -9,12 +9,8 @@
 [ext_resource path="res://Player/JumpEvolution.gd" type="Script" id=7]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 3.0
-height = 0.0
-
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 8, 7.5 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -39,21 +35,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=4]
+radius = 0.0
+
 [node name="Evolution1" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 147
 script = ExtResource( 7 )
 
-[node name="MeleeRight" type="CollisionShape2D" parent="."]
-position = Vector2( 12, 2 )
-scale = Vector2( 2.48, 1 )
-shape = SubResource( 2 )
-
-[node name="MeleeLeft" type="CollisionShape2D" parent="."]
-position = Vector2( -12, 2 )
-scale = Vector2( 2.48, 1 )
-shape = SubResource( 2 )
-
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
@@ -64,3 +54,11 @@ playing = true
 
 [node name="Camera2D" parent="." groups=["Player"] instance=ExtResource( 8 )]
 position = Vector2( 1, -1 )
+
+[node name="FireRight" type="CollisionShape2D" parent="."]
+position = Vector2( 10, 2 )
+shape = SubResource( 4 )
+
+[node name="FireLeft" type="CollisionShape2D" parent="."]
+position = Vector2( -9, 2 )
+shape = SubResource( 4 )

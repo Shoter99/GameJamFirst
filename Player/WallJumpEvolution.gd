@@ -2,7 +2,6 @@ extends DoubleJumpEvolution
 
 
 class_name WallJumpEvolution
-
 var waitingForJump : bool = false
 var canJump : bool = false
 var onWallFirstTime : bool = true
@@ -25,13 +24,12 @@ func is_player_on_wall(_isGliding) -> bool:
 		$Sprite.play("jump")
 		return false
 
-
 func rightJumpCourutine() -> void:
 	yield(get_tree().create_timer(waitTime), "timeout")
 	if Input.is_action_pressed("move_right"):
 		canJump = true
 	waitingForJump = false
-		
+
 func leftJumpCourutine() -> void:
 	yield(get_tree().create_timer(waitTime), "timeout")
 	if Input.is_action_pressed("move_left"):
@@ -49,9 +47,8 @@ func movement(delta, velocity, isOnWall) -> Vector2:
 			return move_right(delta, velocity)
 		elif Input.is_action_pressed("move_left") and Input.is_action_pressed("release"):
 			return move_left(delta, velocity)
-
 	return velocity
-	
+
 func change_jumps(jumpsRemaining, isOnFloor, _isOnWall) -> int:
 	if isOnFloor or isOnWall:
 		jumpsRemaining = 2
@@ -86,7 +83,6 @@ func apply_gravity(velocity, isOnWall, _isOnFloor, _isGliding, delta) -> Vector2
 			if whereWall == "right":
 				return Vector2 (3, velocity.y - wallFriction * delta)
 			return Vector2 (-3, velocity.y - wallFriction * delta)
-		#return Vector2(0, 0)
 	onWallFirstTime = true
 	return Vector2(velocity.x, velocity.y + gravity * delta)
 
@@ -124,12 +120,11 @@ func apply_jump(whereWall, velocity, jumpsRemaining) -> Vector2:
 		if Input.is_action_pressed("move_right") and whereWall == "left" and waitingForJump == false:
 			waitingForJump = true
 			rightJumpCourutine()
-			
 	return velocity
 	
 func evolution0_movement(delta) -> void:
 	snapVector = disable_snap_vector()
-	velocity = apply_movement(velocity, isOnFloor, isOnWall, whereWall, bullet, accelerating, delta)
+	velocity = apply_movement(velocity, isOnFloor, whereWall, bullet, accelerating, delta)
 	velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides, deg2rad(45), false)
 	snapVector = Vector2.DOWN * 6
 	isOnFloor = is_on_floor()
