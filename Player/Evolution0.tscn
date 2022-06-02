@@ -10,7 +10,7 @@
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 8, 7.5 )
+extents = Vector2( 8, 6.75 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -24,14 +24,14 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "on_wall",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "on_wall",
 "speed": 5.0
 } ]
 
@@ -43,7 +43,7 @@ collision_mask = 147
 script = ExtResource( 6 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.5 )
+position = Vector2( 0, 1.75 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]

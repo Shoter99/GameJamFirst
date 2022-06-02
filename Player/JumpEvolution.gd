@@ -4,6 +4,9 @@ extends NoEvolution
 class_name JumpEvolution
 var jumpSpeed : int = -200
 
+func _ready() -> void:
+	Global.set_start_options(3, 10)
+
 func disable_snap_vector() -> Vector2:
 	if Input.is_action_just_pressed("jump"):
 		return Vector2 (0, 0)

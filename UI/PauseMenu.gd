@@ -21,4 +21,5 @@ func _on_Exit_pressed():
 
 func _on_MainMenu_pressed():
 	get_tree().paused = false
+	Global.reset_collected()
 	get_tree().change_scene("res://UI/MainMenu.tscn")

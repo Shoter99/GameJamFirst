@@ -14,7 +14,7 @@ var maxSlides : int = 4
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready() -> void:
-	Global.set_start_options(2,10)
+	Global.set_start_options(2,4)
 	
 func change_jumps(_jumpsRemaining, _isOnFloor, _isOnWall) -> int:
 	return 2
