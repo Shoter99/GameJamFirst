@@ -21,8 +21,7 @@ func hurt_and_die(x):
 		
 		Global.update_collectable(1)
 		var effect := death_particles.instance()
-		effect.global_position = global_position
-		effect.global_position.y += 175
+		effect.position = position
 		get_tree().current_scene.add_child(effect)
 		queue_free()
 

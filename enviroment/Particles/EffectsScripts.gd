@@ -5,6 +5,6 @@ func _ready():
 	$AudioStreamPlayer2D.play()
 	emitting = true
 
-func _process(delta):
+func _process(_delta):
 	if !emitting:
 		queue_free()

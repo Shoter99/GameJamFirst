@@ -1,7 +1,7 @@
 extends Enemy
 export var ghostDmg = 1
 onready var isFlipped = false
-onready var enemyHealthBar = $EnemyHealthBar;
+#onready var enemyHealthBar = $EnemyHealthBar;
 onready var player = get_tree().get_nodes_in_group("Player")[0]
 
 func _ready():
@@ -10,7 +10,7 @@ func _ready():
 	self.gravity = 0
 	
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var xDist = player.get_child(0).global_position.x - self.global_position.x
 	var yDist = player.get_child(0).global_position.y - self.global_position.y
 	
@@ -23,7 +23,7 @@ func _physics_process(delta):
 		velocity.y = yDist*2
 		velocity.x = xDist*2
 #		print(velocity.x, velocity.y)
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 	
 
 func _on_playerKiller_body_entered(body):

@@ -10,6 +10,6 @@ func _on_jump():
 func _on_takeDamage():
 	$TakeDamage.play()
 
-func _process(delta):
+func _process(_delta):
 	if $BgMusic.playing == false:
 		$BgMusic.play()

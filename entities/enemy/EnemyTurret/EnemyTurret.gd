@@ -22,8 +22,8 @@ func _physics_process(delta):
 func fire():
 	#print("Firing")
 	var bulletFired = bullet.instance()
-	bulletFired.global_position.x = self.global_position.x
-	bulletFired.global_position.y = self.global_position.y-8
+	bulletFired.position.x = self.position.x
+	bulletFired.position.y = self.position.y-8
 	get_tree().root.add_child(bulletFired)
 	if direction == -1:
 		bulletFired.flip()

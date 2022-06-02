@@ -6,6 +6,7 @@ var life : int = 0
 var collected : int = 0
 var to_collect
 var current_evolution := [1,0,0]
+export var currentCheckpoint = 0
 signal life_changed(life)
 signal collectabe_changed(collected)
 signal jump

@@ -12,14 +12,14 @@ func _ready():
 	pass
 	
 func rotation_to_player():
-	var x = player.get_child(0).global_position.x - self.global_position.x
-	var y = self.global_position.y - player.get_child(0).global_position.y
+	var x = player.get_child(0).position.x - self.position.x
+	var y = self.position.y - player.get_child(0).position.y
 	var deviation = atan(y/x)
 	#print(deviation)
 	return deviation
 	
 func set_animation():
-	var x = sign(player.get_child(0).global_position.x - self.global_position.x)
+	var x = sign(player.get_child(0).position.x - self.position.x)
 	var d = rotation_to_player() * 60 * x
 	if x <0:
 		get_node("RotatingPeeper").set_flip_h(true)
@@ -34,7 +34,7 @@ func set_animation():
 	elif d>-58: $RotatingPeeper.play("down r")
 	else: $RotatingPeeper.play("down")
 		
-func _process(delta):
+func _process(_delta):
 	set_animation()
 	
 func _physics_process(delta):
@@ -46,10 +46,10 @@ func _physics_process(delta):
 func fire():
 	#print("Firing")
 	var bulletFired = bullet.instance()
-	bulletFired.global_position.x = self.global_position.x
-	bulletFired.global_position.y = self.global_position.y-8
-	var x = player.get_child(0).global_position.x - self.global_position.x
-	var y = self.global_position.y - player.get_child(0).global_position.y
+	bulletFired.position.x = self.position.x
+	bulletFired.position.y = self.position.y-8
+	var x = player.get_child(0).position.x - self.position.x
+	var y = self.position.y - player.get_child(0).position.y
 	bulletFired.global_rotation = -atan2(y,x)
 	var vscale = diagonalBulletVelocity/sqrt(x*x+y*y)
 	#bulletFired.velocity = Vector2(x*vscale, y*vscale)
@@ -62,5 +62,5 @@ func fire():
 func _on_EnemyTurretArea2D_body_entered(body):
 	#print(body.name)
 	if body.is_in_group("Player"):
-		player.get_child(0).knock_up(player.get_child(0).global_position.x - self.global_position.x)
+		player.get_child(0).knock_up(player.get_child(0).position.x - self.position.x)
 		self.hurt_and_die(1)

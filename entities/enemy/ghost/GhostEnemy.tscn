@@ -32,7 +32,6 @@ shape = SubResource( 3 )
 [node name="AnimatedGhost" type="AnimatedSprite" parent="GhostEnemy"]
 position = Vector2( 0, -8 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="playerKiller" type="Area2D" parent="GhostEnemy"]
