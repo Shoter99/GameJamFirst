@@ -1,16 +1,22 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Sprites/player/player.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/player/player_jump_up.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/player/player_jump_down.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/player/player_mid_air.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/player/player_move1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/player/player_on_wall.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_standing.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_running_2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_walking_2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_running_1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_walking_3_a.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_running_3.png" type="Texture" id=6]
 [ext_resource path="res://Player/SwimEvolution.gd" type="Script" id=7]
 [ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_walking_1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/player_with_fin/jump_front.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/player_with_fin/jump_back.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_swim_1.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_swim_2.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/player_with_fin/player_with_fin_swim_3.png" type="Texture" id=14]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8.5, 7 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -19,19 +25,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "jump",
-"speed": 5.0
+"speed": 2.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "walk",
-"speed": 5.0
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "on_wall",
+"name": "swim",
 "speed": 5.0
 } ]
 
@@ -42,14 +48,18 @@ radius = 0.0
 collision_mask = 147
 script = ExtResource( 7 )
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.5 )
-shape = SubResource( 1 )
+[node name="SwimmingColision" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 1 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 2, 1 )
+polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
-modulate = Color( 1, 0, 0.537255, 1 )
 frames = SubResource( 3 )
-animation = "idle"
+animation = "swim"
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 8 )]
