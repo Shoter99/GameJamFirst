@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 func water_movement(velocity, delta) -> Vector2:
 	if Input.is_action_pressed("swim_right") and velocity.x < swimSpeed:
+		get_node("Sprite").set_flip_h(false)
 		if velocity.x >= 0:
 			if velocity.x + acceleration * delta <= swimSpeed:
 				velocity.x += acceleration * delta
@@ -21,6 +22,7 @@ func water_movement(velocity, delta) -> Vector2:
 			velocity.x += directionChangeSpeed * delta
 
 	if Input.is_action_pressed("swim_left") and velocity.x > -swimSpeed:
+		get_node("Sprite").set_flip_h(true)
 		if velocity.x <= 0:
 			if velocity.x - acceleration * delta >= -swimSpeed:
 				velocity.x -= acceleration * delta

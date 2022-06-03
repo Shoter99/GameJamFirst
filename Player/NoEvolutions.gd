@@ -11,6 +11,7 @@ var isOnFloor : bool = false
 var inWater : bool = false
 var whereWall: = "nothing"
 var maxSlides : int = 4
+var wasInWater = false
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready() -> void:
@@ -36,8 +37,21 @@ func knock_up(directon) -> void:
 	$Sprite.play("jump")
 
 func _physics_process(delta : float) ->void:
+	
+		
 	if inWater:
+		if not wasInWater:
+			$Sprite.play("swim")
+			$CollisionPolygon2D.disabled = true
+			$SwimmingColision.disabled = false
+		wasInWater = true
 		velocity = water_movement(velocity, delta)
 	else:
+		
+		if wasInWater == true:
+			#print("toggled")
+			$CollisionPolygon2D.disabled = false
+			$SwimmingColision.disabled = true
+		wasInWater = false
 		evolution0_movement(delta)
 		jumpsRemaining = change_jumps(jumpsRemaining, isOnFloor, isOnWall)
