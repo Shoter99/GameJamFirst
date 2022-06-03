@@ -68,6 +68,7 @@ func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 
 func move_left(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(true)
+	get_node("CollisionPolygon2D").scale.x = -1
 	if velocity.x > -speed:
 		if velocity.x < 0:
 			if velocity.x - 1000 * delta >= -speed:
@@ -80,6 +81,7 @@ func move_left(delta, velocity) -> Vector2:
 
 func move_right(delta, velocity) -> Vector2:
 	get_node("Sprite").set_flip_h(false)
+	get_node("CollisionPolygon2D").scale.x = 1
 	if velocity.x < speed:
 		if velocity.x > 0:
 			if velocity.x + 1000 * delta <= speed:

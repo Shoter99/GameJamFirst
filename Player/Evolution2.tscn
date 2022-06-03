@@ -60,6 +60,7 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
 frames = SubResource( 3 )
 animation = "swim"
+frame = 1
 playing = true
 
 [node name="Camera2D" parent="." instance=ExtResource( 8 )]
