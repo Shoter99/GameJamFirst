@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "FireEvolution",
 "class": "DashEvolution",
 "language": "GDScript",
-"path": "res://Player/DashEvolution.gd"
+"path": "res://Player/scripts/DashEvolution.gd"
 }, {
 "base": "SwimEvolution",
 "class": "DoubleJumpEvolution",
 "language": "GDScript",
-"path": "res://Player/DoubleJumpEvolution.gd"
+"path": "res://Player/scripts/DoubleJumpEvolution.gd"
 }, {
 "base": "Entity",
 "class": "Enemy",
@@ -32,42 +32,42 @@ _global_script_classes=[ {
 "base": "WallJumpEvolution",
 "class": "FireEvolution",
 "language": "GDScript",
-"path": "res://Player/FireEvolution.gd"
+"path": "res://Player/scripts/FireEvolution.gd"
 }, {
 "base": "DashEvolution",
 "class": "GlideEvolution",
 "language": "GDScript",
-"path": "res://Player/GlideEvolution.gd"
+"path": "res://Player/scripts/GlideEvolution.gd"
 }, {
 "base": "NoEvolution",
 "class": "JumpEvolution",
 "language": "GDScript",
-"path": "res://Player/JumpEvolution.gd"
+"path": "res://Player/scripts/JumpEvolution.gd"
 }, {
 "base": "Player",
 "class": "NoEvolution",
 "language": "GDScript",
-"path": "res://Player/NoEvolutions.gd"
+"path": "res://Player/scripts/NoEvolutions.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Player/MovementScript.gd"
+"path": "res://Player/scripts/MovementScript.gd"
 }, {
 "base": "JumpEvolution",
 "class": "SwimEvolution",
 "language": "GDScript",
-"path": "res://Player/SwimEvolution.gd"
+"path": "res://Player/scripts/SwimEvolution.gd"
 }, {
 "base": "GlideEvolution",
 "class": "WallClimbEvolution",
 "language": "GDScript",
-"path": "res://Player/WallClimbEvolution.gd"
+"path": "res://Player/scripts/WallClimbEvolution.gd"
 }, {
 "base": "DoubleJumpEvolution",
 "class": "WallJumpEvolution",
 "language": "GDScript",
-"path": "res://Player/WallJumpEvolution.gd"
+"path": "res://Player/scripts/WallJumpEvolution.gd"
 } ]
 _global_script_class_icons={
 "DashEvolution": "",
@@ -78,7 +78,7 @@ _global_script_class_icons={
 "GlideEvolution": "",
 "JumpEvolution": "",
 "NoEvolution": "",
-"Player": "res://Sprites/player.png",
+"Player": "",
 "SwimEvolution": "",
 "WallClimbEvolution": "",
 "WallJumpEvolution": ""
@@ -87,12 +87,22 @@ _global_script_class_icons={
 [application]
 
 config/name="GameJamFirst"
-run/main_scene="res://levels/final levels/Level1.tscn"
+run/main_scene="res://UI/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Globals/Global.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
+window/size/test_width=1024
+window/size/test_height=575
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [global]
 
@@ -124,13 +134,6 @@ texture={
 
 [input]
 
-ui_accept={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777222,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
- ]
-}
 move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -198,6 +201,16 @@ glide={
 fire={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pauseGame={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+restartLevel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 

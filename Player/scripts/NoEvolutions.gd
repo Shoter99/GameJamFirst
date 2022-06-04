@@ -42,7 +42,7 @@ func _physics_process(delta : float) ->void:
 	if inWater:
 		if not wasInWater:
 			$Sprite.play("swim")
-			$CollisionPolygon2D.disabled = true
+			$Collision.disabled = true
 			$SwimmingColision.disabled = false
 		wasInWater = true
 		velocity = water_movement(velocity, delta)
@@ -50,7 +50,7 @@ func _physics_process(delta : float) ->void:
 		
 		if wasInWater == true:
 			#print("toggled")
-			$CollisionPolygon2D.disabled = false
+			$Collision.disabled = false
 			$SwimmingColision.disabled = true
 		wasInWater = false
 		evolution0_movement(delta)

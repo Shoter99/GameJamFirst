@@ -13,10 +13,15 @@ signal jump
 signal evolution
 signal takeDamage
 
-onready var evolution0 := preload("res://Player/Evolution0.tscn")
-onready var evolution1 := preload("res://Player/Evolution1.tscn")
-onready var evolution2 := preload("res://Player/Evolution2.tscn")
-
+onready var evolution0 := preload("res://Player/scenes/Evolution0.tscn")
+onready var evolution1 := preload("res://Player/scenes/Evolution1.tscn")
+onready var evolution2 := preload("res://Player/scenes/Evolution2.tscn")
+onready var evolution3 := preload("res://Player/scenes/Evolution3.tscn")
+onready var evolution4 := preload("res://Player/scenes/Evolution4.tscn")
+onready var evolution5 := preload("res://Player/scenes/Evolution5.tscn")
+onready var evolution6 := preload("res://Player/scenes/Evolution6.tscn")
+onready var evolution7 := preload("res://Player/scenes/Evolution7.tscn")
+onready var evolution8 := preload("res://Player/scenes/Evolution8.tscn")
 
 func update_life(var delta: int):
 	if delta < 0:

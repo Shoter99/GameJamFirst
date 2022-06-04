@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Player/Evolution0.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Player/JumpEvolution.gd" type="Script" id=2]
+[ext_resource path="res://Player/scenes/Evolution0.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/scripts/JumpEvolution.gd" type="Script" id=2]
 
 [node name="Player" type="Node2D"]
 
