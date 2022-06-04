@@ -11,6 +11,7 @@ var isOnFloor : bool = false
 var inWater : bool = false
 var whereWall: = "nothing"
 var maxSlides : int = 4
+var canSwim = false
 var wasInWater = false
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
@@ -40,7 +41,10 @@ func _physics_process(delta : float) ->void:
 	
 		
 	if inWater:
-		if not wasInWater:
+		if not canSwim:
+			Global.update_life(-2)
+			self.knock_up(0)
+		elif not wasInWater:
 			$Sprite.play("swim")
 			$Collision.disabled = true
 			$SwimmingColision.disabled = false

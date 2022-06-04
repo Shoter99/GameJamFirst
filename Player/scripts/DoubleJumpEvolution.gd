@@ -16,7 +16,7 @@ func jump(velocity, _isOnFloor) -> Vector2:
 func apply_jump(_whereWall, velocity, jumpsRemaining) -> Vector2:
 	if Input.is_action_just_pressed("jump") and jumpsRemaining > 0:
 		$Sprite.play("idle")
-		$Sprite.play("jump")
+		$Sprite.play("2ndJump")
 		return jump(velocity, isOnFloor)
 	return velocity
 
