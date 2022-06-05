@@ -26,15 +26,11 @@ func _ready():
 					createPlayer(Global.evolution6)
 				7:
 					createPlayer(Global.evolution7)
-					
 	for j in checkpointCount:
 		spawnList[j].id = j
-		#spawnList[j].set_start()
 		
 func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
-	if Global.spawnAtEnd:
-		playerPos = spawnList[checkpointCount-1]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
 	$Player.add_child(p)
