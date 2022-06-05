@@ -4,50 +4,53 @@ extends Control
 var tutorials = [
 	{
 		"title": "Jump Evolution",
-		"description": "Thanks to your new legs now you can jump",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"description": "Thanks to your new legs now you can jump(using spacebar)",
+		"video": preload("res://videos/JumpEvo.webm")
 	},
 	{
 		"title": "Swimming Evolution",
 		"description": "You've just unlocked ability to swim, now you can discover what hides under water",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"video": preload("res://videos/SwimEvo.webm")
 	},
 	{
-		"title": "Double Jump",
+		"title": "Double Jump Evolution",
 		"description": "Thanks to your new pair of wings now you can jump while mid air",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"video": preload("res://videos/WingsEvo.webm")
 	},
 	{
-		"title": "New pair of hands",
+		"title": "Wall Jump Evolution",
 		"description": "Thanks to the freshly grown limbs you can stick to walls and access new locations",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"video": preload("res://videos/HandsEvo.webm")
 	},
 	{
-		"title": "Dash evolution",
-		"description": "Now you can dash in a given direction evading enemies or destroying walls",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"title": "Dash Evolution",
+		"description": "Now you can dash in a given direction evading enemies(using shift)",
+		"video": preload("res://videos/DashEvo.webm")
 	},
 	{
-		"title": "Shooting evolution",
-		"description": "Thanks to your new ability to shoot now you will have easier time dealing with ranged enemies",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
+		"title": "Glide Evolution",
+		"description": "Gliding will give you access to new undiscovered location(using alt)",
+		"video": preload("res://videos/GlideEvo.webm")
 	},
 	{
-		"title": "Glide evolution",
-		"description": "Gliding will give you access to new undiscovered location",
-		"video": preload("res://videos/GameJamFirst (DEBUG) 2022-06-05 10-51-33.webm")
-	},
-
+		"title": "Shooting Evolution",
+		"description": "Thanks to your new ability to shoot now you will have easier time dealing with ranged enemies(using f)",
+		"video": preload("res://videos/ShootEvo.webm")
+	}
 
 
 ]
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var evo : int = Global.currentEvolutionNo
 	$VBoxContainer/TutorialTitle.text = tutorials[evo-1].title
 	$VBoxContainer/TutorialDesc.text = tutorials[evo-1].description
 	$VideoPlayer.stream = tutorials[evo-1].video
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept"):
+		get_tree().change_scene("res://levels/final levels/Level1.tscn")
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://levels/final levels/Level1.tscn")

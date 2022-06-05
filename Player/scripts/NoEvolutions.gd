@@ -39,7 +39,7 @@ func knock_up(directon) -> void:
 
 func _physics_process(delta : float) ->void:
 	
-		
+	print(isFlipped)	
 	if inWater:
 		if not canSwim:
 			Global.update_life(-2)
@@ -53,7 +53,6 @@ func _physics_process(delta : float) ->void:
 	else:
 		
 		if wasInWater == true:
-			#print("toggled")
 			$Collision.disabled = false
 			$SwimmingColision.disabled = true
 		wasInWater = false
