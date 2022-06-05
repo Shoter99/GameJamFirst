@@ -16,7 +16,7 @@ var wasInWater = false
 onready var bullet: = preload("res://Player/Bullet.tscn")
 
 func _ready() -> void:
-	Global.set_start_options(2,4)
+	Global.set_start_options(2,10)
 	
 func change_jumps(_jumpsRemaining, _isOnFloor, _isOnWall) -> int:
 	return 2

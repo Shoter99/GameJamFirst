@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 48
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -51,7 +51,10 @@ margin_right = 288.0
 margin_bottom = 130.0
 custom_colors/font_color = Color( 0.988235, 0.964706, 0.376471, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Evolution"
+text = "Minute to evolve"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="Start" type="Button" parent="."]
 anchor_left = 0.5
