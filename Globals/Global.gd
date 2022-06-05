@@ -56,15 +56,18 @@ func update_collectable(var delta: int):
 #		get_tree().change_scene("res://UI/Tutorial.tscn")
 
 func go_to_next_evolution():
+	if currentEvolutionNo == 7:
+		return
 	if current_evolution[currentEvolutionNo] == 1:
 			current_evolution[currentEvolutionNo] = 0
 			current_evolution[currentEvolutionNo+1] = 1
-	currentEvolutionNo +=1
+	if currentEvolutionNo < 7:
+		currentEvolutionNo +=1
 	restart_level()
 	get_tree().change_scene("res://UI/Tutorial.tscn")
 
 func restart_level():
-	canEvolve = false
+#	canEvolve = false
 	reset_collected()
 	get_tree().reload_current_scene()
 
