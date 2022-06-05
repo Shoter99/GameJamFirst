@@ -7,7 +7,6 @@
 [node name="Camera2D" type="Camera2D"]
 position = Vector2( 48, 7 )
 current = true
-zoom = Vector2( 0.3, 0.3 )
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 10.0
