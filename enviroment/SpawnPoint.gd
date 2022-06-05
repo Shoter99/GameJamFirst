@@ -5,6 +5,9 @@ export var id := int(1)
 
 var isNear := false
 
+func _ready():
+	deactivate()
+
 func _on_SpawnPointHitbox_body_entered(body):
 	if body.is_in_group("Player"):
 		if Global.canEvolve:
@@ -12,9 +15,14 @@ func _on_SpawnPointHitbox_body_entered(body):
 				isNear = true
 				$Label.visible = true
 		if isOn:
+			activate()
 			Global.currentCheckpoint = id
 		
-#func activate()
+func activate():
+	$Sprite.play("a")
+
+func deactivate():
+	$Sprite.play("na")
 
 func _on_SpawnPointHitbox_body_exited(body):
 	if body.is_in_group("Player"):
