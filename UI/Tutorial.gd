@@ -4,7 +4,7 @@ extends Control
 var tutorials = [
 	{
 		"title": "Jump Evolution",
-		"description": "Thanks to your new legs now you can jump",
+		"description": "Thanks to your new legs now you can jump(using spacebar)",
 		"video": preload("res://videos/JumpEvo.webm")
 	},
 	{
@@ -24,17 +24,17 @@ var tutorials = [
 	},
 	{
 		"title": "Dash evolution",
-		"description": "Now you can dash in a given direction evading enemies or destroying walls",
+		"description": "Now you can dash in a given direction evading enemies(using shift)",
 		"video": preload("res://videos/DashEvo.webm")
 	},
 	{
 		"title": "Glide evolution",
-		"description": "Gliding will give you access to new undiscovered location",
+		"description": "Gliding will give you access to new undiscovered location(using alt)",
 		"video": preload("res://videos/GlideEvo.webm")
 	},
 	{
 		"title": "Shooting evolution",
-		"description": "Thanks to your new ability to shoot now you will have easier time dealing with ranged enemies",
+		"description": "Thanks to your new ability to shoot now you will have easier time dealing with ranged enemies(using f)",
 		"video": preload("res://videos/ShootEvo.webm")
 	}
 
