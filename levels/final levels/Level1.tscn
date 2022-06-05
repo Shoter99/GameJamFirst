@@ -87,6 +87,7 @@ position = Vector2( 1, -1 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D/Background"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/Background/ParallaxBackground"]
+position = Vector2( -100, -439 )
 motion_scale = Vector2( 0.5, 0.5 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D/Background/ParallaxBackground/ParallaxLayer"]
