@@ -78,6 +78,9 @@ position = Vector2( 1064, -96 )
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -1032, -592 )
 
+[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 8 )]
+position = Vector2( -107, 33 )
+
 [node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -600, 624 )
 
@@ -130,19 +133,19 @@ position = Vector2( 656, -48 )
 position = Vector2( 848, 216 )
 
 [node name="EnemyLeftRight9" parent="LeftRightEnemies" instance=ExtResource( 9 )]
-position = Vector2( 88, 720 )
+position = Vector2( 76, 731 )
 
 [node name="EnemyLeftRight13" parent="LeftRightEnemies" instance=ExtResource( 9 )]
 position = Vector2( 184, 512 )
 
 [node name="EnemyLeftRight10" parent="LeftRightEnemies" instance=ExtResource( 9 )]
-position = Vector2( 136, 728 )
+position = Vector2( 137, 733 )
 
 [node name="EnemyLeftRight11" parent="LeftRightEnemies" instance=ExtResource( 9 )]
-position = Vector2( 208, 728 )
+position = Vector2( 209, 731 )
 
 [node name="EnemyLeftRight12" parent="LeftRightEnemies" instance=ExtResource( 9 )]
-position = Vector2( 304, 728 )
+position = Vector2( 304, 730 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 16, 0 )
@@ -197,7 +200,10 @@ shape = SubResource( 4 )
 position = Vector2( 24, 488 )
 
 [node name="Collectable13" parent="Collectables/before jump" instance=ExtResource( 11 )]
-position = Vector2( 232, 376 )
+position = Vector2( 229, 373 )
+
+[node name="Collectable14" parent="Collectables/before jump" instance=ExtResource( 11 )]
+position = Vector2( 42, 371 )
 
 [node name="Collectable12" parent="Collectables/before jump" instance=ExtResource( 11 )]
 position = Vector2( 56, -280 )
@@ -228,6 +234,60 @@ position = Vector2( 1040, 25 )
 [node name="Collectable7" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -640, -104 )
 
+[node name="Collectable8" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -492, -125 )
+
+[node name="Collectable9" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -400, 33 )
+
+[node name="Collectable10" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -237, 28 )
+
+[node name="Collectable11" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -144, 29 )
+
+[node name="Collectable12" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( 0, 0 )
+
+[node name="Collectable13" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( 143, -21 )
+
+[node name="Collectable14" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -549, 275 )
+
+[node name="Collectable15" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -465, 140 )
+
+[node name="Collectable16" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -559, 164 )
+
+[node name="Collectable17" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -337, 338 )
+
+[node name="Collectable18" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -696, 37 )
+
+[node name="Collectable19" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -671, -223 )
+
+[node name="Collectable20" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -615, -349 )
+
+[node name="Collectable21" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -407, -241 )
+
+[node name="Collectable22" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( 62, -215 )
+
+[node name="Collectable23" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( 60, -161 )
+
+[node name="Collectable24" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -175, -204 )
+
+[node name="Collectable25" parent="Collectables/with attack" instance=ExtResource( 11 )]
+position = Vector2( -175, -232 )
+
 [node name="Collectable" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -328, 535 )
 
@@ -239,6 +299,24 @@ position = Vector2( 0, 0 )
 
 [node name="Collectable5" parent="Collectables/with diving" instance=ExtResource( 11 )]
 position = Vector2( -1168, 623 )
+
+[node name="Collectable6" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -1130, 591 )
+
+[node name="Collectable7" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -991, 592 )
+
+[node name="Collectable8" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -881, 593 )
+
+[node name="Collectable9" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -880, 639 )
+
+[node name="Collectable10" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -990, 640 )
+
+[node name="Collectable11" parent="Collectables/with diving" instance=ExtResource( 11 )]
+position = Vector2( -1127, 645 )
 
 [node name="Collectable2" parent="Collectables/with diving" instance=ExtResource( 11 )]
 position = Vector2( 24, 519 )
