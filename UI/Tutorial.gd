@@ -13,27 +13,27 @@ var tutorials = [
 		"video": preload("res://videos/SwimEvo.webm")
 	},
 	{
-		"title": "Double Jump",
+		"title": "Double Jump Evolution",
 		"description": "Thanks to your new pair of wings now you can jump while mid air",
 		"video": preload("res://videos/WingsEvo.webm")
 	},
 	{
-		"title": "New pair of hands",
+		"title": "Wall Jump Evolution",
 		"description": "Thanks to the freshly grown limbs you can stick to walls and access new locations",
 		"video": preload("res://videos/HandsEvo.webm")
 	},
 	{
-		"title": "Dash evolution",
+		"title": "Dash Evolution",
 		"description": "Now you can dash in a given direction evading enemies(using shift)",
 		"video": preload("res://videos/DashEvo.webm")
 	},
 	{
-		"title": "Glide evolution",
+		"title": "Glide Evolution",
 		"description": "Gliding will give you access to new undiscovered location(using alt)",
 		"video": preload("res://videos/GlideEvo.webm")
 	},
 	{
-		"title": "Shooting evolution",
+		"title": "Shooting Evolution",
 		"description": "Thanks to your new ability to shoot now you will have easier time dealing with ranged enemies(using f)",
 		"video": preload("res://videos/ShootEvo.webm")
 	}
