@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/cloud_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyTurret.tscn" type="PackedScene" id=14]
 [ext_resource path="res://enviroment/cloud.png" type="Texture" id=15]
+[ext_resource path="res://enviroment/Backgrounds/sky_background.png" type="Texture" id=16]
 
 [sub_resource type="TileSet" id=16]
 0/name = "cloud.png 0"
@@ -104,6 +105,21 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 593.0 ],
 "_edit_vertical_guides_": [ 0.0 ]
 }
+
+[node name="BackGround" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackGround"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackGround/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="TextureRect" type="TextureRect" parent="BackGround/ParallaxBackground/ParallaxLayer"]
+margin_left = -362.0
+margin_top = -567.0
+margin_right = 214.0
+margin_bottom = -215.0
+rect_scale = Vector2( 6, 4 )
+texture = ExtResource( 16 )
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2( 1064, -96 )
