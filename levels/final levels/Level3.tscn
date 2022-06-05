@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://levels/cloud_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=2]
@@ -11,10 +11,13 @@
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyPeeper.tscn" type="PackedScene" id=9]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightFlyingEnemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=11]
+[ext_resource path="res://enviroment/LevelStart.tscn" type="PackedScene" id=12]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyTurret.tscn" type="PackedScene" id=14]
 [ext_resource path="res://enviroment/cloud.png" type="Texture" id=15]
 [ext_resource path="res://enviroment/Backgrounds/sky_background.png" type="Texture" id=16]
+[ext_resource path="res://enviroment/LevelEnd.tscn" type="PackedScene" id=17]
+[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=18]
 
 [sub_resource type="TileSet" id=16]
 0/name = "cloud.png 0"
@@ -123,14 +126,17 @@ texture = ExtResource( 16 )
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2( 1064, -96 )
 
-[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 8 )]
-position = Vector2( -80, -56 )
+[node name="LevelStart" parent="SpawnPoints" instance=ExtResource( 12 )]
+position = Vector2( -658, 597 )
 
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -656, 592 )
 
 [node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -312, 416 )
+
+[node name="LevelEnd" parent="SpawnPoints" instance=ExtResource( 17 )]
+position = Vector2( -605, 776 )
 
 [node name="EnemyTurrets" type="Node2D" parent="."]
 
@@ -298,6 +304,8 @@ collision_layer = 16
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 393357, 2, 0, 393358, 2, 0, 393359, 2, 0, 393360, 2, 0, 393361, 2, 0, 458894, 3, 0, 458895, 3, 0, 458896, 3, 0, 1769581, 2, 0, 1769582, 2, 0, 1769583, 2, 0, 1769584, 2, 0, 1769585, 2, 0, 1769586, 2, 0, 1769587, 2, 0, 1769588, 2, 0, 1769589, 2, 0, 1769590, 2, 0, 1769591, 2, 0, 1769592, 2, 0, 1769593, 2, 0, 1769594, 2, 0, 1769595, 2, 0, 1769596, 2, 0, 1769597, 2, 0, 1769598, 2, 0, 1769599, 2, 0, 1835118, 3, 0, 1835119, 3, 0, 1835120, 3, 0, 1835121, 3, 0, 1835122, 3, 0, 1835123, 3, 0, 1835124, 3, 0, 1835125, 3, 0, 1835126, 3, 0, 1835127, 3, 0, 1835128, 3, 0, 1835129, 3, 0, 1835130, 3, 0, 1835131, 3, 0, 1835132, 3, 0, 1835133, 3, 0, 1835134, 3, 0, 1900655, 3, 0, 1900656, 3, 0, 1900657, 3, 0, 1900658, 3, 0, 1900659, 3, 0, 1900660, 3, 0, 1900661, 3, 0, 1900662, 3, 0, 1900663, 3, 0, 1900664, 3, 0, 1900665, 3, 0, 1900666, 3, 0, 1900667, 3, 0, 1900668, 3, 0, 1900669, 3, 0 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 18 )]
 
 [connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]
 [connection signal="body_entered" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_entered"]
