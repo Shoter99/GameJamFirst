@@ -8,8 +8,6 @@ var to_collect
 var current_evolution := [1,0,0,0,0,0,0,0,0]
 var currentEvolutionNo = 0
 var canEvolve = false
-var currentLevel = int(0)
-var spawnAtEnd = false
 export var currentCheckpoint = 0
 signal life_changed(life)
 signal collectabe_changed(collected)
@@ -27,9 +25,6 @@ onready var evolution5 := preload("res://Player/scenes/Evolution5.tscn")
 onready var evolution6 := preload("res://Player/scenes/Evolution6.tscn")
 onready var evolution7 := preload("res://Player/scenes/Evolution7.tscn")
 #onready var evolution8 := preload("res://Player/scenes/Evolution8.tscn")
-
-onready var levels = ["res://levels/final levels/Level1.tscn", "res://levels/final levels/Level2.tscn", "res://levels/final levels/Level3.tscn"]
-
 
 func _ready():
 #	connect("evolve", self, go_to_next_evolution())
