@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Sprites/blocks_for_level_2.png" type="Texture" id=1]
 [ext_resource path="res://levels/LevelLimit.gd" type="Script" id=2]
@@ -17,8 +17,6 @@
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightFlyingEnemy.tscn" type="PackedScene" id=15]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Sprites/treetop.png" type="Texture" id=17]
-[ext_resource path="res://enviroment/LevelStart.tscn" type="PackedScene" id=18]
-[ext_resource path="res://enviroment/LevelEnd.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 points = PoolVector2Array( 0, 0, 48, 0, 48, 8, 0, 8 )
@@ -414,16 +412,8 @@ __meta__ = {
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2( 1064, -96 )
 
-[node name="LevelStart" parent="SpawnPoints" instance=ExtResource( 18 )]
-position = Vector2( -1680, 425 )
-scale = Vector2( -1, 1 )
-
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -728, 209 )
-
-[node name="LevelEnd" parent="SpawnPoints" instance=ExtResource( 19 )]
-position = Vector2( -1080, -648 )
-rotation = -1.5708
 
 [node name="EnemyTurrets" type="Node2D" parent="."]
 
