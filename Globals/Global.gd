@@ -47,6 +47,7 @@ func update_collectable(var delta: int):
 	emit_signal("collectabe_changed", collected)
 	if collected >= to_collect:
 		canEvolve = true
+		emit_signal("evolve")
 #		if current_evolution[currentEvolutionNo] == 1:
 #			current_evolution[currentEvolutionNo] = 0
 #			current_evolution[currentEvolutionNo+1] = 1

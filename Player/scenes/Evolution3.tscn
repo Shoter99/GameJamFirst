@@ -72,5 +72,5 @@ position = Vector2( -5, -5 )
 z_index = -1
 frames = SubResource( 3 )
 animation = "walk"
-frame = 7
+frame = 2
 playing = true

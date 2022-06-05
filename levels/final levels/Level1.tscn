@@ -202,9 +202,6 @@ position = Vector2( 24, 488 )
 [node name="Collectable13" parent="Collectables/before jump" instance=ExtResource( 11 )]
 position = Vector2( 229, 373 )
 
-[node name="Collectable14" parent="Collectables/before jump" instance=ExtResource( 11 )]
-position = Vector2( 42, 371 )
-
 [node name="Collectable12" parent="Collectables/before jump" instance=ExtResource( 11 )]
 position = Vector2( 56, -280 )
 
@@ -225,9 +222,6 @@ position = Vector2( 328, 416 )
 [node name="Collectable2" parent="Collectables/with jump" instance=ExtResource( 11 )]
 position = Vector2( 960, 216 )
 
-[node name="Collectable" parent="Collectables/with jump" instance=ExtResource( 11 )]
-position = Vector2( 1128, 216 )
-
 [node name="with attack" type="Node2D" parent="Collectables"]
 position = Vector2( 1040, 25 )
 
@@ -246,12 +240,6 @@ position = Vector2( -237, 28 )
 [node name="Collectable11" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -144, 29 )
 
-[node name="Collectable12" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( 0, 0 )
-
-[node name="Collectable13" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( 143, -21 )
-
 [node name="Collectable14" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -549, 275 )
 
@@ -264,29 +252,17 @@ position = Vector2( -559, 164 )
 [node name="Collectable17" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -337, 338 )
 
-[node name="Collectable18" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( -696, 37 )
-
 [node name="Collectable19" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -671, -223 )
 
 [node name="Collectable20" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -615, -349 )
 
-[node name="Collectable21" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( -407, -241 )
-
-[node name="Collectable22" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( 62, -215 )
-
 [node name="Collectable23" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( 60, -161 )
 
 [node name="Collectable24" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -175, -204 )
-
-[node name="Collectable25" parent="Collectables/with attack" instance=ExtResource( 11 )]
-position = Vector2( -175, -232 )
 
 [node name="Collectable" parent="Collectables/with attack" instance=ExtResource( 11 )]
 position = Vector2( -328, 535 )

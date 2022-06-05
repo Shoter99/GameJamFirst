@@ -7,6 +7,7 @@ export var timeLeft = 60
 func _ready() -> void:
 	Global.connect("life_changed", self,"update_life")
 	Global.connect("collectabe_changed", self, "update_collectable")
+	Global.connect("evolve", self, "show_evolve_msg")
 	update_life(Global.life)
 	$CanvasLayer/TimeLeft.text = str(timeLeft)
 	$CanvasLayer/EvolutionProgress.value = 0
@@ -36,3 +37,6 @@ func _on_Timer_timeout():
 
 func _on_Timer_timeChanged(curr_time):
 	$CanvasLayer/TimeLeft.text = str(curr_time)
+
+func show_evolve_msg():
+	$CanvasLayer/EvolveMsg.visible = true
