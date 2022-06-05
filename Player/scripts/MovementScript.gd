@@ -10,6 +10,7 @@ var floorFriction : float = 600
 var airResistance : float = 60
 var isGliding : bool = false
 var lastWall : = "nothing"
+var isFlipped = false
 
 func _ready():
 	#get_node("WallDetector").set_deffered("disabled", true)
@@ -67,8 +68,10 @@ func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	return velocity
 
 func move_left(delta, velocity) -> Vector2:
-	get_node("Sprite").set_flip_h(true)
-	get_node("Collision").scale.x = -1
+	if not isFlipped:
+		isFlipped = true
+		self.scale.x = -1
+	#get_node("Collision").scale.x = -1
 	if velocity.x > -speed:
 		if velocity.x < 0:
 			if velocity.x - 1000 * delta >= -speed:
@@ -80,8 +83,12 @@ func move_left(delta, velocity) -> Vector2:
 	return velocity
 
 func move_right(delta, velocity) -> Vector2:
-	get_node("Sprite").set_flip_h(false)
-	get_node("Collision").scale.x = 1
+	if isFlipped:
+		isFlipped = false
+		self.scale.x = -1
+	#self.scale.x = 1
+	#get_node("Sprite").set_flip_h(false)
+	#get_node("Collision").scale.x = 1
 	if velocity.x < speed:
 		if velocity.x > 0:
 			if velocity.x + 1000 * delta <= speed:

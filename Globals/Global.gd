@@ -5,7 +5,8 @@ var max_life : int= 3
 var life : int = 0
 var collected : int = 0
 var to_collect
-var current_evolution := [1,0,0]
+var current_evolution := [1,0,0,0,0,0,0,0,0]
+var currentEvolutionNo = 0
 export var currentCheckpoint = 0
 signal life_changed(life)
 signal collectabe_changed(collected)
@@ -21,7 +22,7 @@ onready var evolution4 := preload("res://Player/scenes/Evolution4.tscn")
 onready var evolution5 := preload("res://Player/scenes/Evolution5.tscn")
 onready var evolution6 := preload("res://Player/scenes/Evolution6.tscn")
 onready var evolution7 := preload("res://Player/scenes/Evolution7.tscn")
-onready var evolution8 := preload("res://Player/scenes/Evolution8.tscn")
+#onready var evolution8 := preload("res://Player/scenes/Evolution8.tscn")
 
 func update_life(var delta: int):
 	if delta < 0:
@@ -39,12 +40,10 @@ func update_collectable(var delta: int):
 	if(collected<0 ): collected = 0
 	emit_signal("collectabe_changed", collected)
 	if collected >= to_collect:
-		if current_evolution[0] == 1:
-			current_evolution[0] = 0
-			current_evolution[1] = 1
-		elif current_evolution[1] == 1:
-			current_evolution[1] = 0
-			current_evolution[2] = 1
+		if current_evolution[currentEvolutionNo] == 1:
+			current_evolution[currentEvolutionNo] = 0
+			current_evolution[currentEvolutionNo+1] = 1
+		currentEvolutionNo +=1
 		restart_level()
 	
 func restart_level():

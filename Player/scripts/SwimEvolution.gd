@@ -6,13 +6,17 @@ var swimSpeed : int = 150
 var acceleration : float = 200
 var deceleration : float = 300
 var directionChangeSpeed : float = 700
+var isWaterFliped = false
 
 func _ready() -> void:
+	canSwim = true
 	Global.set_start_options(4, 20)
 	
 func water_movement(velocity, delta) -> Vector2:
 	if Input.is_action_pressed("swim_right") and velocity.x < swimSpeed:
-		get_node("Sprite").set_flip_h(false)
+		if isWaterFliped:
+			isWaterFliped = false
+			self.scale.x = -1
 		if velocity.x >= 0:
 			if velocity.x + acceleration * delta <= swimSpeed:
 				velocity.x += acceleration * delta
@@ -22,7 +26,9 @@ func water_movement(velocity, delta) -> Vector2:
 			velocity.x += directionChangeSpeed * delta
 
 	if Input.is_action_pressed("swim_left") and velocity.x > -swimSpeed:
-		get_node("Sprite").set_flip_h(true)
+		if not isWaterFliped:
+			isWaterFliped = true
+			self.scale.x = -1
 		if velocity.x <= 0:
 			if velocity.x - acceleration * delta >= -swimSpeed:
 				velocity.x -= acceleration * delta

@@ -1,4 +1,4 @@
-extends GlideEvolution
+extends WallJumpEvolution
 
 
 class_name WallClimbEvolution

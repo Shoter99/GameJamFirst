@@ -1,11 +1,12 @@
 extends WallJumpEvolution
 
+
 class_name DashEvolution
 
 var dashSpeed : int = 450
 var isDashing : bool = false
 var courutineActive : bool = false
-var tooMuchSpeedSlowdown : float = 1500
+export var tooMuchSpeedSlowdown : float = 1500
 
 func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	if accelerating == false:
@@ -60,6 +61,7 @@ func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 		
 	
 func dash (velocity) -> Vector2:
+	$Sprite.play("dash")
 	if Input.is_action_pressed("move_left"):
 		return Vector2 (-dashSpeed, 0)
 	if Input.is_action_pressed("move_right"):

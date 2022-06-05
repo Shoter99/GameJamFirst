@@ -15,8 +15,8 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						else:
 							return Vector2(0, velocity.y)
 					elif velocity.x > speed:
-						if velocity.x - tooMuchSpeedSlowdown * delta >= speed:
-							return Vector2(velocity.x - tooMuchSpeedSlowdown * delta, velocity.y)
+						if velocity.x - self.tooMuchSpeedSlowdown * delta >= speed:
+							return Vector2(velocity.x - self.tooMuchSpeedSlowdown * delta, velocity.y)
 						else:
 							return Vector2(speed, velocity.y)
 				elif velocity.x < 0:
@@ -26,8 +26,8 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						else:
 							return Vector2 (0, velocity.y)
 					elif velocity.x < -speed:
-						if velocity.x + tooMuchSpeedSlowdown * delta <= speed:
-							return Vector2(velocity.x + tooMuchSpeedSlowdown * delta, velocity.y)
+						if velocity.x + self.tooMuchSpeedSlowdown * delta <= speed:
+							return Vector2(velocity.x + self.tooMuchSpeedSlowdown * delta, velocity.y)
 						else:
 							return Vector2 (-speed, velocity.y)
 			else:
@@ -38,8 +38,8 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						else:
 							return Vector2(0, velocity.y)
 					elif velocity.x > speed:
-						if velocity.x - tooMuchSpeedSlowdown * delta >= speed:
-							return Vector2(velocity.x - tooMuchSpeedSlowdown * delta, velocity.y)
+						if velocity.x - self.tooMuchSpeedSlowdown * delta >= speed:
+							return Vector2(velocity.x - self.tooMuchSpeedSlowdown * delta, velocity.y)
 						else:
 							return Vector2(speed, velocity.y)
 				elif velocity.x < 0:
@@ -49,8 +49,8 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 						else:
 							return Vector2 (0, velocity.y)
 					elif velocity.x < -speed:
-						if velocity.x + tooMuchSpeedSlowdown * delta <= speed:
-							return Vector2(velocity.x + tooMuchSpeedSlowdown * delta, velocity.y)
+						if velocity.x + self.tooMuchSpeedSlowdown * delta <= speed:
+							return Vector2(velocity.x + self.tooMuchSpeedSlowdown * delta, velocity.y)
 						else:
 							return Vector2 (-speed, velocity.y)
 		else:
@@ -61,8 +61,8 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 					else:
 						return Vector2(0, velocity.y)
 				elif velocity.x > speed:
-					if velocity.x - tooMuchSpeedSlowdown * delta * 10 >= speed:
-						return Vector2(velocity.x - tooMuchSpeedSlowdown * delta * 10, velocity.y)
+					if velocity.x - self.tooMuchSpeedSlowdown * delta * 10 >= speed:
+						return Vector2(velocity.x - self.tooMuchSpeedSlowdown * delta * 10, velocity.y)
 					else:
 						return Vector2(speed, velocity.y)
 			elif velocity.x < 0:
@@ -72,14 +72,14 @@ func friction(velocity, accelerating, isOnFloor, isGliding, delta) -> Vector2:
 					else:
 						return Vector2 (0, velocity.y)
 				elif velocity.x < -speed:
-					if velocity.x + tooMuchSpeedSlowdown * delta * 10 <= speed:
-						return Vector2(velocity.x + tooMuchSpeedSlowdown * delta * 10, velocity.y)
+					if velocity.x + self.tooMuchSpeedSlowdown * delta * 10 <= speed:
+						return Vector2(velocity.x + self.tooMuchSpeedSlowdown * delta * 10, velocity.y)
 					else:
 						return Vector2 (-speed, velocity.y)
 	return velocity
 
 func evolution0_movement(delta) -> void:
-	if isDashing == false:
+	if self.isDashing == false:
 		snapVector = disable_snap_vector()
 		velocity = apply_movement(velocity, isOnFloor, whereWall, bullet, accelerating, delta)
 		velocity = move_and_slide_with_snap(velocity, snapVector, Vector2.UP, true, maxSlides)
@@ -89,9 +89,9 @@ func evolution0_movement(delta) -> void:
 			whereWall = check_where_wall()
 		maxSlides = change_max_slides(isOnFloor)
 		isOnFloor = is_on_floor()
-		if Input.is_action_just_pressed("Dash") and isGliding == false:
-			velocity = dash(velocity)
-			isDashing = check_if_dashing()
+#		if Input.is_action_just_pressed("Dash") and isGliding == false:
+#			velocity = self.dash(velocity)
+#			isDashing = check_if_dashing()
 
 func is_player_on_wall(isGliding) -> bool:
 	if is_on_floor():
