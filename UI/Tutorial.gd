@@ -47,6 +47,9 @@ func _ready():
 	$VBoxContainer/TutorialDesc.text = tutorials[evo-1].description
 	$VideoPlayer.stream = tutorials[evo-1].video
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_accept"):
+		get_tree().change_scene("res://levels/final levels/Level1.tscn")
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://levels/final levels/Level1.tscn")
