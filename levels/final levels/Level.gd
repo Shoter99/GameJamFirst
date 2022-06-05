@@ -34,7 +34,9 @@ func _ready():
 func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
 	if Global.spawnAtEnd:
+		Global.spawnAtEnd = !Global.spawnAtEnd
 		playerPos = spawnList[checkpointCount-1]
+	
 	var p = player.instance()
 	p.global_position = playerPos.global_position
 	$Player.add_child(p)

@@ -39,7 +39,7 @@ func knock_up(directon) -> void:
 
 func _physics_process(delta : float) ->void:
 	
-	print(isFlipped)	
+	print(Global.spawnAtEnd)
 	if inWater:
 		if not canSwim:
 			Global.update_life(-2)
