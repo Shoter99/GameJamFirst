@@ -8,8 +8,9 @@ var isNear := false
 func _on_SpawnPointHitbox_body_entered(body):
 	if body.is_in_group("Player"):
 		if Global.canEvolve:
-			isNear = true
-			$Label.visible = true
+			if Global.currentEvolutionNo != 7:
+				isNear = true
+				$Label.visible = true
 		if isOn:
 			Global.currentCheckpoint = id
 		

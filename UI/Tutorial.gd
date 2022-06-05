@@ -50,7 +50,7 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
-		get_tree().change_scene("res://levels/final levels/Level1.tscn")
+		get_tree().change_scene(Global.levels[Global.currentLevel])
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://levels/final levels/Level1.tscn")
+	get_tree().change_scene(Global.levels[Global.currentLevel])
