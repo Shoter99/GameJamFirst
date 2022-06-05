@@ -42,30 +42,30 @@ animations = [ {
 "name": "jump",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "dash",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 24 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 16 ), ExtResource( 23 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "swim",
-"speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "on_wall",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "swim",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 17 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 9 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "2ndJump",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
-"loop": true,
-"name": "dash",
-"speed": 15.0
 } ]
 
 [node name="Evolution7" type="KinematicBody2D" groups=["Player"]]
@@ -83,7 +83,8 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
 position = Vector2( -6, -5 )
+z_index = -1
 frames = SubResource( 3 )
 animation = "walk"
-frame = 5
+frame = 7
 playing = true

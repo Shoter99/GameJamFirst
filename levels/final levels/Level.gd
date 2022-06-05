@@ -6,7 +6,7 @@ onready var spawnList = $SpawnPoints.get_children()
 onready var checkpointCount = $SpawnPoints.get_child_count()
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
 	for i in 8:
 		if Global.current_evolution[i] == 1:
 			match i:
@@ -27,13 +27,17 @@ func _ready():
 				7:
 					createPlayer(Global.evolution7)
 	for j in checkpointCount:
+		#print(j)
 		spawnList[j].id = j
 		
 func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
+	#p.global_position.y += 175
 	$Player.add_child(p)
+	
+#	$Player.global_position = playerPos.global_position
 
 func save(Save : Resource):
 	Save.data['currentEvolution'] = Global.current_evolution
