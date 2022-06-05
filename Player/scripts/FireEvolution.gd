@@ -82,6 +82,12 @@ func water_movement(velocity, delta) -> Vector2:
 				velocity.y += deceleration * delta
 			else:
 				velocity.y = 0
+				
+
+	if velocity.x > 0:
+		flip_right()
+	elif velocity.x < 0:
+		flip_left()
 
 	velocity = move_and_slide(velocity)
 	fire(bullet)

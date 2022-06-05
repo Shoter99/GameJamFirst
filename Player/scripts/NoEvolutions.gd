@@ -36,10 +36,9 @@ func knock_up(directon) -> void:
 	snapVector = tmp
 	$Sprite.play("idle")
 	$Sprite.play("jump")
-
+ 
 func _physics_process(delta : float) ->void:
-	
-	print(Global.spawnAtEnd)
+
 	if inWater:
 		if not canSwim:
 			Global.update_life(-2)
