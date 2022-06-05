@@ -72,7 +72,7 @@ func go_to_next_evolution():
 	get_tree().change_scene("res://UI/Tutorial.tscn")
 
 func restart_level():
-#	canEvolve = false
+	canEvolve = false
 	reset_collected()
 	get_tree().reload_current_scene()
 
