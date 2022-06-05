@@ -79,7 +79,7 @@ position = Vector2( 1064, -96 )
 position = Vector2( -1032, -592 )
 
 [node name="SpawnPoint3" parent="SpawnPoints" instance=ExtResource( 8 )]
-position = Vector2( -600, 640 )
+position = Vector2( -600, 624 )
 
 [node name="EnemyTurrets" type="Node2D" parent="."]
 
