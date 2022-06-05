@@ -68,10 +68,7 @@ func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	return velocity
 
 func move_left(delta, velocity) -> Vector2:
-	if not isFlipped:
-		isFlipped = true
-		self.scale.x = -1
-	#get_node("Collision").scale.x = -1
+	flip_left()
 	if velocity.x > -speed:
 		if velocity.x < 0:
 			if velocity.x - 1000 * delta >= -speed:
@@ -83,12 +80,7 @@ func move_left(delta, velocity) -> Vector2:
 	return velocity
 
 func move_right(delta, velocity) -> Vector2:
-	if isFlipped:
-		isFlipped = false
-		self.scale.x = -1
-	#self.scale.x = 1
-	#get_node("Sprite").set_flip_h(false)
-	#get_node("Collision").scale.x = 1
+	flip_right()
 	if velocity.x < speed:
 		if velocity.x > 0:
 			if velocity.x + 1000 * delta <= speed:
@@ -127,4 +119,16 @@ func apply_movement(velocity, isOnFloor, whereWall, bullet,  accelerating, delta
 	accelerating = checkAcceleration(velocity)
 	velocity = friction(velocity, accelerating, isOnFloor, isGliding, delta)
 	return(velocity)
+	
+func flip_left():
+	if not isFlipped:
+		isFlipped = true
+		self.scale.x = -1
+		
+func flip_right():
+	if isFlipped:
+		isFlipped = false
+		self.scale.x = -1
+	
+	
 

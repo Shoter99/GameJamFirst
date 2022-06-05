@@ -14,9 +14,7 @@ func _ready() -> void:
 	
 func water_movement(velocity, delta) -> Vector2:
 	if Input.is_action_pressed("swim_right") and velocity.x < swimSpeed:
-		if isWaterFliped:
-			isWaterFliped = false
-			self.scale.x = -1
+		flip_right()
 		if velocity.x >= 0:
 			if velocity.x + acceleration * delta <= swimSpeed:
 				velocity.x += acceleration * delta
@@ -26,12 +24,10 @@ func water_movement(velocity, delta) -> Vector2:
 			velocity.x += directionChangeSpeed * delta
 
 	if Input.is_action_pressed("swim_left") and velocity.x > -swimSpeed:
-		if not isWaterFliped:
-			isWaterFliped = true
-			self.scale.x = -1
+		flip_left()
 		if velocity.x <= 0:
 			if velocity.x - acceleration * delta >= -swimSpeed:
-				velocity.x -= acceleration * delta
+				velocity.x = acceleration * delta
 			else:
 				velocity.x = -swimSpeed
 		else:
