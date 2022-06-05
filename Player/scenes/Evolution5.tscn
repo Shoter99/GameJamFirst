@@ -42,11 +42,6 @@ animations = [ {
 "name": "jump",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
-"loop": true,
-"name": "dash",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 32 ), ExtResource( 28 ), ExtResource( 33 ), ExtResource( 9 ), ExtResource( 31 ), ExtResource( 1 ), ExtResource( 34 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "walk",
@@ -66,6 +61,11 @@ animations = [ {
 "loop": true,
 "name": "2ndJump",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "dash",
+"speed": 15.0
 } ]
 
 [node name="Evolution5" type="KinematicBody2D" groups=["Player"]]

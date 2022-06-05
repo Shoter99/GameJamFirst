@@ -4,7 +4,7 @@ extends SwimEvolution
 class_name DoubleJumpEvolution
 
 func _ready() -> void:
-	Global.set_start_options(5, 30)
+	Global.set_start_options(5, 45)
 
 func jump(velocity, _isOnFloor) -> Vector2:
 	if Input.is_action_just_pressed("jump"):

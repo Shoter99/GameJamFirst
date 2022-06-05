@@ -3,6 +3,9 @@ extends WallJumpEvolution
 
 class_name WallClimbEvolution
 
+func _ready() -> void:
+	Global.set_start_options(5, 50)
+
 func jump_on_wall(whereWall, velocity) -> Vector2:
 	lastWall = whereWall
 	velocity = jump(velocity, isOnFloor)
