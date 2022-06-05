@@ -65,7 +65,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["save"]]
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 773.0, -467.0 ],

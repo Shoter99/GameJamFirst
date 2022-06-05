@@ -38,3 +38,11 @@ func createPlayer(player):
 	$Player.add_child(p)
 	
 #	$Player.global_position = playerPos.global_position
+
+func save(Save : Resource):
+	Save.data['currentEvolution'] = Global.current_evolution
+	Save.data['currentCheckPoint'] = Global.currentCheckpoint
+	
+func load (Save : Resource):
+	Global.current_evolution = Save.data['currentEvolution']
+	Global.currentCheckpoint = Save.data['currentCheckPoint']
