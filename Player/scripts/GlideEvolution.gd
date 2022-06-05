@@ -1,4 +1,4 @@
-extends DashEvolution
+extends FireEvolution
 
 class_name GlideEvolution
 
@@ -89,9 +89,9 @@ func evolution0_movement(delta) -> void:
 			whereWall = check_where_wall()
 		maxSlides = change_max_slides(isOnFloor)
 		isOnFloor = is_on_floor()
-		if Input.is_action_just_pressed("Dash") and isGliding == false:
-			velocity = self.dash(velocity)
-			isDashing = check_if_dashing()
+#		if Input.is_action_just_pressed("Dash") and isGliding == false:
+#			velocity = self.dash(velocity)
+#			isDashing = check_if_dashing()
 
 func is_player_on_wall(isGliding) -> bool:
 	if is_on_floor():

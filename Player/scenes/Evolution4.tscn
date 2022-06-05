@@ -5,7 +5,7 @@
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_walking_3_b.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_walking_1.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_running_4.png" type="Texture" id=5]
-[ext_resource path="res://Player/scripts/WallJumpEvolution.gd" type="Script" id=6]
+[ext_resource path="res://Player/scripts/WallClimbEvolution.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_jump_1.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_jump_2.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/4_player_with_arms/player_with_arms_jump_3.png" type="Texture" id=10]
@@ -44,14 +44,14 @@ animations = [ {
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "swim",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "on_wall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
@@ -75,6 +75,7 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
 position = Vector2( -6, -5 )
+z_index = -1
 frames = SubResource( 3 )
 animation = "on_wall"
 playing = true

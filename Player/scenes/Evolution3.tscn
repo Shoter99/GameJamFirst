@@ -69,7 +69,8 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="." groups=["Player"]]
 position = Vector2( -5, -5 )
+z_index = -1
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
+frame = 2
 playing = true
