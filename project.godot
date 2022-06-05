@@ -78,7 +78,7 @@ _global_script_class_icons={
 "GlideEvolution": "",
 "JumpEvolution": "",
 "NoEvolution": "",
-"Player": "",
+"Player": "res://Sprites/player.png",
 "SwimEvolution": "",
 "WallClimbEvolution": "",
 "WallJumpEvolution": ""
