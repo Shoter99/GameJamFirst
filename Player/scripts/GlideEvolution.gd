@@ -1,4 +1,4 @@
-extends DashEvolution
+extends FireEvolution
 
 class_name GlideEvolution
 

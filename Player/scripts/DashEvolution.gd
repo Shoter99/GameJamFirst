@@ -1,4 +1,4 @@
-extends FireEvolution
+extends WallJumpEvolution
 
 class_name DashEvolution
 
