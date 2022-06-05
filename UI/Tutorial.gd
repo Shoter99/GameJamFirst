@@ -43,10 +43,11 @@ var tutorials = [
 ]
 
 func _ready():
-	$VBoxContainer/TutorialTitle.text = tutorials[0].title
-	$VBoxContainer/TutorialDesc.text = tutorials[0].description
-	$VideoPlayer.stream = tutorials[0].video
+	var evo : int = Global.currentEvolutionNo
+	$VBoxContainer/TutorialTitle.text = tutorials[evo-1].title
+	$VBoxContainer/TutorialDesc.text = tutorials[evo-1].description
+	$VideoPlayer.stream = tutorials[evo-1].video
 
 
 func _on_Button_pressed():
-	queue_free()
+	get_tree().change_scene("res://levels/final levels/Level1.tscn")

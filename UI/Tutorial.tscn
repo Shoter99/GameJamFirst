@@ -6,15 +6,13 @@
 [ext_resource path="res://UI/Tutorial.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 28
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 46
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 44
 extra_spacing_top = 5
 extra_spacing_bottom = 5
 extra_spacing_char = 5
@@ -43,25 +41,25 @@ color = Color( 0.698039, 0.85098, 0.258824, 0.690196 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -448.0
-margin_top = 61.0
-margin_right = 448.0
-margin_bottom = 280.0
-custom_constants/separation = 60
+margin_left = -280.0
+margin_right = 276.0
+margin_bottom = 142.0
+custom_constants/separation = 30
 alignment = 1
 
 [node name="TutorialTitle" type="Label" parent="VBoxContainer"]
-margin_right = 896.0
-margin_bottom = 64.0
+margin_top = 24.0
+margin_right = 556.0
+margin_bottom = 52.0
 custom_fonts/font = SubResource( 1 )
 text = "Jump Evolution"
 align = 1
 valign = 1
 
 [node name="TutorialDesc" type="Label" parent="VBoxContainer"]
-margin_top = 124.0
-margin_right = 896.0
-margin_bottom = 268.0
+margin_top = 82.0
+margin_right = 556.0
+margin_bottom = 117.0
 custom_colors/font_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "This new evolution enables you to jump using spacebar"
@@ -74,11 +72,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -388.0
-margin_top = -140.0
-margin_right = 1532.0
-margin_bottom = 940.0
-rect_scale = Vector2( 0.4, 0.4 )
+margin_left = -98.0
+margin_top = -30.0
+margin_right = 1822.0
+margin_bottom = 1050.0
+rect_scale = Vector2( 0.1, 0.1 )
 stream = ExtResource( 2 )
 volume_db = -80.0
 autoplay = true
@@ -90,10 +88,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -82.0
-margin_top = 365.0
-margin_right = 82.0
-margin_bottom = 483.0
+margin_left = -35.5
+margin_top = 107.0
+margin_right = 35.5
+margin_bottom = 152.0
 custom_fonts/font = SubResource( 3 )
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 6 )

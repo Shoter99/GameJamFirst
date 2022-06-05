@@ -45,6 +45,7 @@ func update_collectable(var delta: int):
 			current_evolution[currentEvolutionNo+1] = 1
 		currentEvolutionNo +=1
 		restart_level()
+		get_tree().change_scene("res://UI/Tutorial.tscn")
 	
 func restart_level():
 	reset_collected()
