@@ -42,6 +42,7 @@ var tutorials = [
 ]
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var evo : int = Global.currentEvolutionNo
 	$VBoxContainer/TutorialTitle.text = tutorials[evo-1].title
 	$VBoxContainer/TutorialDesc.text = tutorials[evo-1].description

@@ -6,7 +6,7 @@ onready var spawnList = $SpawnPoints.get_children()
 onready var checkpointCount = $SpawnPoints.get_child_count()
 
 func _ready():
-	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for i in 8:
 		if Global.current_evolution[i] == 1:
 			match i:
