@@ -9,7 +9,7 @@ func _ready():
 		if Global.current_evolution[i] == 1:
 			match i:
 				0:
-					createPlayer(Global.evolution6)
+					createPlayer(Global.evolution0)
 				1:
 					createPlayer(Global.evolution1)
 				2:
