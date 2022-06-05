@@ -4,6 +4,7 @@ extends WallJumpEvolution
 class_name DashEvolution
 
 var dashSpeed : int = 450
+var canDash : bool = true
 var isDashing : bool = false
 var courutineActive : bool = false
 export var tooMuchSpeedSlowdown : float = 1500
@@ -78,6 +79,11 @@ func check_if_dashing() -> bool:
 		return true
 	return false
 	
+func start_cooldown():
+	yield(get_tree().create_timer(1.5), "timeout")
+	canDash = true
+	
+	
 func evolution0_movement(delta : float) -> void:
 	if isDashing == false:
 		snapVector = disable_snap_vector()
@@ -89,7 +95,7 @@ func evolution0_movement(delta : float) -> void:
 		maxSlides = change_max_slides(isOnFloor)
 		snapVector = Vector2.DOWN * 6
 		isOnFloor = is_on_floor()
-		if Input.is_action_just_pressed("Dash"):
+		if Input.is_action_just_pressed("Dash") and canDash:
 			velocity = dash(velocity)
 			isDashing = check_if_dashing()
 
@@ -101,9 +107,11 @@ func evolution0_movement(delta : float) -> void:
 		
 func _physics_process(_delta) -> void:
 	if courutineActive == false and isDashing == true:
+		canDash = false
 		courutineActive = true
 		yield(get_tree().create_timer(0.0001), "timeout")
 		courutineActive = false
 		isDashing = false
+		start_cooldown()
 
 
