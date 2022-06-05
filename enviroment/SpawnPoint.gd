@@ -13,7 +13,7 @@ func _on_SpawnPointHitbox_body_entered(body):
 		if isOn:
 			Global.currentCheckpoint = id
 		
-
+#func activate()
 
 func _on_SpawnPointHitbox_body_exited(body):
 	if body.is_in_group("Player"):
