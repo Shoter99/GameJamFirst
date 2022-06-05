@@ -1,4 +1,5 @@
-extends WallClimbEvolution
+extends WallJumpEvolution
+
 
 class_name DashEvolution
 

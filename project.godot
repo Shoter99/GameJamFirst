@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "FireEvolution",
+"base": "WallJumpEvolution",
 "class": "DashEvolution",
 "language": "GDScript",
 "path": "res://Player/scripts/DashEvolution.gd"
@@ -29,12 +29,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/Entity.gd"
 }, {
-"base": "WallJumpEvolution",
+"base": "DashEvolution",
 "class": "FireEvolution",
 "language": "GDScript",
 "path": "res://Player/scripts/FireEvolution.gd"
 }, {
-"base": "DashEvolution",
+"base": "FireEvolution",
 "class": "GlideEvolution",
 "language": "GDScript",
 "path": "res://Player/scripts/GlideEvolution.gd"
@@ -93,6 +93,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Globals/Global.gd"
+SoundManager="*res://Sounds/SoundManager.tscn"
 
 [display]
 
