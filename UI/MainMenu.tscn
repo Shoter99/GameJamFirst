@@ -104,7 +104,6 @@ text = "Exit"
 flat = true
 
 [node name="CreditsText" type="ColorRect" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -393.0
@@ -123,10 +122,16 @@ margin_top = 11.0
 custom_colors/font_color = Color( 0.12549, 0.0823529, 0.2, 1 )
 custom_fonts/font = SubResource( 6 )
 text = "Game Created by:
-- 
--
--
--"
+
+- Microslaw
+
+- Shoter99
+
+- Wikator
+
+- KSztusio
+
+- Majxar"
 
 [node name="Button" type="Button" parent="CreditsText"]
 anchor_left = 0.5
