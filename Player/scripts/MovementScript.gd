@@ -89,9 +89,9 @@ func move_right(delta, velocity) -> Vector2:
 	return velocity
 
 func movement(delta, velocity, _isOnWall) -> Vector2:
-	if Input.is_action_pressed("move_right") and velocity.x <= speed and is_on_wall() == false:
+	if Input.is_action_pressed("move_right") and velocity.x <= speed:
 		return move_right(delta, velocity)
-	elif Input.is_action_pressed("move_left") and velocity.x >= -speed and is_on_wall() == false:
+	elif Input.is_action_pressed("move_left") and velocity.x >= -speed:
 		return move_left(delta, velocity)
 	elif velocity.x >= -speed/4 and velocity.x <= speed/4:
 		return Vector2 (0, velocity.y)
