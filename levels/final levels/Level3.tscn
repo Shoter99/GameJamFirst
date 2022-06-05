@@ -14,7 +14,9 @@
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyTurret.tscn" type="PackedScene" id=14]
 [ext_resource path="res://enviroment/cloud.png" type="Texture" id=15]
+
 [ext_resource path="res://enviroment/Backgrounds/sky_background.png" type="Texture" id=16]
+
 
 [sub_resource type="TileSet" id=16]
 0/name = "cloud.png 0"
@@ -122,9 +124,6 @@ texture = ExtResource( 16 )
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 position = Vector2( 1064, -96 )
-
-[node name="SpawnPoint2" parent="SpawnPoints" instance=ExtResource( 8 )]
-position = Vector2( -80, -56 )
 
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource( 8 )]
 position = Vector2( -656, 592 )
