@@ -29,7 +29,7 @@ onready var evolution6 := preload("res://Player/scenes/Evolution6.tscn")
 onready var evolution7 := preload("res://Player/scenes/Evolution7.tscn")
 #onready var evolution8 := preload("res://Player/scenes/Evolution8.tscn")
 
-onready var levels = ["res://levels/final levels/Level1.tscn", "res://levels/final levels/Level2.tscn", "res://levels/final levels/Level3.tscn"]
+onready var levels = ["res://levels/final levels/Level1.tscn", "res://levels/final levels/Level2.tscn", "res://levels/final levels/Level3.tscn", "res://levels/final levels/FinalLevel.tscn"]
 
 
 func _ready():
