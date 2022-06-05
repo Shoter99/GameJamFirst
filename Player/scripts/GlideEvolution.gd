@@ -89,7 +89,7 @@ func evolution0_movement(delta) -> void:
 			whereWall = check_where_wall()
 		maxSlides = change_max_slides(isOnFloor)
 		isOnFloor = is_on_floor()
-		if Input.is_action_just_pressed("Dash") and isGliding == false:
+		if Input.is_action_just_pressed("Dash") and isGliding == false and canDash:
 			velocity = self.dash(velocity)
 			isDashing = check_if_dashing()
 
