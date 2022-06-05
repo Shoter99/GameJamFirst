@@ -27,17 +27,13 @@ func _ready():
 				7:
 					createPlayer(Global.evolution7)
 	for j in checkpointCount:
-		#print(j)
 		spawnList[j].id = j
 		
 func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
-	#p.global_position.y += 175
 	$Player.add_child(p)
-	
-#	$Player.global_position = playerPos.global_position
 
 func save(Save : Resource):
 	Save.data['currentEvolution'] = Global.current_evolution

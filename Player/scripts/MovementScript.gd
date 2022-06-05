@@ -13,9 +13,6 @@ var lastWall : = "nothing"
 var isFlipped = false
 
 func _ready():
-	#get_node("WallDetector").set_deffered("disabled", true)
-	#get_node("MeleeLeft").disabled = true
-	#get_node("MeleeRight").disabled = true
 	pass
 
 func water_movement(_velocity, _delta) -> Vector2:

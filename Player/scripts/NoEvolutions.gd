@@ -53,7 +53,6 @@ func _physics_process(delta : float) ->void:
 	else:
 		
 		if wasInWater == true:
-			#print("toggled")
 			$Collision.disabled = false
 			$SwimmingColision.disabled = true
 		wasInWater = false

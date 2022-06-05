@@ -7,7 +7,6 @@ func fire(bullet) -> void:
 	if Input.is_action_just_pressed("fire"):
 		var bulletInstance = bullet.instance()
 		get_tree().root.add_child(bulletInstance)
-		print(bulletInstance)
 		if isFlipped:
 			bulletInstance.set_global_position(self.get_global_position())
 			bulletInstance.speed = -250	
