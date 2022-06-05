@@ -26,16 +26,12 @@ func _ready():
 					createPlayer(Global.evolution6)
 				7:
 					createPlayer(Global.evolution7)
-					
 	for j in checkpointCount:
 		#print(j)
 		spawnList[j].id = j
-		#spawnList[j].set_start()
 		
 func createPlayer(player):
 	var playerPos = spawnList[Global.currentCheckpoint]
-	if Global.spawnAtEnd:
-		playerPos = spawnList[checkpointCount-1]
 	var p = player.instance()
 	p.global_position = playerPos.global_position
 	#p.global_position.y += 175
