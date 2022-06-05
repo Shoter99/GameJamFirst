@@ -1,4 +1,4 @@
-extends WallJumpEvolution
+extends DashEvolution
 
 
 class_name FireEvolution
@@ -7,6 +7,7 @@ func fire(bullet) -> void:
 	if Input.is_action_just_pressed("fire"):
 		var bulletInstance = bullet.instance()
 		get_tree().root.add_child(bulletInstance)
+		print(bulletInstance)
 		if get_node("Sprite").flip_h:
 			bulletInstance.set_global_position($FireLeft.get_global_position())
 			bulletInstance.speed = -250	
