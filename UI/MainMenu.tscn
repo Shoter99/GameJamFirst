@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/Press_Start_2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=3]
@@ -12,6 +12,9 @@ size = 32
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=4]
 
@@ -101,6 +104,20 @@ custom_styles/focus = SubResource( 3 )
 text = "Exit"
 flat = true
 
+[node name="FullscreenToggle" type="CheckBox" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -188.0
+margin_top = -36.0
+custom_colors/font_color_focus = Color( 0.988235, 0.964706, 0.376471, 1 )
+custom_colors/font_color = Color( 0.988235, 0.964706, 0.376471, 1 )
+custom_colors/font_color_hover = Color( 0.957031, 0.939346, 0.497208, 1 )
+custom_colors/font_color_pressed = Color( 0.929412, 0.992157, 0.172549, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "FullScreen"
+
 [node name="CreditsText" type="ColorRect" parent="."]
 visible = false
 anchor_left = 0.5
@@ -150,4 +167,5 @@ text = "Ok"
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
+[connection signal="toggled" from="FullscreenToggle" to="." method="_on_FullscreenToggle_toggled"]
 [connection signal="pressed" from="CreditsText/Button" to="." method="_on_Button_pressed"]

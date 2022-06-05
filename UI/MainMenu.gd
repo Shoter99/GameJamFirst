@@ -19,3 +19,10 @@ func _on_Button_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_FullscreenToggle_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		OS.window_fullscreen = true
+	else:
+		OS.window_fullscreen = false
