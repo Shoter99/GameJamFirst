@@ -64,11 +64,15 @@ func check_where_wall() -> String:
 			if get_slide_collision(i):
 				if get_slide_collision(i).position.x > get_position().x:
 					$Sprite.play("on_wall")
-					flip_right()
+					if isFlipped:
+						isFlipped = false
+						self.scale.x = -1
 					return "right"
 				else:
 					$Sprite.play("on_wall")
-					flip_left()
+					if not isFlipped:
+						isFlipped = true
+						self.scale.x = -1
 					return "left"
 	return "nothing"
 
