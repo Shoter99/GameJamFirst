@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_swim_4.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_2nd_jump_frame_3_and_5.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_2nd_jump_frame_1_and_7.png" type="Texture" id=5]
 [ext_resource path="res://Player/scripts/DoubleJumpEvolution.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_2nd_jump_frame_2_and_6.png" type="Texture" id=7]
-[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_swim_2.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_jump_3.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/3_player_with_wings/player_with_wings_standing.png" type="Texture" id=11]
@@ -73,8 +72,5 @@ position = Vector2( -5, -5 )
 z_index = -1
 frames = SubResource( 3 )
 animation = "walk"
-frame = 3
+frame = 2
 playing = true
-
-[node name="Camera2D" parent="." instance=ExtResource( 8 )]
-position = Vector2( 0, 0 )

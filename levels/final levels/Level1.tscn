@@ -9,8 +9,8 @@
 [ext_resource path="res://entities/enemy/EnemyTurret/EnemyTurret.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enviroment/SpawnPoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/enemy/LeftRightEnemy/LeftRightEnemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=10]
 [ext_resource path="res://enviroment/collectables/Collectable.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Sounds/SoundManager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://entities/enemy/ghost/GhostEnemy.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
@@ -68,8 +68,8 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="Level" type="Node2D"]
 script = ExtResource( 6 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 593.0 ],
-"_edit_vertical_guides_": [ 0.0 ]
+"_edit_horizontal_guides_": [ 773.0, -467.0 ],
+"_edit_vertical_guides_": [ 0.0, 1297.0 ]
 }
 
 [node name="SpawnPoints" type="Node2D" parent="."]
@@ -265,9 +265,15 @@ position = Vector2( 864, -150 )
 [node name="Collectable10" parent="Collectables/with walljump" instance=ExtResource( 11 )]
 position = Vector2( 1024, 288 )
 
-[node name="Player" type="Node2D" parent="." groups=["Player"]]
+[node name="Camera2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( -107, -434 )
+limit_left = 0
+limit_top = -475
+limit_right = 1285
+limit_bottom = 775
+smoothing_speed = 20.0
 
-[node name="SoundManager" parent="." instance=ExtResource( 12 )]
+[node name="Player" type="Node2D" parent="." groups=["Player"]]
 
 [connection signal="body_entered" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_entered"]
 [connection signal="body_exited" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_exited"]

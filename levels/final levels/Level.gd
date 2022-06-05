@@ -1,8 +1,10 @@
 extends Node2D
 
 var rng = RandomNumberGenerator.new()
+onready var camera = preload("res://enviroment/Camera2D.tscn")
 onready var spawnList = $SpawnPoints.get_children()
 onready var checkpointCount = $SpawnPoints.get_child_count()
+
 func _ready():
 	
 	for i in 8:
@@ -34,4 +36,5 @@ func createPlayer(player):
 	p.global_position = playerPos.global_position
 	#p.global_position.y += 175
 	$Player.add_child(p)
+	
 #	$Player.global_position = playerPos.global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Player/scripts/GlideEvolution.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_2.png" type="Texture" id=3]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_walking_1.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_3.png" type="Texture" id=7]
-[ext_resource path="res://enviroment/Camera2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_4.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_5.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/6_player_with_glide/player_with_glide_jump_6.png" type="Texture" id=12]
@@ -43,6 +42,11 @@ animations = [ {
 "name": "jump",
 "speed": 10.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "dash",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 17 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "walk",
@@ -57,11 +61,6 @@ animations = [ {
 "loop": true,
 "name": "swim",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
-"loop": true,
-"name": "dash",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 20 ), ExtResource( 24 ), ExtResource( 29 ), ExtResource( 18 ) ],
 "loop": true,
@@ -87,8 +86,5 @@ position = Vector2( -6, -5 )
 z_index = -1
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
+frame = 4
 playing = true
-
-[node name="Camera2D" parent="." instance=ExtResource( 8 )]
-position = Vector2( 0, 0 )

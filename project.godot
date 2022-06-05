@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/scripts/SwimEvolution.gd"
 }, {
-"base": "GlideEvolution",
+"base": "WallJumpEvolution",
 "class": "WallClimbEvolution",
 "language": "GDScript",
 "path": "res://Player/scripts/WallClimbEvolution.gd"
