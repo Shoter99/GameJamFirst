@@ -19,7 +19,7 @@ func hurt_and_die(x):
 	emit_signal("enemy_health_changed", self.enemyHp)
 	if self.enemyHp == 0:
 		
-		Global.update_collectable(1*(Global.currentLevel+1))
+		Global.update_collectable(2*(Global.currentLevel+1))
 		var effect := death_particles.instance()
 		effect.position = position
 		get_tree().current_scene.add_child(effect)

@@ -47,14 +47,14 @@ animations = [ {
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "swim",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 29 ) ],
 "loop": true,
 "name": "on_wall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 7 ) ],

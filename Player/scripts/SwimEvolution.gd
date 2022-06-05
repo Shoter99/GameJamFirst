@@ -10,7 +10,7 @@ var isWaterFliped = false
 
 func _ready() -> void:
 	canSwim = true
-	Global.set_start_options(4, 50)
+	Global.set_start_options(4, 40)
 	
 func water_movement(velocity, delta) -> Vector2:
 	if Input.is_action_pressed("swim_right") and velocity.x < swimSpeed:

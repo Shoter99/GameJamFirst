@@ -71,5 +71,5 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 position = Vector2( -5, -5 )
 frames = SubResource( 3 )
 animation = "walk"
-frame = 1
+frame = 4
 playing = true

@@ -9,7 +9,7 @@ var courutineActive : bool = false
 export var tooMuchSpeedSlowdown : float = 1500
 
 func _ready() -> void:
-	Global.set_start_options(5, 55)
+	Global.set_start_options(5, 65)
 
 func friction(velocity, accelerating, isOnFloor, _isGliding, delta) -> Vector2:
 	if accelerating == false:

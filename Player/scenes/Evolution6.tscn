@@ -47,14 +47,14 @@ animations = [ {
 "name": "walk",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 23 ), ExtResource( 22 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "swim",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "on_wall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 22 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "swim",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 20 ), ExtResource( 24 ), ExtResource( 29 ), ExtResource( 18 ) ],
@@ -85,4 +85,5 @@ polygon = PoolVector2Array( 6, -7, -2, -7, -6, -3, -6, 6, -2, 10, 3, 10, 6, 7 )
 position = Vector2( -6, -5 )
 frames = SubResource( 3 )
 animation = "walk"
+frame = 4
 playing = true
