@@ -235,7 +235,6 @@ script = ExtResource( 2 )
 position = Vector2( 1, 172 )
 scale = Vector2( 1000, 1 )
 shape = SubResource( 4 )
-script = ExtResource( 2 )
 
 [node name="Collectables" type="Node2D" parent="."]
 

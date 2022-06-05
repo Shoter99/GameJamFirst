@@ -21,7 +21,7 @@ extents = Vector2( 7, 6 )
 [node name="EnemyTurretBody" type="KinematicBody2D"]
 z_index = 2
 collision_layer = 0
-collision_mask = 3
+collision_mask = 11
 script = ExtResource( 3 )
 
 [node name="AntiFallingTurretHitbox" type="CollisionShape2D" parent="."]
@@ -31,7 +31,7 @@ shape = SubResource( 3 )
 [node name="TurretAnimation" type="AnimatedSprite" parent="."]
 position = Vector2( -18, 10 )
 frames = SubResource( 2 )
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( 18, -18 )
 

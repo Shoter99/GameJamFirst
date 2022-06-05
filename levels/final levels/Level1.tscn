@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://levels/Level1_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://levels/LevelLimit.gd" type="Script" id=2]
 [ext_resource path="res://levels/WaterTileArea.gd" type="Script" id=3]
 [ext_resource path="res://enviroment/water/sewer_water_depths_bottom_block.png" type="Texture" id=4]
 [ext_resource path="res://enviroment/water/water_surface.tres" type="Texture" id=5]
@@ -66,8 +65,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
-
-[sub_resource type="RectangleShape2D" id=4]
 
 [node name="Level" type="Node2D" groups=["save"]]
 script = ExtResource( 6 )
@@ -291,15 +288,6 @@ position = Vector2( 856, -384 )
 [node name="GhostNode" parent="ghosts" instance=ExtResource( 13 )]
 position = Vector2( 336, -496 )
 
-[node name="LevelLimit" type="Area2D" parent="."]
-position = Vector2( 55, 620 )
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelLimit"]
-position = Vector2( 1, 172 )
-scale = Vector2( 1000, 1 )
-shape = SubResource( 4 )
-
 [node name="Collectables" type="Node2D" parent="."]
 
 [node name="before jump" type="Node2D" parent="Collectables"]
@@ -441,4 +429,3 @@ texture = ExtResource( 16 )
 
 [connection signal="body_entered" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_entered"]
 [connection signal="body_exited" from="WaterTileArea" to="WaterTileArea" method="_on_WaterTileArea_body_exited"]
-[connection signal="body_entered" from="LevelLimit" to="LevelLimit" method="_on_LevelLimit_body_entered"]
